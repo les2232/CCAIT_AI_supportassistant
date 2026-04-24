@@ -80,7 +80,7 @@ RETRIEVAL_EVAL_CASES = [
     {
         "question": "I cannot connect to CCA Wi-Fi",
         "expected_article": "wifi-troubleshooting.txt",
-        "expected_heading": "General guidance",
+        "expected_heading": "Cannot connect to CCA Wi-Fi:",
     },
     {
         "question": "I need help with a Zoom meeting",

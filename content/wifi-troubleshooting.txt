@@ -1,3 +1,35 @@
-If you are having trouble with Wi-Fi, first confirm that Wi-Fi is turned on and reconnect to the correct CCA wireless network.
+SOURCE: Community College of Aurora Wi-Fi Support
 
-If the connection still fails, restart your device and try again. If you still cannot connect or the network remains unstable, contact CCA IT Support for assistance.
+==================================================
+
+WIFI TROUBLESHOOTING
+
+What this helps with:
+- Use this guide if your wifi or Wi-Fi is not working at the Community College of Aurora.
+- It covers student Wi-Fi, wireless network problems, internet connection issues, and what to do if you cannot connect.
+
+Cannot connect to CCA Wi-Fi:
+- If you cannot connect to CCA Wi-Fi, first make sure wifi is turned on for your device.
+- Reconnect to the correct CCA wireless network and try again.
+- If you still cannot connect, restart your device and try the connection again.
+
+Student wifi and wireless network help:
+- Student Wi-Fi is used to connect student devices to the campus wireless network.
+- If student wifi is connected but the internet is not working, try reconnecting and checking the network again.
+- If you cannot connect to student Wi-Fi or the wireless connection does not improve, contact CCA IT Support for help.
+
+Wi-Fi keeps dropping or is unstable:
+- If your Wi-Fi keeps dropping, disconnect and reconnect to the wireless network.
+- If the internet connection is unstable, restart your device and test the connection again.
+- If the connection is still unstable or wifi is not working, you may need help from CCA IT Support.
+
+Internet or network not working:
+- If the internet or network is not working, reconnect to the wireless network and test the connection again.
+- If your device shows that wifi is connected but websites or online services do not load, restart your device and try again.
+- If the network is still not working after reconnecting, contact CCA IT Support.
+
+When to contact IT:
+- Contact CCA IT Support if you cannot connect to wifi, the wireless network is not working, or your internet connection remains unstable after you reconnect and restart your device.
+
+CCA IT Helpdesk:
+- Phone: 303-360-4900
