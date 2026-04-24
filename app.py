@@ -31,6 +31,18 @@ def init_logging_db():
             )
             """
         )
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS feedback_logs (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                created_at TEXT NOT NULL,
+                request_log_id INTEGER,
+                helpful INTEGER NOT NULL,
+                comment TEXT,
+                FOREIGN KEY (request_log_id) REFERENCES request_logs(id)
+            )
+            """
+        )
         conn.commit()
 
 
@@ -39,7 +51,7 @@ def log_request(question, routed_topic, supported, escalation_flag, response_typ
     Insert one request log record.
     """
     with sqlite3.connect(DB_PATH) as conn:
-        conn.execute(
+        cursor = conn.execute(
             """
             INSERT INTO request_logs (
                 created_at,
@@ -59,6 +71,31 @@ def log_request(question, routed_topic, supported, escalation_flag, response_typ
                 int(supported),
                 int(escalation_flag),
                 response_type,
+            ),
+        )
+        conn.commit()
+        return cursor.lastrowid
+
+
+def log_feedback(request_log_id, helpful, comment=None):
+    """
+    Insert one feedback log record.
+    """
+    with sqlite3.connect(DB_PATH) as conn:
+        conn.execute(
+            """
+            INSERT INTO feedback_logs (
+                created_at,
+                request_log_id,
+                helpful,
+                comment
+            ) VALUES (?, ?, ?, ?)
+            """,
+            (
+                datetime.now(UTC).isoformat(),
+                request_log_id,
+                int(helpful),
+                comment,
             ),
         )
         conn.commit()
@@ -325,6 +362,39 @@ HTML = """
         font-size: 12px;
         color: #66686A;
       }
+
+      .feedback-section {
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid #E5E6E8;
+      }
+
+      .feedback-title {
+        margin: 0 0 10px;
+        font-size: 14px;
+        font-weight: 600;
+        color: #231F20;
+      }
+
+      .feedback-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .feedback-button {
+        margin-top: 0;
+        padding: 8px 16px;
+        font-size: 14px;
+      }
+
+      .feedback-thanks {
+        margin-top: 18px;
+        padding-top: 14px;
+        border-top: 1px solid #E5E6E8;
+        font-size: 14px;
+        color: #231F20;
+      }
     </style>
   </head>
   <body>
@@ -405,6 +475,30 @@ HTML = """
             Based on official CCA IT documentation.
           </div>
 
+          {% if request_log_id and not feedback_submitted %}
+            <div class="feedback-section">
+              <div class="feedback-title">Was this helpful?</div>
+              <div class="feedback-actions">
+                <form method="POST" action="/#response">
+                  <input type="hidden" name="form_type" value="feedback">
+                  <input type="hidden" name="request_log_id" value="{{ request_log_id }}">
+                  <input type="hidden" name="helpful" value="1">
+                  <button class="feedback-button" type="submit">Yes, this helped</button>
+                </form>
+                <form method="POST" action="/#response">
+                  <input type="hidden" name="form_type" value="feedback">
+                  <input type="hidden" name="request_log_id" value="{{ request_log_id }}">
+                  <input type="hidden" name="helpful" value="0">
+                  <button class="feedback-button" type="submit">No, I still need help</button>
+                </form>
+              </div>
+            </div>
+          {% endif %}
+
+          {% if feedback_submitted %}
+            <div class="feedback-thanks">Thank you for the feedback.</div>
+          {% endif %}
+
         </div>
 
         <script>
@@ -433,83 +527,100 @@ def index():
     retrieval_confidence = None
     supported = False
     response_type = None
+    request_log_id = None
+    feedback_submitted = False
 
     if request.method == "POST":
-        show_response = True
-        question = request.form.get("question", "")
+        form_type = request.form.get("form_type", "question")
 
-        try:
-            retrieval_texts = load_retrieval_texts()
-            retrieval_result = retrieve_best_section(question, content_texts=retrieval_texts)
+        if form_type == "feedback":
+            show_response = True
+            feedback_submitted = True
+            rendered_response = "Your response has been recorded."
 
-            if retrieval_result is not None:
-                source_name = retrieval_result.article_id
-                section_heading = retrieval_result.section_heading
-                retrieval_confidence = retrieval_result.confidence
-                full_document_text = retrieval_result.full_document_text
-                rendered_response = retrieval_result.answer_text
-                supported = True
-                response_type = "documentation_article"
-                escalation_text = extract_escalation_text(full_document_text)
+            try:
+                request_log_id_raw = request.form.get("request_log_id", "").strip()
+                request_log_id = int(request_log_id_raw) if request_log_id_raw else None
+                helpful = request.form.get("helpful", "0") == "1"
+                log_feedback(request_log_id=request_log_id, helpful=helpful)
+            except Exception:
+                pass
+        else:
+            show_response = True
+            question = request.form.get("question", "")
 
-                if source_name == "password-reset.txt":
-                    show_password_reset_portal = True
-                    password_reset_portal_url = extract_first_url(full_document_text)
-            else:
-                routed_texts = load_content_texts()
-                source_name, raw_content = select_response(question, routed_texts)
+            try:
+                retrieval_texts = load_retrieval_texts()
+                retrieval_result = retrieve_best_section(question, content_texts=retrieval_texts)
 
-                if source_name is None:
-                    response_type = "unsupported_topic"
-                    rendered_response = (
-                        "I don’t have official CCA IT documentation for that topic yet.\n"
-                        "For assistance with this issue, please contact the IT Help Desk."
-                    )
-                elif not raw_content or not raw_content.strip():
-                    supported = True
-                    response_type = "documentation_unavailable"
-                    rendered_response = "The official documentation for this topic is currently unavailable."
-                else:
-                    fallback_result = retrieve_best_section(
-                        question,
-                        content_texts={source_name: raw_content},
-                        article_ids=[source_name],
-                        min_score=1,
-                    )
+                if retrieval_result is not None:
+                    source_name = retrieval_result.article_id
+                    section_heading = retrieval_result.section_heading
+                    retrieval_confidence = retrieval_result.confidence
+                    full_document_text = retrieval_result.full_document_text
+                    rendered_response = retrieval_result.answer_text
                     supported = True
                     response_type = "documentation_article"
-                    escalation_text = extract_escalation_text(raw_content)
-                    full_document_text = raw_content
-
-                    if fallback_result is not None:
-                        section_heading = fallback_result.section_heading
-                        retrieval_confidence = fallback_result.confidence
-                        rendered_response = fallback_result.answer_text
-                    else:
-                        rendered_response = raw_content.strip()
+                    escalation_text = extract_escalation_text(full_document_text)
 
                     if source_name == "password-reset.txt":
                         show_password_reset_portal = True
-                        password_reset_portal_url = extract_first_url(raw_content)
+                        password_reset_portal_url = extract_first_url(full_document_text)
+                else:
+                    routed_texts = load_content_texts()
+                    source_name, raw_content = select_response(question, routed_texts)
 
-        except Exception:
-            supported = bool(source_name)
-            response_type = "documentation_unavailable"
-            rendered_response = (
-                "The official documentation for this topic is currently unavailable."
-            )
+                    if source_name is None:
+                        response_type = "unsupported_topic"
+                        rendered_response = (
+                            "I don’t have official CCA IT documentation for that topic yet.\n"
+                            "For assistance with this issue, please contact the IT Help Desk."
+                        )
+                    elif not raw_content or not raw_content.strip():
+                        supported = True
+                        response_type = "documentation_unavailable"
+                        rendered_response = "The official documentation for this topic is currently unavailable."
+                    else:
+                        fallback_result = retrieve_best_section(
+                            question,
+                            content_texts={source_name: raw_content},
+                            article_ids=[source_name],
+                            min_score=1,
+                        )
+                        supported = True
+                        response_type = "documentation_article"
+                        escalation_text = extract_escalation_text(raw_content)
+                        full_document_text = raw_content
 
-        try:
-            log_request(
-                question=question,
-                routed_topic=source_name,
-                article_id=source_name,
-                supported=supported,
-                escalation_flag=bool(escalation_text),
-                response_type=response_type or "documentation_unavailable",
-            )
-        except Exception:
-            pass
+                        if fallback_result is not None:
+                            section_heading = fallback_result.section_heading
+                            retrieval_confidence = fallback_result.confidence
+                            rendered_response = fallback_result.answer_text
+                        else:
+                            rendered_response = raw_content.strip()
+
+                        if source_name == "password-reset.txt":
+                            show_password_reset_portal = True
+                            password_reset_portal_url = extract_first_url(raw_content)
+
+            except Exception:
+                supported = bool(source_name)
+                response_type = "documentation_unavailable"
+                rendered_response = (
+                    "The official documentation for this topic is currently unavailable."
+                )
+
+            try:
+                request_log_id = log_request(
+                    question=question,
+                    routed_topic=source_name,
+                    article_id=source_name,
+                    supported=supported,
+                    escalation_flag=bool(escalation_text),
+                    response_type=response_type or "documentation_unavailable",
+                )
+            except Exception:
+                pass
 
     return render_template_string(
         HTML,
@@ -523,6 +634,8 @@ def index():
         source_name=source_name,
         section_heading=section_heading,
         retrieval_confidence=retrieval_confidence,
+        request_log_id=request_log_id,
+        feedback_submitted=feedback_submitted,
     )
 
 
