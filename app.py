@@ -388,10 +388,22 @@ HTML = """
       }
 
       ul.examples li {
+        margin: 0;
+      }
+
+      .example-chip {
+        margin: 0;
         padding: 6px 10px;
         border: 1px solid var(--line-soft);
         border-radius: 999px;
         background: var(--surface-muted);
+        color: var(--muted);
+        font: inherit;
+        cursor: pointer;
+      }
+
+      .example-chip:hover {
+        background: #EEF2F6;
       }
 
       textarea {
@@ -690,15 +702,15 @@ HTML = """
         <p class="search-copy">
           Search for help with passwords, email, Wi-Fi, D2L, Zoom, and other common student IT needs.
         </p>
-        <ul class="examples">
-          <li>How do I reset my password?</li>
-          <li>How do I access my student email?</li>
-          <li>Wi‑Fi isn’t working</li>
-          <li>Where do I submit assignments?</li>
-        </ul>
+        <form method="POST" action="/#response" id="question-form">
+          <ul class="examples">
+            <li><button class="example-chip" type="button" data-question="How do I reset my password?">How do I reset my password?</button></li>
+            <li><button class="example-chip" type="button" data-question="How do I access my student email?">How do I access my student email?</button></li>
+            <li><button class="example-chip" type="button" data-question="Wi‑Fi isn’t working">Wi‑Fi isn’t working</button></li>
+            <li><button class="example-chip" type="button" data-question="Where do I submit assignments?">Where do I submit assignments?</button></li>
+          </ul>
 
-        <form method="POST" action="/#response">
-          <textarea name="question" placeholder="Type your question here..."></textarea>
+          <textarea id="question-input" name="question" placeholder="Type your question here..."></textarea>
           <br>
           <button type="submit">Get help</button>
         </form>
@@ -785,6 +797,17 @@ HTML = """
         </div>
 
         <script>
+          const questionForm = document.getElementById("question-form");
+          const questionInput = document.getElementById("question-input");
+          const exampleChips = document.querySelectorAll(".example-chip");
+
+          for (const chip of exampleChips) {
+            chip.addEventListener("click", () => {
+              questionInput.value = chip.dataset.question;
+              questionForm.submit();
+            });
+          }
+
           document.getElementById("response")
             .scrollIntoView({ behavior: "auto", block: "start" });
         </script>
