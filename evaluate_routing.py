@@ -1,19 +1,7 @@
 import argparse
 
 from router import legacy_select_response, load_content_texts, select_response
-
-CASES = [
-    ("How do I reset my password?", "password-reset.txt"),
-    ("My MFA is not working", "password-reset.txt"),
-    ("My account is locked", "password-reset.txt"),
-    ("I can't get into my online class", "d2l.txt"),
-    ("Where do I find my assignments?", "d2l.txt"),
-    ("Where do I submit assignments?", "d2l.txt"),
-    ("I need help with Zoom", "online-blended-learning.txt"),
-    ("How do I access student email?", "student-email.txt"),
-    ("Can I borrow a calculator?", "student-laptops-calculators.txt"),
-    ("Wi-Fi keeps dropping on my laptop", "wifi-troubleshooting.txt"),
-]
+from routing_eval_cases import ROUTING_EVAL_CASES
 
 
 def parse_args():
@@ -32,39 +20,57 @@ def main():
     args = parse_args()
     content_texts = load_content_texts()
     failures = []
+    improvements = []
+    category_totals = {}
+    category_failures = {}
 
     print("Routing evaluation")
     print("=" * 72)
 
-    for question, expected in CASES:
+    for case in ROUTING_EVAL_CASES:
+        category = case["category"]
+        question = case["question"]
+        expected = case["expected"]
+
         legacy_article, _ = legacy_select_response(question, content_texts)
         upgraded_article, _ = select_response(question, content_texts)
         improved = legacy_article != expected and upgraded_article == expected
         passed = upgraded_article == expected
 
-        print(f"Question: {question}")
-        print(f"  Expected:  {expected}")
-        print(f"  Legacy:    {legacy_article}")
-        print(f"  Upgraded:  {upgraded_article}")
-        print(f"  Result:    {'PASS' if passed else 'FAIL'}")
-        if improved:
-            print("  Change:    upgraded router fixed a legacy miss")
-        print()
+        category_totals[category] = category_totals.get(category, 0) + 1
 
         if not passed:
-            failures.append((question, expected, upgraded_article))
+            failures.append((category, question, expected, upgraded_article, legacy_article))
+            category_failures[category] = category_failures.get(category, 0) + 1
+        elif improved:
+            improvements.append((category, question, expected, legacy_article))
 
     print("=" * 72)
-    print(f"Total cases: {len(CASES)}")
-    print(f"Passed:      {len(CASES) - len(failures)}")
+    print("Dataset: representative test cases derived from current content and routing")
+    print(f"Total cases: {len(ROUTING_EVAL_CASES)}")
+    print(f"Passed:      {len(ROUTING_EVAL_CASES) - len(failures)}")
     print(f"Failed:      {len(failures)}")
+    print(f"Improved:    {len(improvements)}")
+
+    print("\nBy category:")
+    for category in sorted(category_totals):
+        total = category_totals[category]
+        failed = category_failures.get(category, 0)
+        passed = total - failed
+        print(f"- {category}: {passed}/{total} passed")
 
     if failures:
         print("\nFailed cases:")
-        for question, expected, actual in failures:
-            print(f"- {question}")
+        for category, question, expected, actual, legacy in failures:
+            print(f"- [{category}] {question!r}")
             print(f"  expected: {expected}")
-            print(f"  actual:   {actual}")
+            print(f"  upgraded: {actual}")
+            print(f"  legacy:   {legacy}")
+
+    if improvements:
+        print("\nLegacy misses fixed by upgraded router:")
+        for category, question, expected, legacy in improvements:
+            print(f"- [{category}] {question!r} -> {expected} (legacy: {legacy})")
 
     if args.strict and failures:
         raise SystemExit(1)

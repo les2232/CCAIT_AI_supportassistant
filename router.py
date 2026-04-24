@@ -32,6 +32,8 @@ TOPIC_CONFIGS = [
             "unable to log in": 5,
             "account locked": 6,
             "locked out": 6,
+            "unlock my account": 6,
+            "unlocking my account": 6,
             "mfa": 5,
             "multi factor": 5,
             "multi factor authentication": 6,
@@ -92,7 +94,7 @@ TOPIC_CONFIGS = [
     {
         "article_id": "student-laptops-calculators.txt",
         "keywords": {
-            "laptop": 4,
+            "laptop": 2,
             "calculator": 4,
             "loan": 3,
             "borrow": 4,
@@ -108,7 +110,7 @@ TOPIC_CONFIGS = [
             "loaner laptop": 5,
             "borrow a calculator": 6,
             "graphing calculator": 6,
-            "ti 84": 6,
+            "ti 84": 8,
             "check out a calculator": 6,
             "check out a laptop": 6,
         },
@@ -145,6 +147,8 @@ TOPIC_CONFIGS = [
             "zoom meeting": 7,
             "zoom link": 5,
             "need help with zoom": 8,
+            "remote class": 7,
+            "video help": 3,
         },
     },
 ]
@@ -161,6 +165,7 @@ TOKEN_SYNONYMS = {
     "locked": ("locked", "account"),
     "lockout": ("locked", "account"),
     "unlock": ("locked", "account"),
+    "unlocking": ("locked", "account"),
     "mfa": ("mfa", "password", "account"),
     "multifactor": ("mfa",),
     "authenticator": ("mfa",),
