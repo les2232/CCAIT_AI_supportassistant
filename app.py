@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template_string
+from flask import Flask, request, render_template_string, redirect, session, url_for
 from pathlib import Path
 from datetime import datetime, UTC
 import re
@@ -8,8 +8,11 @@ from retriever import load_retrieval_texts, retrieve_best_section
 from router import load_content_texts, select_response
 
 app = Flask(__name__)
+app.secret_key = "temporary-dev-session-secret-key"
 
 DB_PATH = Path(__file__).parent / "it_help_logs.db"
+TEMP_LOGIN_USERNAME = "admin"
+TEMP_LOGIN_PASSWORD = "test123"
 
 
 def init_logging_db():
@@ -191,6 +194,23 @@ HTML = """
         max-width: 980px;
         margin: 0 auto;
         padding: 32px 20px 56px;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 12px;
+      }
+
+      .logout-link {
+        color: var(--muted);
+        font-size: 14px;
+        text-decoration: none;
+      }
+
+      .logout-link:hover {
+        color: var(--cca-red);
+        text-decoration: underline;
       }
 
       .hero {
@@ -557,6 +577,9 @@ HTML = """
   </head>
   <body>
     <div class="page">
+      <div class="topbar">
+        <a class="logout-link" href="/logout">Log out</a>
+      </div>
       <div class="hero">
         <p class="hero-kicker">Student Support</p>
         <h1>CCA IT Support Assistant</h1>
@@ -674,11 +697,191 @@ HTML = """
 </html>
 """
 
+LOGIN_HTML = """
+<!doctype html>
+<html>
+  <head>
+    <title>CCA IT Support Assistant Login</title>
+    <style>
+      :root {
+        --cca-red: #9A111F;
+        --cca-red-dark: #7F0F1A;
+        --ink: #1F2933;
+        --muted: #5F6C7B;
+        --line: #D6DCE3;
+        --surface: #FFFFFF;
+        --surface-muted: #F7F9FB;
+        --page-top: #EEF2F5;
+        --page-bottom: #F8FAFB;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Myriad Pro", Arial, sans-serif;
+        background: linear-gradient(180deg, var(--page-top) 0%, var(--page-bottom) 100%);
+        color: var(--ink);
+        margin: 0;
+        padding: 0;
+      }
+
+      .page {
+        max-width: 520px;
+        margin: 0 auto;
+        padding: 48px 20px;
+      }
+
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 28px 24px;
+        box-shadow: 0 10px 24px rgba(31, 41, 51, 0.06);
+      }
+
+      .kicker {
+        margin: 0 0 8px;
+        color: var(--cca-red);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 30px;
+        line-height: 1.15;
+      }
+
+      .subtitle {
+        margin: 12px 0 20px;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.6;
+      }
+
+      .dev-note {
+        margin: 0 0 18px;
+        padding: 12px 14px;
+        border: 1px solid #E8D7DA;
+        border-radius: 14px;
+        background: #FFF8F8;
+        color: var(--ink);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      label {
+        display: block;
+        margin: 0 0 6px;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      input {
+        width: 100%;
+        margin-bottom: 16px;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        background: var(--surface-muted);
+        font-size: 15px;
+        font-family: inherit;
+      }
+
+      input:focus {
+        outline: none;
+        border-color: var(--cca-red);
+        background: var(--surface);
+        box-shadow: 0 0 0 4px rgba(154, 17, 31, 0.08);
+      }
+
+      button {
+        background: var(--cca-red);
+        color: var(--surface);
+        border: none;
+        border-radius: 999px;
+        padding: 12px 18px;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: var(--cca-red-dark);
+      }
+
+      .error {
+        margin: 0 0 14px;
+        color: var(--cca-red-dark);
+        font-size: 14px;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="card">
+        <p class="kicker">Temporary Login</p>
+        <h1>CCA IT Support Assistant</h1>
+        <p class="subtitle">
+          Sign in to access the assistant. This is a temporary development-only login before AD/LDAP authentication is added.
+        </p>
+        <p class="dev-note">
+          Temporary dev credentials are enabled in this build.
+        </p>
+        {% if error_message %}
+          <p class="error">{{ error_message }}</p>
+        {% endif %}
+        <form method="POST" action="/login">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" autocomplete="username">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password">
+          <button type="submit">Sign in</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
+"""
+
 init_logging_db()
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if session.get("logged_in"):
+        return redirect(url_for("index"))
+
+    error_message = None
+    if request.method == "POST":
+        username = request.form.get("username", "")
+        password = request.form.get("password", "")
+
+        if username == TEMP_LOGIN_USERNAME and password == TEMP_LOGIN_PASSWORD:
+            session["logged_in"] = True
+            return redirect(url_for("index"))
+
+        error_message = "Invalid username or password."
+
+    return render_template_string(LOGIN_HTML, error_message=error_message)
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
 
 
 @app.route("/", methods=["GET", "POST"])
 def index():
+    if not session.get("logged_in"):
+        return redirect(url_for("login"))
+
     rendered_response = None
     full_document_text = None
     show_response = False
