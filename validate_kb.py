@@ -3,11 +3,14 @@ import sys
 
 from response_builder import (
     GUIDE_FIELD_NAMES,
+    count_user_facing_steps,
     extract_escalation_text,
     heuristic_extract_step_items,
+    is_guide_metadata_line,
     parse_guide_content,
     parse_section_map,
     resolve_guide_items,
+    strip_guide_metadata_lines,
 )
 
 
@@ -60,14 +63,34 @@ def validate_file(path):
         errors.append("TAGS is empty.")
 
     steps = []
-    for resolved in resolve_guide_items(guide.get("STEPS", []), content_text):
+    resolved_step_blocks = resolve_guide_items(guide.get("STEPS", []), content_text)
+    for resolved in resolved_step_blocks:
+        if any(is_guide_metadata_line(line) for line in resolved.splitlines() if line.strip()):
+            errors.append("STEPS resolves to metadata field labels instead of user-facing guidance.")
+            break
         steps.extend(heuristic_extract_step_items(resolved))
     if not steps:
         errors.append("STEPS does not resolve to at least one usable step.")
+    elif len(steps) < 2:
+        errors.append("STEPS does not resolve to at least two user-facing troubleshooting steps.")
+
+    total_user_facing_steps = sum(count_user_facing_steps(block) for block in resolved_step_blocks)
+    if total_user_facing_steps < 2:
+        errors.append("STEPS does not contain at least two real user-facing step lines.")
 
     escalation = extract_escalation_text(content_text)
     if not escalation or not escalation.strip():
         errors.append("ESCALATE does not resolve to any escalation text.")
+    else:
+        cleaned_escalation = strip_guide_metadata_lines(escalation)
+        if not cleaned_escalation:
+            errors.append("ESCALATE resolves only to metadata or heading labels.")
+        elif all(
+            line.strip().endswith(":") and len(line.strip().split()) <= 12
+            for line in cleaned_escalation.splitlines()
+            if line.strip()
+        ):
+            errors.append("ESCALATE resolves only to heading labels without contact guidance.")
 
     return warnings, errors
 

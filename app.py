@@ -1,4 +1,5 @@
 import os
+import sys
 
 from flask import Flask, redirect, render_template, request, session, url_for
 
@@ -25,8 +26,86 @@ from retriever import load_retrieval_texts, retrieve_best_section
 from router import load_content_texts, select_response
 
 
+DEFAULT_FLASK_SECRET = "temporary-dev-session-secret-key"
+
+
+def current_runtime_mode():
+    """
+    Return a simple normalized runtime mode string.
+    """
+    return (
+        os.environ.get("APP_ENV")
+        or os.environ.get("FLASK_ENV")
+        or os.environ.get("ENV")
+        or "development"
+    ).strip().lower()
+
+
+def validate_startup_config():
+    """
+    Validate deployment-sensitive configuration.
+    In production, fail fast on unsafe settings.
+    In non-production, print warnings only.
+    """
+    runtime_mode = current_runtime_mode()
+    in_production = runtime_mode == "production"
+
+    errors = []
+    warnings = []
+
+    secret_key = os.environ.get("FLASK_SECRET_KEY", "").strip()
+    if not secret_key:
+        message = "FLASK_SECRET_KEY is not set."
+        if in_production:
+            errors.append(message)
+        else:
+            warnings.append(f"{message} Using a development fallback secret.")
+    elif secret_key == DEFAULT_FLASK_SECRET:
+        message = "FLASK_SECRET_KEY is using the default development fallback."
+        if in_production:
+            errors.append(message)
+        else:
+            warnings.append(message)
+
+    if ALLOW_DEV_LOGIN:
+        message = "ALLOW_DEV_LOGIN is enabled."
+        if in_production:
+            errors.append(f"{message} Disable dev login before deploying.")
+        else:
+            warnings.append(f"{message} This is only safe for local development.")
+
+    ldap_required_vars = (
+        "LDAP_SERVER",
+        "LDAP_PORT",
+        "LDAP_DOMAIN",
+        "LDAP_REQUIRED_GROUP_DN",
+    )
+    missing_ldap_vars = [name for name in ldap_required_vars if not os.environ.get(name, "").strip()]
+    if missing_ldap_vars:
+        message = "LDAP settings are relying on defaults or are unset: " + ", ".join(missing_ldap_vars)
+        if in_production:
+            errors.append(message)
+        else:
+            warnings.append(message)
+
+    if warnings:
+        print("Startup configuration warnings", file=sys.stderr)
+        print("=" * 72, file=sys.stderr)
+        for warning in warnings:
+            print(f"- {warning}", file=sys.stderr)
+
+    if errors:
+        print("Startup configuration errors", file=sys.stderr)
+        print("=" * 72, file=sys.stderr)
+        for error in errors:
+            print(f"- {error}", file=sys.stderr)
+        raise RuntimeError("Unsafe production configuration. Review startup settings before deployment.")
+
+
+validate_startup_config()
+
 app = Flask(__name__)
-app.secret_key = os.environ.get("FLASK_SECRET_KEY", "temporary-dev-session-secret-key")
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", DEFAULT_FLASK_SECRET)
 
 init_logging_db()
 
@@ -282,7 +361,12 @@ def index():
                     source_name=source_name,
                     content_text=full_document_text,
                 )
-                guided_steps = extract_step_items(rendered_response, content_text=full_document_text)
+                guided_steps = extract_step_items(
+                    rendered_response,
+                    content_text=full_document_text,
+                    question=question,
+                    section_heading=section_heading,
+                )
 
     return render_template(
         "index.html",

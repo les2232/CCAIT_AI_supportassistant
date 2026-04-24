@@ -10,6 +10,21 @@ GUIDE_FIELD_NAMES = (
     "ESCALATE",
 )
 
+GUIDE_FIELD_PATTERN = re.compile(
+    r"^\s*-\s*(TITLE|AUDIENCE|TAGS|CONTEXT|STEPS|IF NOT FIXED|ESCALATE):\s*(.*)$",
+    flags=re.IGNORECASE,
+)
+
+GUIDE_METADATA_LABELS = {
+    "title:",
+    "audience:",
+    "tags:",
+    "context:",
+    "steps:",
+    "if not fixed:",
+    "escalate:",
+}
+
 
 def build_tone_profile(question=None, source_name=None):
     """
@@ -70,6 +85,62 @@ def is_heading_line(line):
     return stripped.isupper() and len(stripped.split()) <= 8
 
 
+def is_guide_field_line(line):
+    return bool(GUIDE_FIELD_PATTERN.match(line or ""))
+
+
+def is_guide_metadata_line(line):
+    stripped = (line or "").strip()
+    if not stripped:
+        return False
+    lowered = stripped.lower()
+    if lowered == "guide ready fields:":
+        return True
+    if lowered in GUIDE_METADATA_LABELS:
+        return True
+    if lowered.startswith("- "):
+        candidate = lowered[2:]
+        if candidate in GUIDE_METADATA_LABELS:
+            return True
+    return bool(GUIDE_FIELD_PATTERN.match(stripped))
+
+
+def strip_guide_metadata_lines(text):
+    """
+    Remove guide field labels and metadata lines from resolved guide content.
+    """
+    if not text:
+        return ""
+
+    cleaned_lines = []
+    for raw_line in text.splitlines():
+        stripped = raw_line.strip()
+        if not stripped:
+            continue
+        if is_guide_metadata_line(stripped):
+            continue
+        cleaned_lines.append(stripped)
+    return "\n".join(cleaned_lines).strip()
+
+
+def count_user_facing_steps(text):
+    """
+    Count non-metadata user-facing step lines in a block of text.
+    """
+    cleaned = strip_guide_metadata_lines(text)
+    if not cleaned:
+        return 0
+    count = 0
+    for line in cleaned.splitlines():
+        stripped = line.strip()
+        if not stripped:
+            continue
+        if is_guide_metadata_line(stripped):
+            continue
+        count += 1
+    return count
+
+
 def parse_section_map(content_text):
     """
     Build a simple heading -> body map for one document.
@@ -85,6 +156,10 @@ def parse_section_map(content_text):
         stripped = raw_line.strip()
         if not stripped:
             continue
+        if is_guide_field_line(stripped):
+            break
+        if stripped.lower() == "guide ready fields:":
+            break
         if stripped.startswith("SOURCE:") or set(stripped) <= {"=", "-", "`"}:
             continue
 
@@ -128,11 +203,7 @@ def parse_guide_content(content_text):
 
     for raw_line in content_text.splitlines():
         line = raw_line.rstrip()
-        field_match = re.match(
-            r"^\s*-\s*(TITLE|AUDIENCE|TAGS|CONTEXT|STEPS|IF NOT FIXED|ESCALATE):\s*(.*)$",
-            line,
-            flags=re.IGNORECASE,
-        )
+        field_match = GUIDE_FIELD_PATTERN.match(line)
         if field_match:
             current_field = field_match.group(1).upper()
             value = field_match.group(2).strip()
@@ -192,9 +263,13 @@ def resolve_guide_items(items, content_text):
     for item in items:
         reference = item.strip()
         if reference in section_map:
-            resolved.append(section_map[reference])
+            cleaned = strip_guide_metadata_lines(section_map[reference])
+            if cleaned:
+                resolved.append(cleaned)
         else:
-            resolved.append(reference)
+            cleaned = strip_guide_metadata_lines(reference)
+            if cleaned:
+                resolved.append(cleaned)
     return resolved
 
 
@@ -221,7 +296,11 @@ def extract_escalation_text(content_text):
 
     guide_content = parse_guide_content(content_text)
     if guide_content.get("ESCALATE"):
-        return "\n".join(resolve_guide_items(guide_content["ESCALATE"], content_text))
+        escalation = "\n".join(resolve_guide_items(guide_content["ESCALATE"], content_text))
+        escalation = strip_guide_metadata_lines(escalation)
+        if escalation:
+            return escalation
+        return None
 
     escalation_lines = []
     for line in content_text.splitlines():
@@ -370,6 +449,11 @@ def detect_disambiguation_options(question):
         "videos",
         "course video",
         "course videos",
+        "classroom",
+        "projector",
+        "display",
+        "audio",
+        "av",
     )
 
     if any(term in normalized for term in specific_terms):
@@ -445,6 +529,8 @@ def heuristic_extract_step_items(answer_text):
     for paragraph in paragraphs:
         lines = [line.strip() for line in paragraph.splitlines() if line.strip()]
         for line in lines:
+            if is_guide_metadata_line(line):
+                continue
             numbered_match = re.match(r"^\d+\.\s+(.*)$", line)
             bullet_match = re.match(r"^[-•]\s+(.*)$", line)
             if numbered_match:
@@ -460,7 +546,7 @@ def heuristic_extract_step_items(answer_text):
         sentences = [
             sentence.strip()
             for sentence in re.split(r"(?<=[.!?])\s+", paragraph)
-            if sentence.strip()
+            if sentence.strip() and not is_guide_metadata_line(sentence.strip())
         ]
         items.extend(sentences)
 
@@ -479,12 +565,47 @@ def heuristic_extract_step_items(answer_text):
     return cleaned
 
 
-def extract_step_items(answer_text, content_text=None):
+def extract_step_items(answer_text, content_text=None, question=None, section_heading=None):
     """
     Prefer structured STEPS data when available, else fall back to heuristic extraction.
     """
+    lowered_question = (question or "").lower()
+    lowered_heading = (section_heading or "").lower()
+    direct_section_query = (
+        lowered_question.startswith("where ")
+        or lowered_question.startswith("who ")
+        or "where do i" in lowered_question
+        or "where is" in lowered_question
+        or "who can help" in lowered_question
+        or "who do i contact" in lowered_question
+        or "who can" in lowered_question
+        or "location" in lowered_question
+        or "where to get help" in lowered_heading
+        or "when to contact" in lowered_heading
+        or "location" in lowered_heading
+    )
+
+    if direct_section_query:
+        direct_steps = heuristic_extract_step_items(answer_text)
+        if direct_steps:
+            return direct_steps
+
+    section_map = parse_section_map(content_text)
+    if section_heading and section_heading in section_map:
+        matched_section_steps = heuristic_extract_step_items(section_map[section_heading])
+        if len(matched_section_steps) >= 2:
+            return matched_section_steps
+
     guide_content = parse_guide_content(content_text)
     if guide_content.get("STEPS"):
+        if section_heading and section_heading in set(guide_content.get("STEPS", [])):
+            matched_steps = resolve_guide_items([section_heading], content_text)
+            steps = []
+            for resolved in matched_steps:
+                steps.extend(heuristic_extract_step_items(resolved))
+            if len(steps) >= 2:
+                return steps
+
         steps = []
         for resolved in resolve_guide_items(guide_content["STEPS"], content_text):
             extracted = heuristic_extract_step_items(resolved)

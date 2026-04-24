@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 import os
 from pathlib import Path
+import re
 
 from router import expand_query_tokens, normalize_text, tokenize_text
 from semantic_retriever import retrieve_best_semantic_section
@@ -29,6 +30,10 @@ TROUBLESHOOTING_PHRASES = {
     "can t", "cannot", "unable", "not working", "locked", "issue", "problem",
     "problems", "is not working", "won t",
 }
+GUIDE_FIELD_PATTERN = re.compile(
+    r"^\s*-\s*(TITLE|AUDIENCE|TAGS|CONTEXT|STEPS|IF NOT FIXED|ESCALATE):\s*(.*)$",
+    flags=re.IGNORECASE,
+)
 
 
 @dataclass
@@ -69,6 +74,12 @@ def clean_content_lines(content_text):
 
         if stripped and set(stripped) <= {"=", "-", "`"}:
             continue
+
+        if normalized.lower() == "guide ready fields:":
+            break
+
+        if GUIDE_FIELD_PATTERN.match(stripped):
+            break
 
         cleaned.append(raw_line.rstrip())
 

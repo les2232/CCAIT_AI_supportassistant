@@ -15,7 +15,9 @@ Setting up MFA:
 
 Common MFA problems:
 - If you are not receiving a verification code or prompt, start the sign-in process again and make sure your account information is correct.
+- If your MFA verification code is not working, start the sign-in process again and make sure your account information is correct.
 - If you changed phones, lost access to your previous device, or cannot use your usual verification method, you may not be able to finish sign-in until your MFA access is updated.
+- If you changed phones and cannot verify your login, contact CCA IT Support for help updating your MFA access.
 - If verification keeps failing, contact CCA IT Support for help.
 
 What MFA affects:

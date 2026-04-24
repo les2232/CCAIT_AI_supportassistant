@@ -7,14 +7,14 @@ ONLINE AND BLENDED LEARNING (OBL)
 
 What this is:
 - The Online and Blended Learning (OBL) team at the Community College of Aurora supports online and blended instruction.
-- OBL helps students and faculty navigate online learning tools, course support resources, and accessibility-related technology guidance.
+- OBL helps students and faculty navigate online learning tools, instructional support questions, and accessibility-related technology guidance.
 
 Location:
 - Fine Arts Building, Room F103
 
 What students use it for:
 - Participating in online and blended courses at CCA.
-- Accessing course materials and activities supported by learning technologies such as D2L (MyCourses) and Zoom.
+- Using online learning tools such as D2L (MyCourses) and Zoom when those tools are part of a course.
 - Finding the right support path for online learning tools used in class.
 
 Services provided:
@@ -45,10 +45,13 @@ Training requirements:
 - If training questions affect course delivery or faculty support, OBL can help direct you to the right next step.
 
 Design and support access:
-- Faculty and instructors can connect with the OBL design team for course support.
+- Faculty and instructors can connect with the OBL design team for instructional support.
 - Students and faculty can use OBL contact information when they are unsure whether an issue belongs with OBL or IT.
+- OBL can help direct faculty who need support with online course design, course structure, or related instructional support.
 
 Where to get help / When to contact OBL or IT:
+- For help with online course design, course structure, or instructional support, contact:
+  onlinelearning.cca@ccaurora.edu
 - For online learning design support or instructional questions, contact:
   onlinelearning.cca@ccaurora.edu
 - For technical issues with systems such as D2L, Zoom, or login access, contact the IT Helpdesk at 303-360-4900.

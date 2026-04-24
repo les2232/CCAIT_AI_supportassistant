@@ -6,6 +6,8 @@ URL: https://cccs.libguides.com/CCAEdTech
 Technology Help & Support at Community College of Aurora (CCA)
 
 This guide helps students find the right place to get help with technology, devices, software, and campus support resources at CCA.
+It is also the best starting point when you are not sure which IT support option fits your issue.
+Use this guide when you need help finding the right IT support option and do not know which support resource to use first.
 
 --------------------------------------------------
 IT SUPPORT CONTACTS
@@ -21,6 +23,11 @@ MyCourses / D2L (Canvas) Helpdesk
 
 --------------------------------------------------
 WHERE TO GET TECH HELP
+
+Finding the right IT support option:
+- Use this section if you need help finding the right IT support option for a student technology issue.
+- Start here when you are not sure which support resource, office, or help desk fits your question.
+- If you still are not sure where to go, ask the Hub Front Desk for help choosing the right support option.
 
 Daily Laptop Lending Program
 What this is:
@@ -69,23 +76,15 @@ Where to go for more:
 - Hub Front Desk.
 - A free online graphing calculator is available at Desmos.com.
 
---------------------------------------------------
-Campus printers
-
-What this is:
-- Students can use Hub printers for general printer access.
-
-What to know:
-- For detailed printing setup instructions and printing troubleshooting, use the dedicated CCA printing support guide.
-
 - TITLE: Technology Help and Support at CCA
 - AUDIENCE: Students
 - TAGS: technology help, headphones, software, calculators, hub
 - CONTEXT:
-  - Use this guide when you need help finding the right student technology support resource at CCA.
+  - Use this guide when you need help finding the right student technology support resource or IT support option at CCA.
 - STEPS:
+  - If you are not sure which IT support option fits your issue, start with this guide.
   - Visit the Hub Front Desk for headphones, calculators, or general student technology help.
-  - Use the sections in this guide to identify the right office, desk, or support resource for your question.
+  - Use the sections in this guide to identify the right office, desk, support resource, or IT support option for your question.
 - IF NOT FIXED:
   - For semester-long laptop loans, visit Student Success.
   - Contact IT for troubleshooting or additional software needs.

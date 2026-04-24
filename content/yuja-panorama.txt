@@ -16,7 +16,7 @@ What students use it for:
 
 Student support and access:
 - YuJa student resources are available directly through course content when instructors use YuJa-supported videos.
-- YuJa integrates with learning platforms used at CCA to support accessible course materials.
+- YuJa integrates with learning platforms used at CCA to support accessible course video access.
 - If you cannot access YuJa videos in your course, start from the course content link provided by your instructor and try again.
 - If a course video will not open, use the course link again and confirm you are opening the YuJa video from the class content area.
 

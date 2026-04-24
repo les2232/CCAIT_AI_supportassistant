@@ -458,6 +458,11 @@ Recommended after UI or flow changes:
 
 ## Production Notes
 
+Detailed deployment guidance is documented in:
+
+- [docs/production-readiness.md](./docs/production-readiness.md)
+- [docs/deployment-runbook.md](./docs/deployment-runbook.md)
+
 Before deployment:
 
 - disable development fallback login

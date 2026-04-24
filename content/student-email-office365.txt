@@ -21,6 +21,12 @@
   - Storing, organizing, syncing, and sharing files in OneDrive.
   - Using Office applications online from a web browser across different devices.
 
+  Using your school account with Microsoft 365:
+
+  - Students can use a CCA school account to access Microsoft 365 tools such as Outlook, Teams, OneDrive, and Office Online.
+  - OneDrive can be used to store, sync, and share school files across supported devices.
+  - If you can sign in to your school account, you can use the Microsoft 365 services available to students.
+
   How students access the training:
 
   - Some tutorials are housed in LinkedIn Learning.
@@ -48,6 +54,7 @@
 - CONTEXT:
   - What this is:
 - STEPS:
+  - Using your school account with Microsoft 365:
   - How students access the training:
 - IF NOT FIXED:
   - Things to know:
