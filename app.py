@@ -105,6 +105,20 @@ def extract_escalation_text(content_text):
     return "\n".join(escalation_lines)
 
 
+def format_source_name(source_name):
+    """
+    Convert internal article filenames into user-friendly titles.
+    """
+    if not source_name:
+        return None
+
+    cleaned_name = source_name.removesuffix(".txt").replace("-", " ").replace("_", " ").strip()
+    if not cleaned_name:
+        return None
+
+    return cleaned_name.title()
+
+
 HTML = """
 <!doctype html>
 <html>
@@ -220,13 +234,13 @@ HTML = """
       }
 
       .response-body {
-        font-size: 16px;
-        line-height: 1.7;
+        font-size: 17px;
+        line-height: 1.8;
         color: #231F20;
       }
 
       .response-body p {
-        margin: 0 0 14px 0;
+        margin: 0 0 16px 0;
       }
 
       .response-body p:last-child {
@@ -255,40 +269,61 @@ HTML = """
         color: #231F20;
       }
 
+      .response-escalation h3 {
+        margin: 0 0 8px;
+        color: #231F20;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
       .response-escalation p {
         margin: 0 0 12px;
+      }
+
+      .response-escalation .next-step {
+        color: #66686A;
       }
 
       .response-escalation p:last-child {
         margin-bottom: 0;
       }
 
-      .response-source {
+      .match-details {
         margin-top: 18px;
-        padding-top: 12px;
+        padding: 14px 16px;
         border-top: 1px solid #EDEEEF;
-        font-size: 12px;
-        color: #66686A;
+        background: #F8F9FA;
       }
 
-      .response-document {
-        margin-top: 18px;
-        padding-top: 16px;
-        border-top: 1px solid #EDEEEF;
-      }
-
-      .response-document-title {
-        margin: 0 0 12px;
-        color: #66686A;
+      .match-details h3 {
+        margin: 0 0 10px;
+        color: #231F20;
         font-size: 14px;
         font-weight: 600;
       }
 
-      .response-document-body {
-        font-size: 15px;
-        line-height: 1.6;
+      .match-row {
+        display: grid;
+        grid-template-columns: 120px 1fr;
+        gap: 6px 12px;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .match-label {
+        color: #66686A;
+        font-weight: 600;
+      }
+
+      .match-value {
         color: #231F20;
-        white-space: pre-wrap;
+        word-break: break-word;
+      }
+
+      .response-source {
+        margin-top: 14px;
+        font-size: 12px;
+        color: #66686A;
       }
     </style>
   </head>
@@ -344,19 +379,30 @@ HTML = """
 
           {% if escalation_text %}
             <div class="response-escalation">
-              {{ escalation_text }}
+              <h3>Still need help?</h3>
+              <p class="next-step">If the steps above do not solve the issue, use this next step:</p>
+              {% for paragraph in escalation_text.split('\n') %}
+                <p>{{ paragraph }}</p>
+              {% endfor %}
             </div>
           {% endif %}
 
-          {% if full_document_text %}
-            <div class="response-document">
-              <div class="response-document-title">Full document</div>
-              <div class="response-document-body">{{ full_document_text }}</div>
+          {% if source_name or section_heading or retrieval_confidence %}
+            <div class="match-details">
+              <h3>Source information</h3>
+              <div class="match-row">
+                <div class="match-label">Source article</div>
+                <div class="match-value">{{ display_source_name or "Not available" }}</div>
+                <div class="match-label">Matched section</div>
+                <div class="match-value">{{ section_heading or "Not available" }}</div>
+                <div class="match-label">Confidence</div>
+                <div class="match-value">{{ retrieval_confidence or "Not available" }}</div>
+              </div>
             </div>
           {% endif %}
 
           <div class="response-source">
-            Based on official CCA IT documentation{% if source_name %} • {{ source_name }}{% endif %}{% if retrieval_confidence %} • {{ retrieval_confidence }} confidence{% endif %}
+            Based on official CCA IT documentation.
           </div>
 
         </div>
@@ -469,6 +515,7 @@ def index():
         HTML,
         rendered_response=rendered_response,
         full_document_text=full_document_text,
+        display_source_name=format_source_name(source_name),
         show_response=show_response,
         show_password_reset_portal=show_password_reset_portal,
         password_reset_portal_url=password_reset_portal_url,
