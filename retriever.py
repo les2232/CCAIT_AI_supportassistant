@@ -1,9 +1,13 @@
 from dataclasses import dataclass
+import os
 from pathlib import Path
 
 from router import expand_query_tokens, normalize_text, tokenize_text
+from semantic_retriever import retrieve_best_semantic_section
 
 CONTENT_DIR = Path(__file__).parent / "content"
+DEFAULT_EMBEDDING_MODEL = "all-MiniLM-L6-v2"
+DEFAULT_SEMANTIC_MIN_SCORE = 0.45
 LOW_VALUE_TOKENS = {
     "a", "an", "and", "are", "can", "do", "for", "get", "help", "how",
     "i", "if", "in", "is", "it", "me", "my", "need", "not", "of", "on",
@@ -402,9 +406,9 @@ def confidence_from_score(score):
     return "low"
 
 
-def retrieve_best_section(question, content_texts=None, article_ids=None, min_score=6):
+def heuristic_retrieve_best_section(question, content_texts=None, article_ids=None, min_score=6):
     """
-    Search across document sections and return the best supported section.
+    Search across document sections with heuristic scoring.
     """
     if not question or not question.strip():
         return None
@@ -438,4 +442,74 @@ def retrieve_best_section(question, content_texts=None, article_ids=None, min_sc
         score=best["score"],
         confidence=confidence_from_score(best["score"]),
         full_document_text=best["full_document_text"],
+    )
+
+
+def semantic_retrieval_enabled():
+    return os.environ.get("IT_SUPPORT_EMBEDDINGS_ENABLED", "").strip() == "1"
+
+
+def get_semantic_min_score():
+    raw_value = os.environ.get("IT_SUPPORT_SEMANTIC_MIN_SCORE", "").strip()
+    if not raw_value:
+        return DEFAULT_SEMANTIC_MIN_SCORE
+
+    try:
+        return float(raw_value)
+    except ValueError:
+        return DEFAULT_SEMANTIC_MIN_SCORE
+
+
+def retrieve_best_section(question, content_texts=None, article_ids=None, min_score=6):
+    """
+    Search across document sections and return the best supported section.
+    """
+    texts = content_texts or load_retrieval_texts()
+    candidate_ids = set(article_ids) if article_ids else None
+    heuristic_result = None
+
+    if semantic_retrieval_enabled():
+        try:
+            sections = []
+            for article_id, content_text in texts.items():
+                if candidate_ids is not None and article_id not in candidate_ids:
+                    continue
+                sections.extend(split_document_sections(article_id, content_text))
+
+            semantic_result = retrieve_best_semantic_section(
+                question,
+                sections,
+                content_dir=CONTENT_DIR,
+                model_name=DEFAULT_EMBEDDING_MODEL,
+                min_similarity=get_semantic_min_score(),
+            )
+            if semantic_result is not None:
+                semantic_retrieval_result = RetrievalResult(
+                    article_id=semantic_result["article_id"],
+                    section_heading=semantic_result["section_heading"],
+                    answer_text=semantic_result["answer_text"],
+                    score=semantic_result["score"],
+                    confidence=semantic_result["confidence"],
+                    full_document_text=semantic_result["full_document_text"],
+                )
+                heuristic_result = heuristic_retrieve_best_section(
+                    question,
+                    content_texts=texts,
+                    article_ids=article_ids,
+                    min_score=min_score,
+                )
+                if heuristic_result is None:
+                    return semantic_retrieval_result
+                return heuristic_result
+        except Exception:
+            pass
+
+    if heuristic_result is not None:
+        return heuristic_result
+
+    return heuristic_retrieve_best_section(
+        question,
+        content_texts=texts,
+        article_ids=article_ids,
+        min_score=min_score,
     )
