@@ -4,6 +4,7 @@ from datetime import datetime, UTC
 import re
 import sqlite3
 
+from retriever import load_retrieval_texts, retrieve_best_section
 from router import load_content_texts, select_response
 
 app = Flask(__name__)
@@ -61,6 +62,8 @@ def log_request(question, routed_topic, supported, escalation_flag, response_typ
             ),
         )
         conn.commit()
+
+
 def extract_first_url(content_text):
     """
     Return the first URL found in documentation text, if any.
@@ -101,182 +104,6 @@ def extract_escalation_text(content_text):
 
     return "\n".join(escalation_lines)
 
-
-def tokenize_text(text):
-    """
-    Tokenize text into lowercase alphanumeric terms.
-    """
-    return re.findall(r"[a-z0-9]+", text.lower())
-
-
-LOW_VALUE_TOKENS = {
-    "a", "an", "and", "are", "can", "do", "for", "get", "help", "how",
-    "i", "if", "in", "is", "it", "me", "my", "of", "on", "or", "the",
-    "to", "we", "what", "where", "with", "you",
-}
-
-TOKEN_EXPANSIONS = {
-    "ti-84": {"graphing": 2, "calculator": 2},
-    "outlook": {"email": 1},
-    "mycourses": {"canvas": 1},
-}
-
-ACTIONABLE_SECTION_HEADINGS = [
-    "How to access:",
-    "How to get help:",
-    "Where to get help:",
-    "How to get a",
-    "How to learn",
-    "What students use it for:",
-]
-
-ACTIONABLE_QUERY_TOKENS = {
-    "access", "assignment", "assignments", "borrow", "calculator", "connect",
-    "course", "courses", "email", "get", "grade", "grades", "internet",
-    "laptop", "log", "login", "materials", "outlook", "password", "quiz",
-    "quizzes", "reset", "submit", "wifi",
-}
-
-
-def score_question_tokens(question):
-    """
-    Return weighted question tokens for section scoring.
-    """
-    raw_tokens = tokenize_text(question)
-    weighted_tokens = {}
-
-    for token in raw_tokens:
-        if len(token) <= 1 or token in LOW_VALUE_TOKENS:
-            continue
-
-        weight = 1
-        if token in {"calculator", "laptop", "wifi", "email", "password", "canvas", "outlook"}:
-            weight = 2
-        if token == "84":
-            weight = 3
-
-        weighted_tokens[token] = max(weighted_tokens.get(token, 0), weight)
-
-    question_lower = question.lower()
-    for phrase, expansions in TOKEN_EXPANSIONS.items():
-        if phrase in question_lower:
-            for token, weight in expansions.items():
-                weighted_tokens[token] = max(weighted_tokens.get(token, 0), weight)
-
-    return weighted_tokens
-
-
-def has_actionable_query_signal(question):
-    """
-    Return True when the question includes a concrete task signal.
-    """
-    question_tokens = set(tokenize_text(question))
-    return bool(question_tokens & ACTIONABLE_QUERY_TOKENS)
-
-
-def is_actionable_section_heading(section):
-    """
-    Return True when a section heading appears action-oriented.
-    """
-    heading_line = section.splitlines()[0] if section.splitlines() else ""
-    return any(heading_line.startswith(prefix) for prefix in ACTIONABLE_SECTION_HEADINGS)
-
-
-def split_document_sections(content_text):
-    """
-    Split a document into logical sections based on heading lines ending with ':'.
-    Falls back to the full document if no headings are found.
-    """
-    if not content_text or not content_text.strip():
-        return []
-
-    lines = content_text.splitlines()
-    sections = []
-    current_section = []
-
-    for line in lines:
-        stripped = line.strip()
-
-        if stripped.startswith("SOURCE:") or stripped.startswith("URL:"):
-            continue
-
-        if stripped and set(stripped) <= {"=", "-", "`"}:
-            continue
-
-        if stripped.endswith(":") and not stripped.startswith(("-", "•")):
-            if current_section:
-                section_text = "\n".join(current_section).strip()
-                if section_text:
-                    sections.append(section_text)
-            current_section = [line.rstrip()]
-            continue
-
-        if current_section:
-            current_section.append(line.rstrip())
-
-    if current_section:
-        section_text = "\n".join(current_section).strip()
-        if section_text:
-            sections.append(section_text)
-
-    if sections:
-        return sections
-
-    return [content_text.strip()]
-
-
-def select_most_relevant_section(question, content_text):
-    """
-    Score document sections against the question and return the best match.
-    """
-    sections = split_document_sections(content_text)
-    if not sections:
-        return None
-
-    weighted_tokens = score_question_tokens(question)
-    if not weighted_tokens:
-        return sections[0]
-
-    scored_sections = []
-    for index, section in enumerate(sections):
-        section_lower = section.lower()
-        heading_line = section.splitlines()[0].lower() if section.splitlines() else ""
-        score = 0
-        for token, weight in weighted_tokens.items():
-            score += section_lower.count(token) * weight
-            score += heading_line.count(token) * weight * 2
-        scored_sections.append((score, -index, section))
-
-    best_score, _, best_section = max(scored_sections)
-    if best_score <= 0:
-        return sections[0]
-
-    best_heading = best_section.splitlines()[0] if best_section.splitlines() else ""
-    if (
-        best_heading == "What this is:"
-        and not has_actionable_query_signal(question)
-    ):
-        for section in sections:
-            if is_actionable_section_heading(section):
-                return section
-
-    return best_section
-
-
-# ==================================================
-# Response assembly
-# ==================================================
-
-def build_document_response(question, content_text):
-    """
-    Return the most relevant document section and the full document text.
-    """
-    return select_most_relevant_section(question, content_text), content_text
-
-
-# ==================================================
-# HTML UI
-# ==================================================
 
 HTML = """
 <!doctype html>
@@ -346,19 +173,6 @@ HTML = """
         resize: vertical;
       }
 
-      textarea {
-        width: 100%;
-        min-height: 110px;
-        padding: 12px;
-        font-size: 15px;
-        line-height: 1.5;
-        font-family: inherit;
-        border: 1px solid #D1D2D4;
-        background: #F9F9F9;
-        box-sizing: border-box;
-        resize: vertical;
-      }
-
       textarea:focus {
         outline: none;
         border-color: #9A111F;
@@ -395,6 +209,14 @@ HTML = """
         font-size: 22px;
         font-weight: 600;
         line-height: 1.25;
+      }
+
+      .response-heading {
+        margin: 0 0 12px;
+        color: #66686A;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: none;
       }
 
       .response-body {
@@ -498,6 +320,10 @@ HTML = """
         <div class="response-card" id="response">
           <h2 class="response-title">IT Help Response</h2>
 
+          {% if section_heading %}
+            <div class="response-heading">{{ section_heading }}</div>
+          {% endif %}
+
           <div class="response-body">
             {% for paragraph in rendered_response.split('\n\n') %}
               <p>{{ paragraph }}</p>
@@ -530,7 +356,7 @@ HTML = """
           {% endif %}
 
           <div class="response-source">
-            Based on official CCA IT documentation
+            Based on official CCA IT documentation{% if source_name %} • {{ source_name }}{% endif %}{% if retrieval_confidence %} • {{ retrieval_confidence }} confidence{% endif %}
           </div>
 
         </div>
@@ -547,9 +373,6 @@ HTML = """
 
 init_logging_db()
 
-# ==================================================
-# Route
-# ==================================================
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -560,33 +383,69 @@ def index():
     password_reset_portal_url = None
     escalation_text = None
     source_name = None
+    section_heading = None
+    retrieval_confidence = None
     supported = False
     response_type = None
 
     if request.method == "POST":
         show_response = True
         question = request.form.get("question", "")
+
         try:
-            content_texts = load_content_texts()
-            source_name, raw_content = select_response(question, content_texts)
-            if source_name is None:
-                response_type = "unsupported_topic"
-                rendered_response = (
-                    "I don’t have official CCA IT documentation for that topic yet.\n"
-                    "For assistance with this issue, please contact the IT Help Desk."
-                )
-            elif not raw_content or not raw_content.strip():
+            retrieval_texts = load_retrieval_texts()
+            retrieval_result = retrieve_best_section(question, content_texts=retrieval_texts)
+
+            if retrieval_result is not None:
+                source_name = retrieval_result.article_id
+                section_heading = retrieval_result.section_heading
+                retrieval_confidence = retrieval_result.confidence
+                full_document_text = retrieval_result.full_document_text
+                rendered_response = retrieval_result.answer_text
                 supported = True
-                response_type = "documentation_unavailable"
-                rendered_response = "The official documentation for this topic is currently unavailable."
-            else:
-                supported = True
+                response_type = "documentation_article"
+                escalation_text = extract_escalation_text(full_document_text)
+
                 if source_name == "password-reset.txt":
                     show_password_reset_portal = True
-                    password_reset_portal_url = extract_first_url(raw_content)
-                escalation_text = extract_escalation_text(raw_content)
-                response_type = "documentation_article"
-                rendered_response, full_document_text = build_document_response(question, raw_content)
+                    password_reset_portal_url = extract_first_url(full_document_text)
+            else:
+                routed_texts = load_content_texts()
+                source_name, raw_content = select_response(question, routed_texts)
+
+                if source_name is None:
+                    response_type = "unsupported_topic"
+                    rendered_response = (
+                        "I don’t have official CCA IT documentation for that topic yet.\n"
+                        "For assistance with this issue, please contact the IT Help Desk."
+                    )
+                elif not raw_content or not raw_content.strip():
+                    supported = True
+                    response_type = "documentation_unavailable"
+                    rendered_response = "The official documentation for this topic is currently unavailable."
+                else:
+                    fallback_result = retrieve_best_section(
+                        question,
+                        content_texts={source_name: raw_content},
+                        article_ids=[source_name],
+                        min_score=1,
+                    )
+                    supported = True
+                    response_type = "documentation_article"
+                    escalation_text = extract_escalation_text(raw_content)
+                    full_document_text = raw_content
+
+                    if fallback_result is not None:
+                        section_heading = fallback_result.section_heading
+                        retrieval_confidence = fallback_result.confidence
+                        rendered_response = fallback_result.answer_text
+                    else:
+                        rendered_response = raw_content.strip()
+
+                    if source_name == "password-reset.txt":
+                        show_password_reset_portal = True
+                        password_reset_portal_url = extract_first_url(raw_content)
+
         except Exception:
             supported = bool(source_name)
             response_type = "documentation_unavailable"
@@ -614,12 +473,11 @@ def index():
         show_password_reset_portal=show_password_reset_portal,
         password_reset_portal_url=password_reset_portal_url,
         escalation_text=escalation_text,
+        source_name=source_name,
+        section_heading=section_heading,
+        retrieval_confidence=retrieval_confidence,
     )
 
-
-# ==================================================
-# Local startup
-# ==================================================
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
