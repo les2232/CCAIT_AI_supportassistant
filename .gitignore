@@ -4,3 +4,4 @@ __pycache__/
 *.db
 exports_test/
 exports_test_run/
+.semantic_cache/

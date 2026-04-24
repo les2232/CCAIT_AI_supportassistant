@@ -1,0 +1,39 @@
+SOURCE: Community College of Aurora Zoom Support
+
+==================================================
+
+ZOOM SUPPORT
+
+What this helps with:
+- Use this guide if you need help joining a Zoom class or fixing common Zoom problems at the Community College of Aurora.
+- Zoom may be used for online, blended, or remote class meetings.
+
+Joining Zoom classes:
+- Open the Zoom link provided by your instructor or in your course materials.
+- Follow the prompts to join the meeting.
+- If the meeting does not open right away, reopen the link and join the Zoom meeting again.
+
+App or browser:
+- Zoom may open in the Zoom app or in a web browser, depending on your device and settings.
+- If the app does not launch, look for the option to join from your browser if it is available.
+- If you are using the app, make sure it is fully open before trying the class link again.
+
+Audio or video problems:
+- If your Zoom audio is not working, check that your microphone, speakers, and camera are connected and turned on.
+- Make sure Zoom is using the correct microphone and speaker if your device has more than one option.
+- If audio or video is not working, leave the meeting and rejoin.
+- You can also restart the app or your device and try again.
+
+Sign-in problems:
+- If Zoom is asking you to sign in and you cannot continue, start again and make sure you are using the correct account information if sign-in is required.
+- If the meeting link is not working, check your course instructions and try opening the link again from the original source.
+- If you still cannot join because of a login or access problem, contact CCA IT Support.
+
+When to contact OBL:
+- Contact Online and Blended Learning (OBL) for help with course-related Zoom support, online learning tools, or questions about how Zoom is being used in a class.
+
+When to contact IT for Zoom help:
+- Contact CCA IT Support for Zoom login issues, access problems, device-related trouble, or ongoing technical issues that prevent you from joining or using Zoom.
+
+CCA IT Helpdesk:
+- Phone: 303-360-4900

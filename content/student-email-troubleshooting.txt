@@ -1,0 +1,35 @@
+SOURCE: Community College of Aurora Student Email Troubleshooting
+
+==================================================
+
+STUDENT EMAIL TROUBLESHOOTING
+
+What this helps with:
+- Use this guide if you are having trouble with your Community College of Aurora student email account.
+- It covers common problems with Outlook, Microsoft 365 email access, password prompts, and sign-in verification.
+
+Cannot access student email:
+- Make sure you are using your CCA student email account and the correct password.
+- If sign-in does not work, start again and confirm that your account information is correct.
+- If you still cannot open your student email, CCA IT Support can help.
+
+Outlook keeps asking for my password:
+- If Outlook keeps prompting for your password, enter your current CCA account password carefully and try again.
+- If the password prompt keeps coming back, close Outlook and reopen it.
+- If you still cannot get into your email, the issue may be related to your account, password, or sign-in verification.
+
+MFA or verification loop:
+- If your student email keeps sending you back to a verification screen or you cannot finish sign-in, start again and make sure your account information is correct.
+- If you changed phones, lost access to your verification method, or are not receiving the verification prompt or code, contact CCA IT Support.
+- Verification problems may prevent access even when your password is correct.
+
+Outlook app or web access:
+- Student email may be available through Outlook in Microsoft 365 or through the Outlook app, depending on how you are signing in.
+- If the Outlook app is not working, try accessing your student email through the web version instead.
+- If web access works but the app does not, the problem may be limited to the app on your device.
+
+When to contact IT for student email help:
+- Contact CCA IT Support if you cannot access your student email, Outlook keeps asking for your password, or verification problems prevent you from signing in.
+
+CCA IT Helpdesk:
+- Phone: 303-360-4900

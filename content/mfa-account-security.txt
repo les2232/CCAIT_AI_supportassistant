@@ -1,0 +1,29 @@
+SOURCE: Community College of Aurora Student Account Security
+
+==================================================
+
+MFA AND ACCOUNT SECURITY
+
+What this helps with:
+- Use this guide if you need help with Multi-Factor Authentication (MFA), account verification, or student account security at the Community College of Aurora.
+- MFA adds an extra security step when you sign in to protect your CCA account.
+
+Setting up MFA:
+- Some CCA services may ask you to set up MFA the first time you sign in.
+- Follow the prompts during sign-in to choose and confirm your verification method.
+- Finish the setup so you can keep using your account without interruption.
+
+Common MFA problems:
+- If you are not receiving a verification code or prompt, start the sign-in process again and make sure your account information is correct.
+- If you changed phones, lost access to your previous device, or cannot use your usual verification method, you may not be able to finish sign-in until your MFA access is updated.
+- If verification keeps failing, contact CCA IT Support for help.
+
+What MFA affects:
+- MFA may affect access to MyCCA, student email, and other CCA services that use your student account.
+- If MFA is not working, you may be blocked from signing in even if your password is correct.
+
+If you're still stuck:
+- CCA IT Support can help if you cannot complete MFA setup, you are not receiving verification prompts, or you no longer have access to the device or method tied to your account.
+
+CCA IT Helpdesk:
+- Phone: 303-360-4900

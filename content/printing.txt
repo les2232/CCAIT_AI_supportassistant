@@ -1,0 +1,36 @@
+SOURCE: Community College of Aurora Printing Support
+
+==================================================
+
+PRINTING AT CCA
+
+What this helps with:
+- Use this guide if you need help printing on campus at the Community College of Aurora.
+- It covers where students can print, how printing usually works, and what to do if printing is not working.
+
+Where students can print:
+- Students can print at CCA using campus printing resources such as printers in the Hub.
+- If you are not sure where to go, the Hub front desk is a good place to ask for printing help.
+
+Printing from campus computers:
+- Sign in to the campus computer with your student account if prompted.
+- Open your document and choose Print.
+- Select the available campus printer from the printer list.
+- If you are not sure which printer to use, ask staff at the Hub front desk.
+
+Printing from personal devices:
+- Printing from a personal laptop may require being connected to the correct CCA student Wi-Fi network.
+- If a campus printer does not appear on your personal device, reconnect to Wi-Fi and check the printer list again.
+- If you still cannot print from your own device, ask for help at the Hub front desk or contact CCA IT Support.
+
+Common issues: printer not showing or print job not going through:
+- If the printer is not showing, check that you are signed in correctly and connected to the correct CCA network if using your own device.
+- If your print job does not go through, close the document, reopen it, and send the job again.
+- If the printer is offline, unavailable, or still not working, ask for help at the Hub front desk.
+- If the issue seems related to your account, login, or device access, contact CCA IT Support.
+
+When to contact IT:
+- CCA IT Support can help if printing is still not working because of an account, login, or technology problem.
+
+CCA IT Helpdesk:
+- Phone: 303-360-4900

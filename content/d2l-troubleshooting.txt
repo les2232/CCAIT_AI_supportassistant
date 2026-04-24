@@ -1,0 +1,39 @@
+SOURCE: Community College of Aurora D2L Troubleshooting
+
+==================================================
+
+D2L TROUBLESHOOTING
+
+What this helps with:
+- Use this guide if you are having trouble with D2L (Brightspace) at the Community College of Aurora.
+- It covers common problems such as not being able to sign in, missing courses, and assignment upload issues.
+
+Cannot access D2L or log into D2L:
+- Make sure you are using your correct CCA student account information.
+- Start the sign-in process again and make sure your username and password are entered correctly.
+- If your login still does not work, the problem may be related to your account, password, or verification method.
+- If you cannot access D2L because of a login problem, contact CCA IT Support.
+
+Course not showing:
+- If one of your classes is not showing in D2L, first check whether you are looking in the correct term or course area.
+- Some courses may not appear until the instructor makes them available.
+- If you are enrolled in the course but do not see it, contact your instructor first.
+
+Assignment upload problems:
+- Make sure you selected the correct file and that the upload had enough time to finish.
+- If the upload does not go through, refresh the page and upload the file again.
+- If you are still unable to submit the assignment, contact your instructor right away so they know you are having trouble.
+
+Browser or cache issues:
+- If D2L pages are not loading correctly, close the browser and try again.
+- You can also try a different browser.
+- If the problem continues, clear your browser cache and reopen D2L.
+
+When to contact your instructor:
+- Contact your instructor if a course is missing, an assignment is unavailable, a due date looks wrong, or course content does not appear as expected.
+
+When to contact IT:
+- Contact CCA IT Support if you cannot sign in to D2L, your account access is not working, or you continue having technical problems after restarting your browser or trying a different browser.
+
+CCA IT Helpdesk:
+- Phone: 303-360-4900
