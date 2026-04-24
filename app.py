@@ -7,6 +7,7 @@ import sqlite3
 
 from retriever import load_retrieval_texts, retrieve_best_section
 from router import load_content_texts, select_response
+from llm_answer import polish_answer
 
 try:
     from ldap3 import ALL, Connection, Server
@@ -28,6 +29,7 @@ LDAP_REQUIRED_GROUP_DN = os.environ.get(
     "CN=CCA_Leslie_Project,OU=CCA_Groups_Security_User,OU=CCA,DC=ccc,DC=ccofc,DC=edu",
 )
 ALLOW_DEV_LOGIN = os.environ.get("ALLOW_DEV_LOGIN", "0").strip() == "1"
+IT_SUPPORT_LLM_ENABLED = os.environ.get("IT_SUPPORT_LLM_ENABLED", "0").strip() == "1"
 # TEMPORARY dev-only fallback credentials. Default disabled unless ALLOW_DEV_LOGIN=1.
 TEMP_LOGIN_USERNAME = "admin"
 TEMP_LOGIN_PASSWORD = "test123"
@@ -52,6 +54,17 @@ def init_logging_db():
             )
             """
         )
+        existing_columns = {
+            row[1]
+            for row in conn.execute("PRAGMA table_info(request_logs)").fetchall()
+        }
+        if "llm_used" not in existing_columns:
+            conn.execute(
+                """
+                ALTER TABLE request_logs
+                ADD COLUMN llm_used INTEGER NOT NULL DEFAULT 0
+                """
+            )
         conn.execute(
             """
             CREATE TABLE IF NOT EXISTS feedback_logs (
@@ -67,7 +80,15 @@ def init_logging_db():
         conn.commit()
 
 
-def log_request(question, routed_topic, supported, escalation_flag, response_type, article_id=None):
+def log_request(
+    question,
+    routed_topic,
+    supported,
+    escalation_flag,
+    response_type,
+    article_id=None,
+    llm_used=False,
+):
     """
     Insert one request log record.
     """
@@ -81,8 +102,9 @@ def log_request(question, routed_topic, supported, escalation_flag, response_typ
                 article_id,
                 supported,
                 escalation_flag,
-                response_type
-            ) VALUES (?, ?, ?, ?, ?, ?, ?)
+                response_type,
+                llm_used
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """,
             (
                 datetime.now(UTC).isoformat(),
@@ -92,6 +114,7 @@ def log_request(question, routed_topic, supported, escalation_flag, response_typ
                 int(supported),
                 int(escalation_flag),
                 response_type,
+                int(llm_used),
             ),
         )
         conn.commit()
@@ -981,6 +1004,7 @@ def index():
     response_type = None
     request_log_id = None
     feedback_submitted = False
+    llm_used = False
 
     if request.method == "POST":
         form_type = request.form.get("form_type", "question")
@@ -1055,6 +1079,14 @@ def index():
                             show_password_reset_portal = True
                             password_reset_portal_url = extract_first_url(raw_content)
 
+                if response_type == "documentation_article" and rendered_response:
+                    rendered_response, llm_used = polish_answer(
+                        question=question,
+                        section_heading=section_heading,
+                        article_id=source_name,
+                        answer_text=rendered_response,
+                    )
+
             except Exception:
                 supported = bool(source_name)
                 response_type = "documentation_unavailable"
@@ -1070,6 +1102,7 @@ def index():
                     supported=supported,
                     escalation_flag=bool(escalation_text),
                     response_type=response_type or "documentation_unavailable",
+                    llm_used=llm_used,
                 )
             except Exception:
                 pass
