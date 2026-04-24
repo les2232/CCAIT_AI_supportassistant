@@ -160,120 +160,199 @@ HTML = """
 <!doctype html>
 <html>
   <head>
-    <title>IT Help Assistant</title>
+    <title>CCA IT Support Assistant</title>
     <style>
+      :root {
+        --cca-red: #9A111F;
+        --cca-red-dark: #7F0F1A;
+        --ink: #1F2933;
+        --muted: #5F6C7B;
+        --line: #D6DCE3;
+        --line-soft: #E7EBF0;
+        --surface: #FFFFFF;
+        --surface-muted: #F7F9FB;
+        --page-top: #EEF2F5;
+        --page-bottom: #F8FAFB;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         font-family: "Myriad Pro", Arial, sans-serif;
-        background: #F5F6F7;
-        color: #231F20;
+        background: linear-gradient(180deg, var(--page-top) 0%, var(--page-bottom) 100%);
+        color: var(--ink);
         margin: 0;
         padding: 0;
       }
 
       .page {
-        max-width: 960px;
+        max-width: 980px;
         margin: 0 auto;
-        padding: 40px 24px 56px;
+        padding: 32px 20px 56px;
       }
 
-      h1 {
-        color: #9A111F;
-        margin: 0 0 6px;
+      .hero {
+        margin-bottom: 20px;
+        padding: 28px 28px 22px;
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        background: linear-gradient(135deg, #ffffff 0%, #f5f7f9 100%);
+        box-shadow: 0 10px 30px rgba(31, 41, 51, 0.06);
+      }
+
+      .hero-kicker {
+        margin: 0 0 8px;
+        color: var(--cca-red);
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .hero h1 {
+        margin: 0;
+        color: var(--ink);
+        font-size: 36px;
+        line-height: 1.1;
       }
 
       .subtitle {
-        color: #66686A;
-        font-size: 15px;
-        margin: 0 0 28px;
+        max-width: 680px;
+        color: var(--muted);
+        font-size: 17px;
+        line-height: 1.6;
+        margin: 12px 0 0;
       }
 
       .card {
-        background: #ffffff;
-        border: 1px solid #D1D2D4;
-        padding: 28px 32px;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+        padding: 24px;
         margin-bottom: 24px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        box-shadow: 0 10px 24px rgba(31, 41, 51, 0.05);
       }
 
       h2 {
-        color: #9A111F;
+        color: var(--ink);
         margin: 0 0 10px;
+        font-size: 24px;
+      }
+
+      .search-card {
+        padding: 26px;
+      }
+
+      .search-label {
+        margin: 0 0 8px;
+        color: var(--ink);
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .search-copy {
+        margin: 0 0 18px;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.6;
       }
 
       ul.examples {
-        color: #66686A;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
         font-size: 14px;
-        margin: 8px 0 20px;
-        padding-left: 18px;
+        margin: 0 0 18px;
+        padding: 0;
+        list-style: none;
       }
 
       ul.examples li {
-        margin-bottom: 6px;
+        padding: 6px 10px;
+        border: 1px solid var(--line-soft);
+        border-radius: 999px;
+        background: var(--surface-muted);
       }
 
       textarea {
         width: 100%;
-        min-height: 110px;
-        padding: 12px;
-        font-size: 15px;
-        line-height: 1.5;
+        min-height: 128px;
+        padding: 18px 18px 20px;
+        font-size: 16px;
+        line-height: 1.6;
         font-family: inherit;
-        border: 1px solid #D1D2D4;
-        background: #F9F9F9;
-        box-sizing: border-box;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: var(--surface-muted);
         resize: vertical;
+        box-shadow: inset 0 1px 2px rgba(31, 41, 51, 0.04);
       }
 
       textarea:focus {
         outline: none;
-        border-color: #9A111F;
-        background: #ffffff;
+        border-color: var(--cca-red);
+        background: var(--surface);
+        box-shadow: 0 0 0 4px rgba(154, 17, 31, 0.08);
       }
 
       button {
         margin-top: 14px;
-        background: #9A111F;
-        color: #ffffff;
+        background: var(--cca-red);
+        color: var(--surface);
         border: none;
-        padding: 10px 22px;
+        border-radius: 999px;
+        padding: 12px 20px;
         font-size: 15px;
-        font-weight: 500;
+        font-weight: 600;
         cursor: pointer;
+        transition: background 0.15s ease, transform 0.15s ease;
       }
 
       button:hover {
-        opacity: 0.95;
+        background: var(--cca-red-dark);
+        transform: translateY(-1px);
       }
 
       .response-card {
         margin-top: 32px;
-        padding: 28px 32px;
-        border: 1px solid #D1D2D4;
-        background: #ffffff;
-        max-width: 800px;
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.03);
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 24px;
+        background: var(--surface);
+        max-width: 820px;
+        box-shadow: 0 14px 32px rgba(31, 41, 51, 0.08);
       }
 
       .response-title {
-        margin: 0 0 18px;
-        color: #9A111F;
-        font-size: 22px;
-        font-weight: 600;
+        margin: 0 0 6px;
+        color: var(--ink);
+        font-size: 28px;
+        font-weight: 700;
         line-height: 1.25;
       }
 
       .response-heading {
-        margin: 0 0 12px;
-        color: #66686A;
+        display: inline-block;
+        margin: 0 0 18px;
+        padding: 6px 10px;
+        border-radius: 999px;
+        background: #F2F5F8;
+        color: var(--muted);
         font-size: 14px;
         font-weight: 600;
-        text-transform: none;
       }
 
       .response-body {
-        font-size: 17px;
-        line-height: 1.8;
-        color: #231F20;
+        padding: 20px 22px;
+        border: 1px solid var(--line-soft);
+        border-radius: 18px;
+        background: linear-gradient(180deg, #ffffff 0%, #fbfcfd 100%);
+        font-size: 18px;
+        line-height: 1.85;
+        color: var(--ink);
       }
 
       .response-body p {
@@ -286,31 +365,34 @@ HTML = """
 
       .response-action {
         margin: 18px 0 0;
-        padding-top: 16px;
-        border-top: 1px solid #E5E6E8;
-        font-weight: 500;
+        padding: 16px 18px 0;
+        border-top: 1px solid var(--line-soft);
+        font-weight: 600;
       }
 
       .response-action a {
-        color: #9A111F;
+        display: inline-block;
+        color: var(--cca-red);
         text-decoration: underline;
         word-break: break-word;
       }
 
       .response-escalation {
         margin-top: 18px;
-        padding-top: 14px;
-        border-top: 1px solid #E5E6E8;
+        padding: 18px;
+        border: 1px solid #E8D7DA;
+        border-radius: 18px;
+        background: #FFF8F8;
         font-size: 14px;
         line-height: 1.6;
-        color: #231F20;
+        color: var(--ink);
       }
 
       .response-escalation h3 {
         margin: 0 0 8px;
-        color: #231F20;
-        font-size: 15px;
-        font-weight: 600;
+        color: var(--cca-red-dark);
+        font-size: 16px;
+        font-weight: 700;
       }
 
       .response-escalation p {
@@ -318,7 +400,7 @@ HTML = """
       }
 
       .response-escalation .next-step {
-        color: #66686A;
+        color: var(--muted);
       }
 
       .response-escalation p:last-child {
@@ -328,52 +410,55 @@ HTML = """
       .match-details {
         margin-top: 18px;
         padding: 14px 16px;
-        border-top: 1px solid #EDEEEF;
-        background: #F8F9FA;
+        border: 1px solid var(--line-soft);
+        border-radius: 16px;
+        background: var(--surface-muted);
       }
 
       .match-details h3 {
         margin: 0 0 10px;
-        color: #231F20;
+        color: var(--muted);
         font-size: 14px;
         font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.03em;
       }
 
       .match-row {
         display: grid;
         grid-template-columns: 120px 1fr;
         gap: 6px 12px;
-        font-size: 13px;
+        font-size: 14px;
         line-height: 1.5;
       }
 
       .match-label {
-        color: #66686A;
+        color: var(--muted);
         font-weight: 600;
       }
 
       .match-value {
-        color: #231F20;
+        color: var(--ink);
         word-break: break-word;
       }
 
       .response-source {
         margin-top: 14px;
         font-size: 12px;
-        color: #66686A;
+        color: var(--muted);
       }
 
       .feedback-section {
         margin-top: 18px;
-        padding-top: 14px;
-        border-top: 1px solid #E5E6E8;
+        padding-top: 18px;
+        border-top: 1px solid var(--line-soft);
       }
 
       .feedback-title {
         margin: 0 0 10px;
         font-size: 14px;
         font-weight: 600;
-        color: #231F20;
+        color: var(--ink);
       }
 
       .feedback-actions {
@@ -382,31 +467,109 @@ HTML = """
         gap: 10px;
       }
 
+      .feedback-actions form {
+        margin: 0;
+      }
+
       .feedback-button {
         margin-top: 0;
-        padding: 8px 16px;
+        padding: 10px 16px;
         font-size: 14px;
+        background: var(--surface-muted);
+        color: var(--ink);
+        border: 1px solid var(--line);
+      }
+
+      .feedback-button:hover {
+        background: #EEF2F6;
+      }
+
+      .feedback-button.negative {
+        background: #FFF7F7;
       }
 
       .feedback-thanks {
         margin-top: 18px;
-        padding-top: 14px;
-        border-top: 1px solid #E5E6E8;
+        padding: 16px 18px;
+        border: 1px solid #D8E4D9;
+        border-radius: 16px;
+        background: #F5FBF5;
         font-size: 14px;
-        color: #231F20;
+        color: var(--ink);
+      }
+
+      @media (max-width: 720px) {
+        .page {
+          padding: 20px 14px 40px;
+        }
+
+        .hero,
+        .card,
+        .response-card {
+          padding: 20px 18px;
+          border-radius: 18px;
+        }
+
+        .hero h1 {
+          font-size: 28px;
+        }
+
+        .subtitle {
+          font-size: 15px;
+        }
+
+        h2 {
+          font-size: 21px;
+        }
+
+        .search-card {
+          padding: 20px 18px;
+        }
+
+        .response-title {
+          font-size: 24px;
+        }
+
+        .response-body {
+          padding: 16px;
+          font-size: 17px;
+        }
+
+        .match-row {
+          grid-template-columns: 1fr;
+          gap: 2px 0;
+        }
+
+        .match-label {
+          margin-top: 8px;
+        }
+
+        .feedback-actions {
+          flex-direction: column;
+        }
+
+        .feedback-actions form,
+        .feedback-button {
+          width: 100%;
+        }
       }
     </style>
   </head>
   <body>
     <div class="page">
-      <h1>IT Help Assistant</h1>
-      <p class="subtitle">
-        Answers common IT questions using official Community College of Aurora documentation.
-      </p>
+      <div class="hero">
+        <p class="hero-kicker">Student Support</p>
+        <h1>CCA IT Support Assistant</h1>
+        <p class="subtitle">
+          Get quick help for common campus technology questions using official Community College of Aurora IT guidance.
+        </p>
+      </div>
 
-      <div class="card">
-        <h2>Ask a question</h2>
-        <p>Example questions:</p>
+      <div class="card search-card">
+        <div class="search-label">Ask a question</div>
+        <p class="search-copy">
+          Search for help with passwords, email, Wi-Fi, D2L, Zoom, and other common student IT needs.
+        </p>
         <ul class="examples">
           <li>How do I reset my password?</li>
           <li>How do I access my student email?</li>
@@ -489,7 +652,7 @@ HTML = """
                   <input type="hidden" name="form_type" value="feedback">
                   <input type="hidden" name="request_log_id" value="{{ request_log_id }}">
                   <input type="hidden" name="helpful" value="0">
-                  <button class="feedback-button" type="submit">No, I still need help</button>
+                  <button class="feedback-button negative" type="submit">No, I still need help</button>
                 </form>
               </div>
             </div>
