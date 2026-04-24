@@ -1,0 +1,6 @@
+venv/
+__pycache__/
+*.pyc
+*.db
+exports_test/
+exports_test_run/

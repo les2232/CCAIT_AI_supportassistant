@@ -1,0 +1,37 @@
+SOURCE: Educational Technology: YuJa Panorama – Community College of Aurora
+URL: https://cccs.libguides.com/c.php?g=1401795&p=10445712
+
+==================================================
+
+YUJA PANORAMA
+
+What this is:
+- YuJa Panorama is an accessibility and media support platform used at the Community College of Aurora.
+- YuJa provides tools for video content, accessibility reporting, and support for online and blended learning environments.
+
+What students use it for:
+- Viewing course videos and recorded content provided by instructors.
+- Accessing accessible media content and captions.
+- Engaging with video materials used in online, blended, and in-person classes.
+
+Student support and access:
+- YuJa student resources are available directly through course content when instructors use YuJa-supported videos.
+- YuJa integrates with learning platforms used at CCA to support accessible course materials.
+
+Faculty and instructor context (informational):
+- YuJa is used by faculty for media creation, storage, and accessibility review.
+- Training videos are available for faculty and instructors on advanced YuJa features.
+- Faculty training content is presented for instructional use and is not required for students.
+
+Video resources available:
+- Overview videos introduce YuJa functionality and accessibility tools.
+- Advanced training videos demonstrate media management, accessibility reporting, and content distribution features.
+- All YuJa training resources are video-based and intended for guided learning.
+
+Things to know:
+- Students typically interact with YuJa through course materials rather than directly managing content.
+- Accessibility features are built into YuJa-supported content to improve student access.
+
+Where to get help / When to contact support:
+- For accessibility issues related to course videos or YuJa content, students should follow course guidance or contact IT support.
+- For general technical issues, contact the IT Helpdesk at 303-360-4900.

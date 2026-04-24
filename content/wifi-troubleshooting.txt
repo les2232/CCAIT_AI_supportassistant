@@ -1,0 +1,3 @@
+If you are having trouble with Wi-Fi, first confirm that Wi-Fi is turned on and reconnect to the correct CCA wireless network.
+
+If the connection still fails, restart your device and try again. If you still cannot connect or the network remains unstable, contact CCA IT Support for assistance.

@@ -1,0 +1,162 @@
+SOURCE: CCA Educational Technology Guide – Where to Get Tech Help
+URL: https://cccs.libguides.com/CCAEdTech
+
+==================================================
+
+Technology Help & Support at Community College of Aurora (CCA)
+
+This document summarizes how students can get help with technology, devices, software, and learning tools at CCA.
+
+--------------------------------------------------
+IT SUPPORT CONTACTS
+
+IT Helpdesk
+- Phone: 303-360-4900
+- Hours: Monday–Friday, 8:00am–5:00pm
+- After-hours support available 24/7
+
+MyCourses / D2L (Canvas) Helpdesk
+- Phone: 1-888-800-9198
+- Available 24/7
+
+--------------------------------------------------
+WHERE TO GET TECH HELP
+
+Daily Laptop Lending Program
+What this is:
+- Students can check out a laptop for use on campus during the day.
+
+What to know:
+- Laptops must be returned at the end of the day.
+- An agreement form must be signed each time.
+
+Where to go for more:
+- For semester-long laptop loans, visit Student Success.
+
+--------------------------------------------------
+Loan Headphones
+
+What this is:
+- Noise-canceling and regular headphones are available.
+
+Where to go:
+- Hub Front Desk.
+
+--------------------------------------------------
+Software Availability (Adobe, SolidWorks, Coding Software)
+
+What this is:
+- Mac computers have Adobe Creative Suite.
+- One desktop computer has SolidWorks.
+- Student laptops include coding software.
+
+What to know:
+- Hub staff do not help install software on student devices.
+- An exception is made for a printing application.
+
+Where to go for more:
+- Contact IT for troubleshooting or additional software needs.
+
+--------------------------------------------------
+Loan Calculators
+
+What this is:
+- Students can check out a TI-84 graphing calculator.
+
+What to know:
+- Calculators are loaned for the semester with an agreement.
+
+Where to go for more:
+- Hub Front Desk.
+- A free online graphing calculator is available at Desmos.com.
+
+--------------------------------------------------
+Printing Help / Hub Printers
+
+What this is:
+- Students can print from Hub printers.
+
+What to know:
+- Student-owned laptops must connect to the CCAStudents Wi‑Fi network.
+
+Where to go for help:
+- Hub Front Desk for printing assistance.
+
+--------------------------------------------------
+Logging into Hub Computers & Laptops
+
+What this is:
+- Assistance with logging into Hub computers or loaner laptops.
+
+What to know:
+- Students use their student number (S#).
+- Password is the one created for MyCCA.
+
+Where to go for help:
+- For password resets, contact IT at 303‑360‑4900.
+
+--------------------------------------------------
+Office 365 App Support
+
+What this is:
+- Help with Office 365 applications (Outlook, Word, Excel, PowerPoint).
+
+Where to go:
+- Contact IT at 303‑360‑4900.
+- After-hours support available at 1‑888‑800‑9198.
+
+--------------------------------------------------
+Navigate (College Portal)
+
+What this is:
+- Help signing in to Navigate.
+
+Where to go:
+- Hub Front Desk.
+- A Navigate how‑to video is available.
+
+--------------------------------------------------
+MyCourses / D2L (Canvas) Support
+
+What this is:
+- Support for accessing and using MyCourses (Canvas).
+
+What to know:
+- Students should register in the D2L Student Orientation Course.
+- Enrollment steps:
+  1. Log into D2L through MyCCA
+  2. Scroll to the bottom
+  3. Select Self‑Registration Courses
+  4. Click Discovery Tool – Register for D2L
+  5. Under available courses, search for D2L
+
+Where to go for help:
+- D2L Helpdesk is in the MyCourses portal.
+- Brightspace provides official D2L resources.
+- 24/7 D2L Support Phone: 1‑888‑800‑9198
+
+--------------------------------------------------
+Assistive Technology
+
+What this is:
+- Accessibility and assistive technology resources.
+
+Where to go:
+- Assistive Technology Guide
+- Office of Disability and Equity Website
+
+--------------------------------------------------
+OTHER HELPFUL GUIDES
+
+Additional resources include:
+- Library Help Videos
+- AI & The Academy
+- Assistive Technology Resources
+- LinkedIn Learning
+
+--------------------------------------------------
+IMPORTANT NOTE
+
+This assistant provides general guidance based on official documentation.
+For account‑specific issues or problems not covered here, students must contact IT Support directly.
+``

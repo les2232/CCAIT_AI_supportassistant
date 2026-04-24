@@ -1,0 +1,43 @@
+• SOURCE: Community College of Aurora Office 365 / Outlook Training
+  URL: https://cccs.libguides.com/c.php?g=1401795&p=10619586
+
+  ==================================================
+
+  STUDENT EMAIL / OFFICE 365 TRAINING
+
+  What this is:
+
+  - A student-facing collection of Office 365 training tutorials.
+  - Training covers Microsoft 365 tools such as Outlook, Word, Excel, PowerPoint, Teams, OneDrive, and Office Online.
+  - The resources are primarily video tutorials designed for both beginners and users who want to improve their skills.
+
+  What students use it for:
+
+  - Learning how to use Outlook and other Office 365 tools more effectively.
+  - Creating, editing, formatting, and sharing documents in Word.
+  - Working with spreadsheets, calculations, charts, and data in Excel.
+  - Building and improving presentations in PowerPoint.
+  - Communicating and collaborating in Microsoft Teams.
+  - Storing, organizing, syncing, and sharing files in OneDrive.
+  - Using Office applications online from a web browser across different devices.
+
+  How students access the training:
+
+  - Some tutorials are housed in LinkedIn Learning.
+  - Students need to activate their LinkedIn Learning account before using those tutorials.
+  - LinkedIn Learning access uses a CCA email account.
+  - Students sign in using their S# and MyCCA password when prompted.
+  - Access to the training requires a LinkedIn Learning account if the tutorial is hosted there.
+
+  Things to know:
+
+  - The training is video-based.
+  - Tutorials include both quick tips and full essential training courses.
+  - Quick tip videos are short and focused on common tasks or questions.
+  - Full courses provide broader instruction on core features and workflows.
+  - Training is grouped by product area, including Teams, Office 365, OneDrive, Word, Excel, and PowerPoint.
+
+  Where to get help / When to contact IT:
+
+  - No specific IT contact or escalation details were included in the pasted content.
+  - IT support is available for account or access issues.

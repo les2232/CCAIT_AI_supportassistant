@@ -1,0 +1,57 @@
+• SOURCE: Educational Technology: Windows 11 – Community College of Aurora
+  URL: https://cccs.libguides.com/c.php?g=1401795&p=10445717
+
+  ==================================================
+
+  WINDOWS 11 TRAINING AND UPGRADE
+
+  What this is:
+
+  - Information about Windows 11 training resources, updating mapped drives in Windows, and the Windows 11 upgrade
+  process.
+  - Training is available through LinkedIn Learning for staff, faculty, instructors, and students.
+  - Users sign in to LinkedIn Learning with their CCA email, then use their S# and MyCCA password through single sign-
+  on.
+
+  What students use it for:
+
+  - Learning basic and advanced Windows 11 features through short training videos.
+  - Getting familiar with Windows 11 if moving from Windows 10.
+  - Accessing Microsoft 365 training resources.
+  - Updating mapped drives in Windows if shared drive access changes.
+
+  Common issues or things to know:
+
+  - Windows 11 Quick Tips provides short videos focused on common Windows questions, interface changes, apps, and files.
+  - Essential Training for Windows 11 is intended for users who are new to Windows or upgrading from Windows 10.
+  - If you are on campus, mapped drives and the H: drive may update automatically after login.
+  - If mapped drives are not accessible on campus, reboot the computer first and check again.
+  - If mapped drives still are not accessible, open \CCADFS01.ccc.ccofc.edu\gpdeploy$\SelfService and double-click the
+  MapDrives file. It takes 1-2 minutes to run.
+  - If you are working remotely, you must connect to VPN before opening \CCADFS01.ccc.ccofc.edu\gpdeploy$\SelfService
+  and running the MapDrives file.
+  - After running MapDrives, close and reopen any open File Explorer windows.
+  - Some shared drives may be mapped to different drive letters after migration.
+  - If a shared drive needs a specific drive letter, it can be manually disconnected and remapped.
+  - Windows 10 users may receive a notification prompting them to upgrade to Windows 11.
+  - The Windows 11 upgrade was described as beginning Friday, September 19th for eligible Windows 10 devices.
+  - Users can start the upgrade or delay it, but the upgrade is required before the October deadline referenced in the
+  notice.
+  - Once started, the upgrade can take 1-2 hours.
+  - If a computer is already on Windows 11, the upgrade notice does not apply.
+  - The notice states that Windows 10 end of support is October 14th, 2025.
+
+  Where to get help / When to contact IT:
+
+  - Contact IT if mapped drives still do not work after rebooting, connecting to VPN if remote, running the MapDrives
+  file, and reopening File Explorer.
+  - Contact the IT Helpdesk if you have questions, concerns, or problems during the Windows 11 upgrade process.
+  - Submit a ticket to HelpdeskTickets.CCA@ccaurora.edu or call 303-360-4900.
+
+  Video resources:
+
+  - A video course is available for Windows 11 Quick Tips. It covers short, practical tips for common Windows 11 tasks
+  and questions.
+  - A video course is available for Essential Training for Windows 11. It covers how to use Windows 11 effectively,
+  especially for users new to Windows or upgrading from Windows 10.
+  - A video course is available for Microsoft 365 training. It covers getting started with Microsoft 365.

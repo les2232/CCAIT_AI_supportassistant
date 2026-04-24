@@ -1,0 +1,32 @@
+SOURCE: Educational Technology: Classroom Technology – Community College of Aurora
+URL: https://cccs.libguides.com/c.php?g=1401795&p=10739286
+
+==================================================
+
+CLASSROOM TECHNOLOGY
+
+What this is:
+- Information about upgraded classroom technology available at the Community College of Aurora.
+- Classroom enhancements are designed to support teaching, learning, and student engagement.
+
+What students use it for:
+- Viewing presentations and instructional content using projectors and interactive displays.
+- Participating in group work and collaborative activities using whiteboards and touchscreen technology.
+- Engaging with accessible classroom technology that supports different learning styles.
+
+Classroom technology upgrades include:
+- New whiteboards
+- Projectors
+- Adjustable instructor podiums
+- Touchscreen computers
+- Interactive displays
+
+Things to know:
+- Interactive displays can be vertically adjusted to support accessibility.
+- Classroom setups are designed to support collaborative learning and group work.
+- Technology upgrades are intended to ensure equitable and accessible learning experiences for students.
+
+Where to get help / When to contact IT:
+- For assistance with classroom technology issues, contact:
+  HelpDeskTickets.CCA@ccaurora.edu
+``

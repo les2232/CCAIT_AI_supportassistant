@@ -1,0 +1,22 @@
+SOURCE: Community College of Aurora D2L (Brightspace) Student Access
+
+==================================================
+
+D2L (Brightspace)
+
+What this is:
+- D2L, also called Brightspace, is the learning management system used by the Community College of Aurora.
+- Students use D2L to access course content and online learning resources.
+
+What students use it for:
+- Viewing course materials.
+- Submitting assignments.
+- Participating in online course activities.
+- Accessing course-related learning resources.
+
+How to access:
+- Access D2L through the Community College of Aurora student systems using your student account credentials.
+- Sign in with your CCA student account to open your courses and course materials.
+
+Where to get help:
+- If you are unable to access D2L or your course materials, contact CCA IT Support for assistance.

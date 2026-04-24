@@ -1,0 +1,64 @@
+SOURCE: Educational Technology: Student Email – Community College of Aurora
+URL: https://cccs.libguides.com/c.php?g=1401795&p=11251646
+
+==================================================
+
+STUDENT EMAIL
+
+What this is:
+- All students enrolled at the Community College of Aurora are assigned a college email account.
+- The student email account is the college’s primary method of communication with students.
+
+What students use it for:
+- Receiving official college communications.
+- Getting information about:
+  - Scholarships
+  - Registration dates
+  - Financial deadlines
+  - Important academic and administrative notices
+
+Accessing MyCCA and Student Email:
+
+MyCCA login:
+- Navigate to the Community College of Aurora website using a web browser.
+- Click the MyCCA link.
+- Log in using the following credentials:
+  - Username: Student ID number (S00000000)
+  - Password: StudentMMDDYYYY (default) or an updated password created by the student
+- After the first login, students are required to change their password.
+
+Password requirements:
+- Passwords must be at least 14 characters long.
+- Passwords must include a mix of:
+  - Uppercase letters
+  - Lowercase letters
+  - Numbers and/or special characters
+
+Accessing student email:
+- After logging into MyCCA, click the student email icon in the top right corner.
+- Enter your student email address, which ends in @student.cccs.edu.
+- If unsure of your email address:
+  - Locate the “Student Email Notification” section in MyCCA.
+  - Click the link that says “what is my school email address.”
+- When prompted for a password, enter your MyCCA password.
+
+Alternative access:
+- Student email can also be accessed by navigating directly to Microsoft Office.
+- Click Sign in and enter your student email address and MyCCA password.
+- Launch the Outlook app to view your email.
+
+First access to student email:
+- Upon first login, students will be prompted to set up Multi-Factor Authentication (MFA).
+- MFA is required to protect Microsoft 365 sign-ins.
+- The phone number method is recommended for MFA setup.
+
+On-campus computer login:
+- Use the same credentials as MyCCA:
+  - Username: Student ID number (S#)
+  - Password: StudentMMDDYYYY or updated password
+- Updated passwords remain valid for 180 days and continue to work across semesters.
+
+Where to get help / When to contact IT:
+- If you are unable to log into MyCCA, student email, or campus computers, contact:
+  - CCA IT Helpdesk: 303-360-4900
+  - 24/7 Helpdesk Support: 888-800-9198
