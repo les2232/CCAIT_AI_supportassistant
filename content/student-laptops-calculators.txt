@@ -61,3 +61,17 @@ Where to get help / When to contact support:
   studentadvocacy.cca@ccaurora.edu
 - For general technology assistance, students may visit the Hub front desk.
 ``
+
+- TITLE: Student Laptops and Calculators
+- AUDIENCE: Students
+- TAGS: laptop loan, calculator loan, ti-84, hub, student technology
+- CONTEXT:
+  - What this is:
+- STEPS:
+  - How to get a semester laptop:
+  - How to get a calculator:
+- IF NOT FIXED:
+  - Additional details:
+  - If you still need help, students may visit the Hub front desk for general technology assistance.
+- ESCALATE:
+  - Where to get help / When to contact support:

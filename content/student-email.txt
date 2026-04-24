@@ -62,3 +62,18 @@ Where to get help / When to contact IT:
 - If you are unable to log into MyCCA, student email, or campus computers, contact:
   - CCA IT Helpdesk: 303-360-4900
   - 24/7 Helpdesk Support: 888-800-9198
+
+- TITLE: Student Email
+- AUDIENCE: Students
+- TAGS: student email, mycca, outlook, office 365, campus computer login
+- CONTEXT:
+  - What this is:
+- STEPS:
+  - MyCCA login:
+  - Accessing student email:
+  - Alternative access:
+- IF NOT FIXED:
+  - First access to student email:
+  - On-campus computer login:
+- ESCALATE:
+  - Where to get help / When to contact IT:

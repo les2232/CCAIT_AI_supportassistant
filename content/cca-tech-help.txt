@@ -5,7 +5,7 @@ URL: https://cccs.libguides.com/CCAEdTech
 
 Technology Help & Support at Community College of Aurora (CCA)
 
-This document summarizes how students can get help with technology, devices, software, and learning tools at CCA.
+This guide helps students find the right place to get help with technology, devices, software, and campus support resources at CCA.
 
 --------------------------------------------------
 IT SUPPORT CONTACTS
@@ -24,7 +24,7 @@ WHERE TO GET TECH HELP
 
 Daily Laptop Lending Program
 What this is:
-- Students can check out a laptop for use on campus during the day.
+- Students can check out a laptop for short-term use on campus during the day.
 
 What to know:
 - Laptops must be returned at the end of the day.
@@ -46,13 +46,12 @@ Where to go:
 Software Availability (Adobe, SolidWorks, Coding Software)
 
 What this is:
-- Mac computers have Adobe Creative Suite.
-- One desktop computer has SolidWorks.
-- Student laptops include coding software.
+- Some campus computers include software students may need for coursework.
+- Examples include Adobe Creative Suite, SolidWorks, and coding software.
 
 What to know:
-- Hub staff do not help install software on student devices.
-- An exception is made for a printing application.
+- Access may depend on the computer or location you are using.
+- Use this section to find where programs are available on campus.
 
 Where to go for more:
 - Contact IT for troubleshooting or additional software needs.
@@ -71,92 +70,26 @@ Where to go for more:
 - A free online graphing calculator is available at Desmos.com.
 
 --------------------------------------------------
-Printing Help / Hub Printers
+Campus printers
 
 What this is:
-- Students can print from Hub printers.
+- Students can use Hub printers for general printer access.
 
 What to know:
-- Student-owned laptops must connect to the CCAStudents Wi‑Fi network.
+- For detailed printing setup instructions and printing troubleshooting, use the dedicated CCA printing support guide.
 
-Where to go for help:
-- Hub Front Desk for printing assistance.
-
---------------------------------------------------
-Logging into Hub Computers & Laptops
-
-What this is:
-- Assistance with logging into Hub computers or loaner laptops.
-
-What to know:
-- Students use their student number (S#).
-- Password is the one created for MyCCA.
-
-Where to go for help:
-- For password resets, contact IT at 303‑360‑4900.
-
---------------------------------------------------
-Office 365 App Support
-
-What this is:
-- Help with Office 365 applications (Outlook, Word, Excel, PowerPoint).
-
-Where to go:
-- Contact IT at 303‑360‑4900.
-- After-hours support available at 1‑888‑800‑9198.
-
---------------------------------------------------
-Navigate (College Portal)
-
-What this is:
-- Help signing in to Navigate.
-
-Where to go:
-- Hub Front Desk.
-- A Navigate how‑to video is available.
-
---------------------------------------------------
-MyCourses / D2L (Canvas) Support
-
-What this is:
-- Support for accessing and using MyCourses (Canvas).
-
-What to know:
-- Students should register in the D2L Student Orientation Course.
-- Enrollment steps:
-  1. Log into D2L through MyCCA
-  2. Scroll to the bottom
-  3. Select Self‑Registration Courses
-  4. Click Discovery Tool – Register for D2L
-  5. Under available courses, search for D2L
-
-Where to go for help:
-- D2L Helpdesk is in the MyCourses portal.
-- Brightspace provides official D2L resources.
-- 24/7 D2L Support Phone: 1‑888‑800‑9198
-
---------------------------------------------------
-Assistive Technology
-
-What this is:
-- Accessibility and assistive technology resources.
-
-Where to go:
-- Assistive Technology Guide
-- Office of Disability and Equity Website
-
---------------------------------------------------
-OTHER HELPFUL GUIDES
-
-Additional resources include:
-- Library Help Videos
-- AI & The Academy
-- Assistive Technology Resources
-- LinkedIn Learning
-
---------------------------------------------------
-IMPORTANT NOTE
-
-This assistant provides general guidance based on official documentation.
-For account‑specific issues or problems not covered here, students must contact IT Support directly.
-``
+- TITLE: Technology Help and Support at CCA
+- AUDIENCE: Students
+- TAGS: technology help, headphones, software, calculators, hub
+- CONTEXT:
+  - Use this guide when you need help finding the right student technology support resource at CCA.
+- STEPS:
+  - Visit the Hub Front Desk for headphones, calculators, or general student technology help.
+  - Use the sections in this guide to identify the right office, desk, or support resource for your question.
+- IF NOT FIXED:
+  - For semester-long laptop loans, visit Student Success.
+  - Contact IT for troubleshooting or additional software needs.
+  - If you are not sure where to go next, ask the Hub Front Desk for help.
+- ESCALATE:
+  - IT Helpdesk
+  - Use the MyCourses / D2L help option if the issue is specifically related to course access.

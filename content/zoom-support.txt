@@ -37,3 +37,18 @@ When to contact IT for Zoom help:
 
 CCA IT Helpdesk:
 - Phone: 303-360-4900
+
+- TITLE: Zoom Support
+- AUDIENCE: Students
+- TAGS: zoom, online class, audio, video, sign-in
+- CONTEXT:
+  - What this helps with:
+- STEPS:
+  - Joining Zoom classes:
+  - App or browser:
+  - Audio or video problems:
+- IF NOT FIXED:
+  - Sign-in problems:
+- ESCALATE:
+  - When to contact OBL:
+  - When to contact IT for Zoom help:

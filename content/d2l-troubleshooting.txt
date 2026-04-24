@@ -37,3 +37,18 @@ When to contact IT:
 
 CCA IT Helpdesk:
 - Phone: 303-360-4900
+
+- TITLE: D2L Troubleshooting
+- AUDIENCE: Students
+- TAGS: d2l, brightspace, login, course missing, assignment upload
+- CONTEXT:
+  - What this helps with:
+- STEPS:
+  - Cannot access D2L or log into D2L:
+  - Assignment upload problems:
+  - Browser or cache issues:
+- IF NOT FIXED:
+  - Course not showing:
+  - When to contact your instructor:
+- ESCALATE:
+  - When to contact IT:

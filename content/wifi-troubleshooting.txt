@@ -33,3 +33,17 @@ When to contact IT:
 
 CCA IT Helpdesk:
 - Phone: 303-360-4900
+
+- TITLE: Wifi Troubleshooting
+- AUDIENCE: Students
+- TAGS: wifi, wi-fi, student wifi, wireless, internet, network
+- CONTEXT:
+  - What this helps with:
+- STEPS:
+  - Cannot connect to CCA Wi-Fi:
+  - Student wifi and wireless network help:
+- IF NOT FIXED:
+  - Wi-Fi keeps dropping or is unstable:
+  - Internet or network not working:
+- ESCALATE:
+  - When to contact IT:

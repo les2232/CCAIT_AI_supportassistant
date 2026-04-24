@@ -33,3 +33,17 @@ When to contact IT for student email help:
 
 CCA IT Helpdesk:
 - Phone: 303-360-4900
+
+- TITLE: Student Email Troubleshooting
+- AUDIENCE: Students
+- TAGS: student email, outlook, microsoft 365, password prompt, verification
+- CONTEXT:
+  - What this helps with:
+- STEPS:
+  - Cannot access student email:
+  - Outlook keeps asking for my password:
+  - Outlook app or web access:
+- IF NOT FIXED:
+  - MFA or verification loop:
+- ESCALATE:
+  - When to contact IT for student email help:

@@ -26,9 +26,9 @@
   - Essential Training for Windows 11 is intended for users who are new to Windows or upgrading from Windows 10.
   - If you are on campus, mapped drives and the H: drive may update automatically after login.
   - If mapped drives are not accessible on campus, reboot the computer first and check again.
-  - If mapped drives still are not accessible, open \CCADFS01.ccc.ccofc.edu\gpdeploy$\SelfService and double-click the
+  - If mapped drives still are not accessible, open \\\\CCADFS01.ccc.ccofc.edu\\gpdeploy$\\SelfService and double-click the
   MapDrives file. It takes 1-2 minutes to run.
-  - If you are working remotely, you must connect to VPN before opening \CCADFS01.ccc.ccofc.edu\gpdeploy$\SelfService
+  - If you are working remotely, you must connect to VPN before opening \\\\CCADFS01.ccc.ccofc.edu\\gpdeploy$\\SelfService
   and running the MapDrives file.
   - After running MapDrives, close and reopen any open File Explorer windows.
   - Some shared drives may be mapped to different drive letters after migration.
@@ -55,3 +55,16 @@
   - A video course is available for Essential Training for Windows 11. It covers how to use Windows 11 effectively,
   especially for users new to Windows or upgrading from Windows 10.
   - A video course is available for Microsoft 365 training. It covers getting started with Microsoft 365.
+
+- TITLE: Windows 11 Training and Upgrade
+- AUDIENCE: Students, Faculty, and Staff
+- TAGS: windows 11, upgrade, training, mapped drives, microsoft 365
+- CONTEXT:
+  - What this is:
+- STEPS:
+  - Common issues or things to know:
+  - Video resources:
+- IF NOT FIXED:
+  - What students use it for:
+- ESCALATE:
+  - Where to get help / When to contact IT:

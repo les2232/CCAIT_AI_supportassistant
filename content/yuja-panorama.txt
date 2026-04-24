@@ -7,7 +7,7 @@ YUJA PANORAMA
 
 What this is:
 - YuJa Panorama is an accessibility and media support platform used at the Community College of Aurora.
-- YuJa provides tools for video content, accessibility reporting, and support for online and blended learning environments.
+- YuJa helps support course videos, accessibility features, and media content used in CCA courses.
 
 What students use it for:
 - Viewing course videos and recorded content provided by instructors.
@@ -17,21 +17,37 @@ What students use it for:
 Student support and access:
 - YuJa student resources are available directly through course content when instructors use YuJa-supported videos.
 - YuJa integrates with learning platforms used at CCA to support accessible course materials.
+- If you cannot access YuJa videos in your course, start from the course content link provided by your instructor and try again.
+- If a course video will not open, use the course link again and confirm you are opening the YuJa video from the class content area.
 
 Faculty and instructor context (informational):
-- YuJa is used by faculty for media creation, storage, and accessibility review.
-- Training videos are available for faculty and instructors on advanced YuJa features.
-- Faculty training content is presented for instructional use and is not required for students.
+- Faculty may also use YuJa for media creation, storage, and accessibility review.
+- This section is included for context, but most student support questions are about accessing course videos.
+- Faculty training content is informational and separate from the basic student access path.
 
 Video resources available:
 - Overview videos introduce YuJa functionality and accessibility tools.
-- Advanced training videos demonstrate media management, accessibility reporting, and content distribution features.
-- All YuJa training resources are video-based and intended for guided learning.
+- Additional video resources explain media management and accessibility features.
+- These resources are optional and are not required for basic student access to course videos.
 
 Things to know:
 - Students typically interact with YuJa through course materials rather than directly managing content.
 - Accessibility features are built into YuJa-supported content to improve student access.
 
 Where to get help / When to contact support:
-- For accessibility issues related to course videos or YuJa content, students should follow course guidance or contact IT support.
+- For accessibility issues related to course videos or YuJa content, students should follow course guidance or contact IT support if the video issue continues.
 - For general technical issues, contact the IT Helpdesk at 303-360-4900.
+
+- TITLE: YuJa Panorama
+- AUDIENCE: Students and Faculty
+- TAGS: yuja, panorama, accessibility, course videos, media support
+- CONTEXT:
+  - What this is:
+- STEPS:
+  - Student support and access:
+  - Things to know:
+- IF NOT FIXED:
+  - Video resources available:
+  - Faculty and instructor context (informational):
+- ESCALATE:
+  - Where to get help / When to contact support:

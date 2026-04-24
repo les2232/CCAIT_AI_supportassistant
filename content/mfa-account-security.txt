@@ -27,3 +27,16 @@ If you're still stuck:
 
 CCA IT Helpdesk:
 - Phone: 303-360-4900
+
+- TITLE: MFA and Account Security
+- AUDIENCE: Students
+- TAGS: mfa, verification, account security, login, mycca
+- CONTEXT:
+  - What this helps with:
+- STEPS:
+  - Setting up MFA:
+- IF NOT FIXED:
+  - Common MFA problems:
+  - What MFA affects:
+- ESCALATE:
+  - If you're still stuck:

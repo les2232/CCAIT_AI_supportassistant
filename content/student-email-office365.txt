@@ -41,3 +41,15 @@
 
   - No specific IT contact or escalation details were included in the pasted content.
   - IT support is available for account or access issues.
+
+- TITLE: Student Email and Office 365 Training
+- AUDIENCE: Students
+- TAGS: office 365, outlook, training, onedrive, teams, microsoft 365
+- CONTEXT:
+  - What this is:
+- STEPS:
+  - How students access the training:
+- IF NOT FIXED:
+  - Things to know:
+- ESCALATE:
+  - IT support is available for account or access issues.

@@ -20,3 +20,15 @@ How to access:
 
 Where to get help:
 - If you are unable to access D2L or your course materials, contact CCA IT Support for assistance.
+
+- TITLE: D2L Brightspace Access
+- AUDIENCE: Students
+- TAGS: d2l, brightspace, course materials, assignments, login
+- CONTEXT:
+  - What this is:
+- STEPS:
+  - How to access:
+- IF NOT FIXED:
+  - What students use it for:
+- ESCALATE:
+  - Where to get help:

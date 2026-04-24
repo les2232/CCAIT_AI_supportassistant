@@ -1,0 +1,34 @@
+#!/usr/bin/env python3
+import subprocess
+import sys
+
+
+CHECKS = [
+    ("Knowledge Base Validation", ["./venv/bin/python", "validate_kb.py"]),
+    ("Disambiguation Evaluation", ["./venv/bin/python", "evaluate_disambiguation.py"]),
+    ("Routing Evaluation", ["./venv/bin/python", "evaluate_routing.py", "--strict"]),
+    ("Retrieval Evaluation", ["./venv/bin/python", "evaluate_retrieval.py", "--strict"]),
+]
+
+
+def run_check(title, command):
+    print(title)
+    print("=" * 72)
+    result = subprocess.run(command)
+    print()
+    return result.returncode
+
+
+def main():
+    for title, command in CHECKS:
+        code = run_check(title, command)
+        if code != 0:
+            print(f"Check failed: {title}")
+            sys.exit(1)
+
+    print("All checks passed.")
+    sys.exit(0)
+
+
+if __name__ == "__main__":
+    main()

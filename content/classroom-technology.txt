@@ -14,6 +14,12 @@ What students use it for:
 - Participating in group work and collaborative activities using whiteboards and touchscreen technology.
 - Engaging with accessible classroom technology that supports different learning styles.
 
+Common classroom support issues:
+- A classroom display will not turn on.
+- A projector has no signal or does not show the expected content.
+- Classroom audio is not working during instruction.
+- A classroom technology issue is preventing normal teaching or presentation use.
+
 Classroom technology upgrades include:
 - New whiteboards
 - Projectors
@@ -30,3 +36,16 @@ Where to get help / When to contact IT:
 - For assistance with classroom technology issues, contact:
   HelpDeskTickets.CCA@ccaurora.edu
 ``
+
+- TITLE: Classroom Technology
+- AUDIENCE: Faculty
+- TAGS: classroom display, projector, audio, classroom technology, teaching support
+- CONTEXT:
+  - What this is:
+- STEPS:
+  - Common classroom support issues:
+  - Things to know:
+- IF NOT FIXED:
+  - Classroom technology upgrades include:
+- ESCALATE:
+  - Where to get help / When to contact IT:

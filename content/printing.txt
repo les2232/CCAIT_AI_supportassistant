@@ -34,3 +34,16 @@ When to contact IT:
 
 CCA IT Helpdesk:
 - Phone: 303-360-4900
+
+- TITLE: Printing at CCA
+- AUDIENCE: Students
+- TAGS: printing, printer, hub, print job, personal device
+- CONTEXT:
+  - What this helps with:
+- STEPS:
+  - Printing from campus computers:
+  - Printing from personal devices:
+- IF NOT FIXED:
+  - Common issues: printer not showing or print job not going through:
+- ESCALATE:
+  - When to contact IT:

@@ -1,0 +1,264 @@
+<!doctype html>
+<html>
+  <head>
+    <title>CCA IT Department Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body class="console-page">
+    <div class="page">
+      <div class="topbar">
+        <a class="logout-link" href="/logout">Log out</a>
+      </div>
+      <div class="hero">
+        <p class="hero-kicker">Guided Technology Help</p>
+        <h1>CCA IT Support Assistant</h1>
+        <p class="subtitle">
+          Get help with common student and faculty technology issues.
+        </p>
+      </div>
+
+      <div class="layout">
+        <div class="main-column">
+          <div class="card search-card">
+            <div class="search-label">What do you need help with?</div>
+            <p class="search-copy">
+              Find approved support guidance for common technology issues affecting students and faculty.
+            </p>
+            <div class="search-frame">
+              <form method="POST" action="/#response" id="question-form">
+                <div class="example-groups">
+                  <div class="example-group">
+                    <div class="example-group-title">Student Support</div>
+                    <ul class="examples">
+                      <li><button class="example-chip" type="button" data-question="Connect to Wi-Fi">Connect to Wi-Fi</button></li>
+                      <li><button class="example-chip" type="button" data-question="Access D2L / Brightspace">Access D2L / Brightspace</button></li>
+                      <li><button class="example-chip" type="button" data-question="Student email not working">Student email not working</button></li>
+                      <li><button class="example-chip" type="button" data-question="Reset my password">Reset my password</button></li>
+                    </ul>
+                  </div>
+                  <div class="example-group">
+                    <div class="example-group-title">Faculty Support</div>
+                    <ul class="examples">
+                      <li><button class="example-chip" type="button" data-question="Classroom display won’t turn on">Classroom display won’t turn on</button></li>
+                      <li><button class="example-chip" type="button" data-question="Zoom not working">Zoom not working</button></li>
+                      <li><button class="example-chip" type="button" data-question="Projector has no signal">Projector has no signal</button></li>
+                      <li><button class="example-chip" type="button" data-question="Audio not working in classroom">Audio not working in classroom</button></li>
+                    </ul>
+                  </div>
+                </div>
+
+                <textarea id="question-input" name="question" placeholder="Describe the issue, affected system, or procedure you need."></textarea>
+                <br>
+                <button class="question-submit-button" type="submit">Get help</button>
+              </form>
+            </div>
+            <p class="search-footnote">Press Enter to submit. Press Shift + Enter to add a new line.</p>
+          </div>
+
+          {% if show_response %}
+            <div class="response-card" id="response">
+              {% if disambiguation_options %}
+                <h2 class="response-title">Let’s narrow it down:</h2>
+
+                {% if asked_question %}
+                  <div class="asked-question">
+                    <div class="asked-question-label">You asked</div>
+                    <p class="asked-question-text">{{ asked_question }}</p>
+                  </div>
+                {% endif %}
+
+                <div class="procedure-block">
+                  <div class="section-label">Choose the area you need help with</div>
+                  <p class="procedure-note">This request could match more than one type of issue. Select the closest option to continue.</p>
+                  <div class="choice-actions">
+                    {% for option in disambiguation_options %}
+                      <form method="POST" action="/#response">
+                        <input type="hidden" name="form_type" value="disambiguation">
+                        <input type="hidden" name="question" value="{{ option.query }}">
+                        <button class="choice-button" type="submit">{{ option.label }}</button>
+                      </form>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% else %}
+                <h2 class="response-title">Recommended help</h2>
+
+                {% if section_heading %}
+                  <div class="response-heading">{{ section_heading }}</div>
+                {% endif %}
+
+                {% if asked_question %}
+                  <div class="asked-question">
+                    <div class="asked-question-label">You asked</div>
+                    <p class="asked-question-text">{{ asked_question }}</p>
+                  </div>
+                {% endif %}
+
+                {% if guided_context %}
+                  <div class="context-panel">
+                    <div class="section-label">Context</div>
+                    <p class="context-copy">{{ guided_context }}</p>
+                  </div>
+                {% endif %}
+
+                <div class="procedure-block">
+                  <div class="section-label">{{ tone_profile.steps_label }}</div>
+                  {% if tone_profile.guided_intro %}
+                    <p class="procedure-intro">{{ tone_profile.guided_intro }}</p>
+                  {% endif %}
+                  <p class="procedure-note">{{ tone_profile.steps_note }}</p>
+                  {% if guided_steps %}
+                    <ol class="response-steps guided-steps">
+                      {% for item in guided_steps %}
+                        <li>{{ item }}</li>
+                      {% endfor %}
+                    </ol>
+                  {% else %}
+                    <div class="response-body">
+                      {% for block in answer_blocks %}
+                        {% if block.type == "paragraph" %}
+                          <p>
+                            {% if block.lead %}
+                              <strong>{{ block.lead }}</strong>{% if block.remainder %} {{ block.remainder }}{% endif %}
+                            {% else %}
+                              {{ block.remainder }}
+                            {% endif %}
+                          </p>
+                        {% elif block.type == "steps" %}
+                          <ol class="response-steps">
+                            {% for item in block.items %}
+                              <li>{{ item }}</li>
+                            {% endfor %}
+                          </ol>
+                        {% elif block.type == "bullets" %}
+                          <ul class="response-bullets">
+                            {% for item in block.items %}
+                              <li>{{ item }}</li>
+                            {% endfor %}
+                          </ul>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                </div>
+
+                {% if show_password_reset_portal %}
+                  <div class="response-action">
+                    {% if password_reset_portal_url %}
+                      <a href="{{ password_reset_portal_url }}" target="_blank" rel="noopener noreferrer">
+                        Open the Password Reset Portal
+                      </a>
+                    {% else %}
+                      Password Reset Portal
+                    {% endif %}
+                  </div>
+                {% endif %}
+
+                {% if request_log_id and not followup_status %}
+                  <div class="feedback-section resolution-panel">
+                    <div class="feedback-title">Did this fix your issue?</div>
+                    <div class="feedback-actions">
+                      <form method="POST" action="/#response">
+                        <input type="hidden" name="form_type" value="followup">
+                        <input type="hidden" name="request_log_id" value="{{ request_log_id }}">
+                        <input type="hidden" name="question" value="{{ asked_question }}">
+                        <input type="hidden" name="resolution" value="yes">
+                        <button class="feedback-button" type="submit">Yes</button>
+                      </form>
+                      <form method="POST" action="/#response">
+                        <input type="hidden" name="form_type" value="followup">
+                        <input type="hidden" name="request_log_id" value="{{ request_log_id }}">
+                        <input type="hidden" name="question" value="{{ asked_question }}">
+                        <input type="hidden" name="resolution" value="no">
+                        <button class="feedback-button negative" type="submit">No</button>
+                      </form>
+                    </div>
+                  </div>
+                {% endif %}
+
+                {% if followup_status == "yes" %}
+                  <div class="feedback-thanks">Thanks. This issue was marked as resolved.</div>
+                {% elif followup_status == "no" %}
+                  <div class="followup-panel">
+                    <div class="section-label">{{ tone_profile.followup_label }}</div>
+                    <p class="procedure-note">{{ tone_profile.followup_note }}</p>
+                    <ol class="response-steps guided-steps">
+                      {% for item in additional_steps %}
+                        <li>{{ item }}</li>
+                      {% endfor %}
+                    </ol>
+                  </div>
+
+                  {% if escalation_text %}
+                    <div class="response-escalation">
+                      <h3>{{ tone_profile.escalation_label }}</h3>
+                      <p class="next-step">{{ tone_profile.escalation_intro }}</p>
+                      {% for paragraph in escalation_text.split('\n') %}
+                        <p>{{ paragraph }}</p>
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+                {% endif %}
+
+                {% if source_name or section_heading or retrieval_confidence %}
+                  <div class="match-details">
+                    <h3>Source</h3>
+                    <div class="match-row">
+                      <div class="match-label">Article</div>
+                      <div class="match-value">{{ display_source_name or "Not available" }}</div>
+                      <div class="match-label">Procedure section</div>
+                      <div class="match-value">{{ section_heading or "Not available" }}</div>
+                      <div class="match-label">Confidence</div>
+                      <div class="match-value">{{ retrieval_confidence or "Not available" }}</div>
+                    </div>
+                  </div>
+                {% endif %}
+
+                <div class="response-source">
+                  Based on approved CCA IT documentation.
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+
+        <aside class="sidebar">
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Popular help topics</h3>
+            <ol class="workflow-list">
+              <li>Account access and password issues</li>
+              <li>Wi-Fi and connection problems</li>
+              <li>D2L, Zoom, and learning tools</li>
+              <li>Classroom display and audio problems</li>
+            </ol>
+          </div>
+
+          <div class="sidebar-card scope-note">
+            <h3 class="sidebar-title">Who this helps</h3>
+            <p class="sidebar-copy">
+              This assistant is designed for students and faculty who need help with common CCA technology issues using approved support guidance.
+            </p>
+          </div>
+
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Support features</h3>
+            <div class="status-chips">
+              <span class="status-chip good">Approved guidance</span>
+              <span class="status-chip good">Guided steps</span>
+              <span class="status-chip good">Source shown</span>
+              <span class="status-chip">Feedback enabled</span>
+            </div>
+          </div>
+
+          <div class="sidebar-card">
+            <h3 class="sidebar-title">Need more help?</h3>
+            <p class="sidebar-copy">
+              After trying the suggested steps, use the follow-up buttons to let IT know whether the guidance helped.
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>

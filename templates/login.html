@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+  <head>
+    <title>CCA IT Support Assistant Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body class="login-page">
+    <div class="page">
+      <div class="card">
+        <p class="kicker">Temporary Login</p>
+        <h1>CCA IT Support Assistant</h1>
+        <p class="subtitle">
+          Sign in with your CCA account to access the assistant.
+        </p>
+        {% if allow_dev_login %}
+          <p class="dev-note">
+            Temporary development login is enabled in this build for local testing only.
+          </p>
+        {% endif %}
+        {% if error_message %}
+          <p class="error">{{ error_message }}</p>
+        {% endif %}
+        <form method="POST" action="/login">
+          <label for="username">Username</label>
+          <input id="username" name="username" type="text" autocomplete="username">
+          <label for="password">Password</label>
+          <input id="password" name="password" type="password" autocomplete="current-password">
+          <button type="submit">Sign in</button>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
