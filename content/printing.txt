@@ -6,7 +6,7 @@ PRINTING AT CCA
 
 What this helps with:
 - Use this guide if you need help printing on campus at the Community College of Aurora.
-- It covers where students can print, how printing usually works, and what to do if printing is not working.
+- It covers where students can print, how printing usually works, how to map a shared printer in Windows, and what to do if printing is not working.
 
 Where students can print:
 - Students can print at CCA using campus printing resources such as printers in the Hub.
@@ -18,34 +18,56 @@ Printing from campus computers:
 - Select the available campus printer from the printer list.
 - If you are not sure which printer to use, ask staff at the Hub front desk.
 
+Mapping a shared printer in Windows:
+1. On the Windows computer, search for Printers & Scanners.
+2. Open Printers & Scanners.
+3. Select Add Device.
+4. If the printer does not appear, choose Add manually.
+5. Select the option to add a shared printer by name.
+6. Enter the printer path using this pattern: \\ccadprint01.ccc.ccofc.edu\<printer name>
+7. Examples include \\ccadprint01.ccc.ccofc.edu\S102-XE Color and \\ccadprint01.ccc.ccofc.edu\L965-107-XE-Color.
+8. Finish adding the printer.
+9. Print a test page.
+
 Printing from personal devices:
 - Printing from a personal laptop may require being connected to the correct CCA student Wi-Fi network.
 - If a campus printer does not appear on your personal device, reconnect to Wi-Fi and check the printer list again.
-- If you still cannot print from your own device, ask for help at the Hub front desk or contact CCA IT Support.
+- If you still cannot print from your own device, ask for help at the Hub front desk or contact the CCA IT Helpdesk.
 
 Common issues: printer not showing or print job not going through:
 - If the printer is not showing, check that you are signed in correctly and connected to the correct CCA network if using your own device.
+- If you are mapping a shared printer and it does not appear, use Add manually and enter the shared printer path by name.
 - If your print job does not go through, close the document, reopen it, and send the job again.
 - If the printer is offline, unavailable, or still not working, ask for help at the Hub front desk.
-- If the issue seems related to your account, login, or device access, contact CCA IT Support.
+- If the issue seems related to your account, login, or device access, contact the CCA IT Helpdesk.
+
+Printer error message:
+- Write down the exact printer error message.
+- Check whether the printer was added by name using the shared printer path.
+- Try printing a test page after confirming the printer is added.
+- If the error continues, ask for help at the Hub front desk or contact the CCA IT Helpdesk.
 
 When to contact IT:
-- CCA IT Support can help if printing is still not working because of an account, login, or technology problem.
+- Contact the CCA IT Helpdesk if printing is still not working because of an account, login, or technology problem.
 
 CCA IT Helpdesk:
-- Phone: 303-360-4900
+- Phone: 303-360-4900, Monday–Friday, 8 a.m.–5 p.m.
+- After-hours/weekend support: 1-888-800-9198
+- Email: HelpdeskTickets.CCA@ccaurora.edu
 
 GUIDE READY FIELDS:
 
 - TITLE: Printing at CCA
 - AUDIENCE: Students
-- TAGS: printing, printer, hub, print job, personal device
+- TAGS: printing, printer, hub, print job, personal device, map printer, add printer, shared printer, printer path, windows
 - CONTEXT:
   - What this helps with:
 - STEPS:
   - Printing from campus computers:
+  - Mapping a shared printer in Windows:
   - Printing from personal devices:
 - IF NOT FIXED:
   - Common issues: printer not showing or print job not going through:
+  - Printer error message:
 - ESCALATE:
   - When to contact IT:

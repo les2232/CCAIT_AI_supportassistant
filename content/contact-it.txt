@@ -1,0 +1,34 @@
+SOURCE: Community College of Aurora IT Support Contact Information
+
+==================================================
+
+CONTACTING CCA IT SUPPORT
+
+How to contact CCA IT Support:
+- CCA IT Helpdesk:
+  - Phone: 303-360-4900, Monday–Friday, 8 a.m.–5 p.m.
+  - After-hours/weekend support: 1-888-800-9198
+  - Email: HelpdeskTickets.CCA@ccaurora.edu
+
+How to submit a support ticket:
+- Email HelpdeskTickets.CCA@ccaurora.edu to submit a support ticket.
+- Include as much detail as possible in your email.
+- Attach screenshots and error messages if you have them.
+- Include your student ID number and contact information in the email.
+
+When to contact IT:
+- Contact CCA IT Support if you cannot resolve your issue using the steps provided.
+- Use the CCA IT Helpdesk contact options above for urgent, ongoing, or after-hours technical issues.
+
+- TITLE: CCA IT Support Contact Information
+- AUDIENCE: Students and faculty
+- TAGS: contact, helpdesk, phone, email, support ticket, after hours, hours, call, reach
+- CONTEXT:
+  - How to contact CCA IT Support:
+- STEPS:
+  - How to contact CCA IT Support:
+  - How to submit a support ticket:
+- IF NOT FIXED:
+  - When to contact IT:
+- ESCALATE:
+  - When to contact IT:

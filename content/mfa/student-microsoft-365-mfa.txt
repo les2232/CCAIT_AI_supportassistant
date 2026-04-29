@@ -1,0 +1,88 @@
+TITLE:
+Student Microsoft 365 Multi-Factor Authentication
+
+STATUS:
+Draft — source document imported; pending CCA IT review
+
+SOURCE DOCUMENT:
+Multi-Factor Authentication to protect your Student Microsoft 365 Sign-In.pdf
+
+AUDIENCE:
+CCA IT staff, student workers, interns, temporary staff, and students who need MFA help
+
+SUMMARY:
+Use this SOP when helping a student understand or set up Multi-Factor Authentication for their student Microsoft 365 sign-in.
+
+WHEN TO USE:
+- A student needs help setting up MFA.
+- A student is signing into Microsoft 365 for the first time.
+- A student needs to add an alternate MFA method.
+- A student no longer has the phone or phone number used for MFA.
+- A student needs help understanding which services use their student Microsoft 365 sign-in.
+
+SERVICES COVERED BY STUDENT MICROSOFT 365 SIGN-IN:
+- Student Email / Outlook on the Web
+- OneDrive for Business
+- Microsoft Teams for Work or School
+- SharePoint Online
+- Adobe Creative Cloud
+- Webex
+
+MFA OVERVIEW:
+Multi-Factor Authentication adds an extra layer of security to the student Microsoft 365 sign-in. The password is the first layer. The mobile phone, authenticator app, text message, or phone call is the second layer.
+
+SETUP OPTIONS:
+Students can set up MFA using either:
+- The free Microsoft Authenticator app
+- A phone number for text verification codes or phone calls
+
+WHAT THE STUDENT NEEDS:
+- A computer
+- A mobile phone, tablet, or phone number that can receive a call or text
+- About 5 minutes for setup
+
+STEPS:
+1. Confirm the student is setting up MFA for their student Microsoft 365 sign-in.
+2. Ask whether they want to use Microsoft Authenticator or phone call/text verification.
+3. Have the student follow the appropriate setup process for their chosen method.
+4. Recommend that the student add an alternate MFA method after initial setup.
+5. If the student lost access to their phone or phone number, direct them to the lost-device recovery guidance or local IT Help Desk process.
+6. If the issue cannot be resolved through standard setup, direct the student to the local IT Help Desk or the 24x7 Help Desk.
+
+HELP CONTACTS:
+- Local IT Help Desk during normal business hours
+- 24x7 Help Desk: 1-888-800-9198
+- Website: help.cccs.edu
+
+IMPORTANT NOTES:
+- The preferred verification method is the Microsoft Authenticator app.
+- Phone call or text verification is also supported.
+- Students should add an alternate MFA method so they can still sign in if their phone or number changes.
+- Depending on the issue, the 24x7 Help Desk may direct the student to visit the local IT Help Desk in person or wait for a local IT callback.
+
+TICKET NOTES TO INCLUDE:
+- User/requester:
+- User ID, if applicable: S# / S-number / W# / W-number
+- Contact method:
+- Issue reported:
+- MFA method being used:
+- Whether student has access to their phone:
+- Whether student changed phone numbers:
+- Whether student tried Microsoft Authenticator:
+- Whether student tried phone call/text:
+- Error message, if any:
+- Help Desk referral, if any:
+- Result:
+- Next step:
+
+ESCALATE IF:
+- The student cannot access any MFA method.
+- The student lost their phone or changed phone numbers and cannot verify.
+- The student may need identity verification or account recovery.
+- The issue involves account security or possible unauthorized access.
+- The student cannot access Microsoft 365 services after setup.
+
+RELATED ARTICLES:
+- Writing a Good IT Ticket Note
+- When to Escalate an IT Ticket
+- Log Into CCA Zoom Using SSO

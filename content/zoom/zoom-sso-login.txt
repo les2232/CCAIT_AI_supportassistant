@@ -1,0 +1,72 @@
+TITLE:
+Log Into CCA Zoom Using SSO
+
+STATUS:
+Draft — source document imported; pending CCA IT review
+
+SOURCE DOCUMENT:
+SSO Zoom web login instructions.pdf
+
+AUDIENCE:
+CCA IT staff, student workers, interns, temporary staff, and users who need Zoom login help
+
+SUMMARY:
+Use this SOP when helping a user log into their CCA Zoom account using Single Sign-On, also called SSO.
+
+WHEN TO USE:
+- A user needs to sign into Zoom with their CCA account.
+- A user is trying to access a CCA Zoom license.
+- A user is unsure which Zoom sign-in option to use.
+- A user recently logged into Zoom and does not yet see a license.
+
+STEPS:
+1. Go to the Zoom sign-in page:
+
+   https://zoom.us/signin
+
+2. On the Zoom login screen, select the SSO option.
+3. When prompted for the company domain, enter:
+
+   CCCS-EDU
+
+4. Click Continue.
+5. On the CCCS sign-in page, enter the user's S# and password.
+6. If the user is off campus, they may receive a Duo prompt.
+7. After the user logs in, allow up to 24 hours for Zoom to sync with the admin console.
+8. Once sync completes, the Zoom license should be applied automatically.
+
+IMPORTANT NOTES:
+- The user should use SSO, not a personal Zoom login.
+- The company domain is CCCS-EDU.
+- The user signs in with their S# and password.
+- Duo may be required if the user is not on campus.
+- Zoom license sync may take up to 24 hours after first login.
+
+HELP CONTACT:
+If the user has issues or needs Duo assistance, call 303-360-4900.
+
+TICKET NOTES TO INCLUDE:
+- User/requester:
+- User ID, if applicable: S# / S-number / W# / W-number
+- Contact method:
+- Issue reported:
+- Whether user selected SSO:
+- Domain entered:
+- Whether CCCS sign-in appeared:
+- Whether Duo prompt appeared:
+- Whether user can access Zoom:
+- Whether 24-hour sync period has passed:
+- Result:
+- Next step:
+
+ESCALATE IF:
+- The user cannot complete SSO login.
+- The CCCS sign-in page does not appear.
+- Duo blocks access and the user cannot verify.
+- The Zoom license does not apply after 24 hours.
+- The user receives an error that is not resolved by signing in through SSO.
+
+RELATED ARTICLES:
+- Writing a Good IT Ticket Note
+- When to Escalate an IT Ticket
+- Student Microsoft 365 MFA

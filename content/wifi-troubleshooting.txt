@@ -2,48 +2,125 @@ SOURCE: Community College of Aurora Wi-Fi Support
 
 ==================================================
 
-WIFI TROUBLESHOOTING
+STUDENT WI-FI AND INTERNET HELP
+
+You are in the right place. These steps can help you connect your device to campus Wi-Fi.
+
+Summary:
+- Students should use the CCA-Students Wi-Fi network for personal devices on campus.
+- CCA-Students is an open network and does not require a Wi-Fi password.
+- After connecting, agree to the consent page before testing websites or online services.
 
 What this helps with:
-- Use this guide if your wifi or Wi-Fi is not working at the Community College of Aurora.
-- It covers student Wi-Fi, wireless network problems, internet connection issues, and what to do if you cannot connect.
+- Use this guide if you are connecting to CCA Wi-Fi for the first time.
+- Use this guide if campus Wi-Fi, wireless internet, or websites are not working.
+- This guide is written for students, including first-time students, concurrent enrollment students, and anyone who wants simple steps.
+
+CCA student Wi-Fi network name:
+- The CCA student Wi-Fi network is called CCA-Students.
+- Connect personal phones, tablets, and laptops to CCA-Students.
+- CCA-Students is an open network and does not require a password.
+- After connecting, agree to the consent page to continue to the internet.
+
+First-time setup:
+- Open the Wi-Fi settings on your phone, tablet, or laptop.
+- Make sure Wi-Fi is turned on.
+- Choose CCA-Students from the list of available networks.
+- If your device asks for a Wi-Fi password, check that you selected CCA-Students.
+- Wait for the consent page, splash page, or sign-in page to appear.
+- Agree to the consent page and complete any required sign-in step.
+- Open a web browser and try loading a website to confirm the internet is working.
+
+Connect to Wi-Fi:
+- The CCA student Wi-Fi network is called CCA-Students.
+- It is an open network and does not require a password.
+- Turn on Wi-Fi for your device and connect to CCA-Students.
+- If the Wi-Fi sign-in page does not appear automatically, open a web browser and try loading a page.
+- When the splash page or sign-in page appears, agree to the consent page and complete any required sign-in step before testing the connection again.
+- If you are using a phone, tablet, or laptop, reconnect to the wireless network after accepting the captive portal if the device does not finish connecting on its own.
+
+If you do not see CCA-Students:
+- Make sure Wi-Fi is turned on for your device.
+- Move to another campus area and check the Wi-Fi list again.
+- Turn Wi-Fi off, wait a few seconds, then turn Wi-Fi back on.
+- Restart your device if CCA-Students still does not appear.
+- If you still do not see CCA-Students, contact the CCA IT Helpdesk.
 
 Cannot connect to CCA Wi-Fi:
-- If you cannot connect to CCA Wi-Fi, first make sure wifi is turned on for your device.
-- Reconnect to the correct CCA wireless network and try again.
+- The CCA student Wi-Fi network is called CCA-Students.
+- It is an open network and does not require a password.
+- Make sure Wi-Fi is turned on for your device.
+- Forget or disconnect from the current wireless network, then choose CCA-Students again.
+- If the sign-in page does not appear, open a web browser to trigger the Wi-Fi splash page or captive portal.
+- Agree to the splash page or sign-in page, then try the connection again.
 - If you still cannot connect, restart your device and try the connection again.
 
-Student wifi and wireless network help:
-- Student Wi-Fi is used to connect student devices to the campus wireless network.
-- If student wifi is connected but the internet is not working, try reconnecting and checking the network again.
-- If you cannot connect to student Wi-Fi or the wireless connection does not improve, contact CCA IT Support for help.
+If you are connected but websites do not load:
+- Confirm that your device shows it is connected to CCA-Students.
+- Open a web browser and try loading a website to trigger the consent page or captive portal.
+- If the consent page appears, agree to the page and test the website again.
+- Disconnect from Wi-Fi, reconnect to CCA-Students, and test again.
+- Restart your device if websites or online services still do not load.
+- If the internet is still not working after these steps, contact the CCA IT Helpdesk.
+
+If your password does not work:
+- CCA-Students does not require a Wi-Fi password.
+- Check that you selected CCA-Students.
+- If your device asks for a Wi-Fi password, make sure you selected CCA-Students.
+- Use the CCA login and password help guidance if a CCA account password is stopping you from signing in to another CCA service.
+- Contact the CCA IT Helpdesk if the password or account issue still prevents access.
 
 Wi-Fi keeps dropping or is unstable:
-- If your Wi-Fi keeps dropping, disconnect and reconnect to the wireless network.
-- If the internet connection is unstable, restart your device and test the connection again.
-- If the connection is still unstable or wifi is not working, you may need help from CCA IT Support.
+- Disconnect from CCA-Students and reconnect.
+- Move to another campus area and test the connection again.
+- Restart your device and reconnect to CCA-Students.
+- If the connection is still unstable or Wi-Fi is not working, contact the CCA IT Helpdesk.
 
 Internet or network not working:
-- If the internet or network is not working, reconnect to the wireless network and test the connection again.
-- If your device shows that wifi is connected but websites or online services do not load, restart your device and try again.
-- If the network is still not working after reconnecting, contact CCA IT Support.
+- Reconnect to CCA-Students, then open a browser and try loading a website.
+- If your device shows that Wi-Fi is connected but websites or online services do not load, open a browser to check for the consent page.
+- Restart your device and try again.
+- If the network is still not working after reconnecting and restarting, contact the CCA IT Helpdesk.
 
-When to contact IT:
-- Contact CCA IT Support if you cannot connect to wifi, the wireless network is not working, or your internet connection remains unstable after you reconnect and restart your device.
+Student Wi-Fi and wireless network help:
+- Student Wi-Fi is used to connect student devices to the campus wireless network.
+- If student Wi-Fi is connected but the internet is not working, try reconnecting and checking the network again.
+- If you cannot connect to student Wi-Fi or the wireless connection does not improve, contact the CCA IT Helpdesk.
+
+Still need help?:
+- Contact the CCA IT Helpdesk if CCA-Students does not appear after you turn Wi-Fi off and on or restart your device.
+- Contact the CCA IT Helpdesk if you cannot connect to CCA-Students.
+- Contact the CCA IT Helpdesk if your device says it is connected but websites or online services still do not load.
+- Contact the CCA IT Helpdesk if the wireless connection keeps dropping or remains unstable after reconnecting and restarting your device.
+
+What to include when asking for help:
+- Your device type, such as phone, tablet, laptop, Windows computer, Mac, Chromebook, iPhone, or Android device.
+- The campus, building, room, or general location where the Wi-Fi issue happens.
+- The Wi-Fi network name you selected.
+- Any error message you see.
+- Whether the consent page, splash page, or sign-in page appeared.
+- What you already tried, such as reconnecting, restarting, or opening a browser.
 
 CCA IT Helpdesk:
-- Phone: 303-360-4900
+- Phone: 303-360-4900, Monday-Friday, 8 a.m.-5 p.m.
+- After-hours/weekend support: 1-888-800-9198
+- Email: HelpdeskTickets.CCA@ccaurora.edu
 
-- TITLE: Wifi Troubleshooting
+- TITLE: Student Wi-Fi and Internet Help
 - AUDIENCE: Students
-- TAGS: wifi, wi-fi, student wifi, wireless, internet, network
+- TAGS: wifi, wi-fi, student wifi, wireless, internet, network, CCA-Students, first-time setup, captive portal
 - CONTEXT:
+  - Summary:
   - What this helps with:
 - STEPS:
+  - First-time setup:
+  - Connect to Wi-Fi:
   - Cannot connect to CCA Wi-Fi:
-  - Student wifi and wireless network help:
 - IF NOT FIXED:
+  - If you do not see CCA-Students:
+  - If you are connected but websites do not load:
+  - If your password does not work:
   - Wi-Fi keeps dropping or is unstable:
-  - Internet or network not working:
 - ESCALATE:
-  - When to contact IT:
+  - Still need help?:
+  - What to include when asking for help:

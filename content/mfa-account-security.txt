@@ -4,41 +4,94 @@ SOURCE: Community College of Aurora Student Account Security
 
 MFA AND ACCOUNT SECURITY
 
+You are in the right place. Microsoft Authenticator or MFA problems can block student sign-in even when your password is correct.
+
 What this helps with:
-- Use this guide if you need help with Multi-Factor Authentication (MFA), account verification, or student account security at the Community College of Aurora.
-- MFA adds an extra security step when you sign in to protect your CCA account.
+- Use this guide when Microsoft Authenticator or Multi-Factor Authentication (MFA) is preventing student access to your CCA account.
+- Student Microsoft 365 sign-in covers Student Email, OneDrive, Teams, SharePoint, Adobe Creative Cloud, and Webex.
+- Use this guide for student Microsoft Authenticator problems, phone text or phone call verification problems, MFA not working, multi-factor authentication problems, verification-code failures, approval-prompt issues, authenticator-app problems, or changed-phone access problems.
+
+Common symptoms:
+- You are not receiving a verification prompt or code.
+- Your MFA verification code is not working even though your password is correct.
+- You cannot approve the MFA prompt.
+- Your Microsoft Authenticator app or authenticator app is not working.
+- You changed phones and cannot complete MFA.
+- You are blocked from MyCCA, student email, or another CCA service because MFA will not complete.
+
+Try this first:
+1. Start the sign-in process again.
+2. Use your correct CCA account information.
+3. Keep the sign-in window open while you wait for the MFA prompt, text message, phone call, or code.
+4. Check the device or method where you normally receive the prompt, code, text message, phone call, or approval request.
+5. Complete the MFA step before closing the browser, app, or sign-in window.
 
 Setting up MFA:
-- Some CCA services may ask you to set up MFA the first time you sign in.
-- Follow the prompts during sign-in to choose and confirm your verification method.
-- Finish the setup so you can keep using your account without interruption.
+1. Start the sign-in process and follow the prompts to choose your verification method.
+2. Choose Microsoft Authenticator or phone number text/call verification if those options are offered.
+3. Confirm the verification method before leaving the sign-in screen.
+4. Add an alternate MFA method if the sign-in setup page gives you that option.
+5. Finish the setup so you can keep using your account without interruption.
+
+Adding an alternate MFA method:
+1. Sign in to your student Microsoft 365 account.
+2. Open the security or MFA settings area when the sign-in page gives you that option.
+3. Add another verification method, such as Microsoft Authenticator or phone number text/call verification, if available.
+4. Finish the setup so you can keep using your account without interruption.
 
 Common MFA problems:
-- If you are not receiving a verification code or prompt, start the sign-in process again and make sure your account information is correct.
-- If your MFA verification code is not working, start the sign-in process again and make sure your account information is correct.
-- If you changed phones, lost access to your previous device, or cannot use your usual verification method, you may not be able to finish sign-in until your MFA access is updated.
-- If you changed phones and cannot verify your login, contact CCA IT Support for help updating your MFA access.
-- If verification keeps failing, contact CCA IT Support for help.
+1. Check whether the verification prompt, code, or approval request appears on the expected device or method.
+2. Enter the verification code again carefully if the code appears but does not work.
+3. Request a new verification code if the first code expired, arrived late, or no longer matches the sign-in screen.
+4. Approve the MFA prompt on the expected device and keep the sign-in window open until verification finishes.
+5. Open Microsoft Authenticator or check your phone text/call verification method and confirm that the verification request is going to the correct account or method.
+
+If that did not work:
+- Try the sign-in process again and note whether the problem is a missing prompt, rejected code, or blocked verification step.
+- Check whether the issue affects only one service or multiple CCA services that use your student account.
+
+Changed phones or lost MFA access:
+- If you changed phones, lost your phone, or changed your phone number, you are not stuck. MFA may still be connected to the old device or number.
+- If you added an alternate MFA method earlier, try that method.
+- If you cannot approve the sign-in because the old device or phone number is still attached to your account, contact the CCA IT Helpdesk or the 24x7 Help Desk for help restoring MFA access.
 
 What MFA affects:
-- MFA may affect access to MyCCA, student email, and other CCA services that use your student account.
-- If MFA is not working, you may be blocked from signing in even if your password is correct.
+- MFA may affect access to Student Email, OneDrive, Teams, SharePoint, Adobe Creative Cloud, Webex, MyCCA, and other CCA services that use your student account.
+- If MFA does not complete, you may be blocked from signing in even if your password is correct.
 
-If you're still stuck:
-- CCA IT Support can help if you cannot complete MFA setup, you are not receiving verification prompts, or you no longer have access to the device or method tied to your account.
+Still need help?:
+- Contact the CCA IT Helpdesk if you cannot complete MFA setup, you are not receiving verification prompts, your verification code keeps failing, or you no longer have access to the device, phone number, or method tied to your account.
+- You can also use the 24x7 Help Desk at 1-888-800-9198 or help.cccs.edu.
+
+What to include when asking for help:
+- Your student ID (S#) or CCA username.
+- The exact error message or sign-in prompt you see.
+- Whether the issue affects MyCCA, student email, or multiple services.
+- The device and browser or app you are using.
+- Whether you changed phones or lost access to your previous MFA device.
+- What steps you already tried.
+- A screenshot if the sign-in page shows a warning or error.
 
 CCA IT Helpdesk:
-- Phone: 303-360-4900
+- Phone: 303-360-4900, Monday–Friday, 8 a.m.–5 p.m.
+- After-hours/weekend support: 1-888-800-9198
+- Email: HelpdeskTickets.CCA@ccaurora.edu
+- Online help: help.cccs.edu
 
 - TITLE: MFA and Account Security
 - AUDIENCE: Students
-- TAGS: mfa, verification, account security, login, mycca
+- TAGS: mfa, microsoft authenticator, authenticator app, verification, account security, login, mycca, student email, onedrive, teams, sharepoint, adobe creative cloud, webex, phone verification
 - CONTEXT:
   - What this helps with:
 - STEPS:
+  - Try this first:
   - Setting up MFA:
-- IF NOT FIXED:
+  - Adding an alternate MFA method:
   - Common MFA problems:
+- IF NOT FIXED:
+  - If that did not work:
+  - Changed phones or lost MFA access:
   - What MFA affects:
 - ESCALATE:
-  - If you're still stuck:
+  - Still need help?:
+  - What to include when asking for help:

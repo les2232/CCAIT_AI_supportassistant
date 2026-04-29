@@ -4,52 +4,134 @@ SOURCE: Community College of Aurora Zoom Support
 
 ZOOM SUPPORT
 
+You are in the right place. These steps can help you join class and fix common Zoom problems.
+
 What this helps with:
 - Use this guide if you need help joining a Zoom class or fixing common Zoom problems at the Community College of Aurora.
 - Zoom may be used for online, blended, or remote class meetings.
+- Use the Zoom SSO steps if Zoom asks you to sign in with your CCA account.
+
+Try this first:
+1. Open the Zoom link provided by your instructor or in your course materials.
+2. Follow the prompts to join the meeting.
+3. Wait for the meeting window to open.
+4. If the meeting does not open right away, reopen the original class link or invitation.
+5. If Zoom asks to use the app or browser, choose the option that opens most reliably on your device.
 
 Joining Zoom classes:
-- Open the Zoom link provided by your instructor or in your course materials.
-- Follow the prompts to join the meeting.
-- If the meeting does not open right away, reopen the link and join the Zoom meeting again.
+1. Use this section if you need help opening a Zoom class link or joining a Zoom meeting for class.
+2. If you need general help with a Zoom meeting, start with this section first.
+3. Open the Zoom link provided by your instructor or in your course materials.
+4. Follow the prompts to join the meeting.
+5. If the meeting does not open right away, reopen the link and join the Zoom meeting again.
+
+Zoom SSO login:
+1. Go to the Zoom sign-in page.
+2. Choose SSO.
+3. Enter the company domain CCCS-EDU.
+4. Enter your S# and password.
+5. Complete any verification prompt if Zoom asks for it.
+6. If you are not on campus, Zoom may prompt for Duo during SSO sign-in.
+
+Zoom company domain:
+- Use CCCS-EDU as the Zoom company domain when Zoom asks for SSO.
+- Enter your S# and password after choosing the CCCS-EDU domain.
+
+Zoom license not showing:
+- Wait up to 24 hours after you log in through Zoom SSO for license sync.
+- If the license still does not show after the sync period, contact support for Zoom sign-in help.
+
+Zoom not working:
+1. Close Zoom completely and open it again before retrying the class link.
+2. If the meeting link does not open, try joining the class from the original course link or invitation again.
+3. If Zoom still is not working, try joining from your browser if that option is available.
+4. If the Zoom app or browser meeting page still does not respond, restart Zoom and open the meeting link again.
+5. If you are using a laptop, confirm that your internet connection is stable before joining the meeting again.
 
 App or browser:
+- Use this section if you need to decide whether to use the Zoom app or browser to join class.
 - Zoom may open in the Zoom app or in a web browser, depending on your device and settings.
+- If you are asked whether to use the Zoom app or browser, choose the option that opens most reliably on your device.
 - If the app does not launch, look for the option to join from your browser if it is available.
 - If you are using the app, make sure it is fully open before trying the class link again.
 
+Zoom audio not working:
+1. Confirm that your speakers or headphones are connected and turned on.
+2. Check that Zoom is using the correct speaker output if your device has more than one audio option.
+3. In Zoom, open the meeting audio controls and confirm the selected speaker is the one you want to use.
+4. Allow speaker or microphone permissions in Zoom, your browser, or your device settings if audio access is blocked.
+5. Leave Zoom and rejoin after confirming the audio output setting.
+6. If Zoom audio still is not working, restart Zoom and try the class again.
+
+Microphone not working:
+1. Make sure your microphone is connected and not muted on the device itself.
+2. Check that the meeting app is using the correct microphone in the audio settings.
+3. In Zoom, open the meeting audio controls and confirm the selected microphone is the one you want to use.
+4. Allow microphone permissions in Zoom, your browser, or your device settings if microphone access is blocked.
+5. Leave Zoom and rejoin after confirming the microphone setting.
+6. If people still cannot hear you, restart Zoom and try again.
+
 Audio or video problems:
-- If your Zoom audio is not working, check that your microphone, speakers, and camera are connected and turned on.
-- Make sure Zoom is using the correct microphone and speaker if your device has more than one option.
-- If audio or video is not working, leave the meeting and rejoin.
-- You can also restart the app or your device and try again.
+1. Check that your microphone, speakers, and camera are connected and turned on.
+2. Make sure Zoom is using the correct microphone, speaker, and camera if your device has more than one option.
+3. Allow microphone and camera permissions in your browser or app settings if Zoom asks for access.
+4. Leave the meeting and rejoin after checking the device settings.
+5. You can also restart the Zoom app or browser and try again.
 
 Sign-in problems:
-- If Zoom is asking you to sign in and you cannot continue, start again and make sure you are using the correct account information if sign-in is required.
+- If Zoom is asking you to sign in and you cannot continue, start again and use Zoom SSO with the CCCS-EDU company domain.
+- Enter your S# and password when Zoom redirects you to sign in.
+- If you are not on campus, Zoom may prompt for Duo during SSO sign-in.
 - If the meeting link is not working, check your course instructions and try opening the link again from the original source.
-- If you still cannot join because of a login or access problem, contact CCA IT Support.
+- If you still cannot join because of a Zoom login, SSO, license, or Duo prompt problem, call 303-360-4900.
+
+If that did not work:
+- Check whether the problem is the class link, the Zoom app, browser access, audio, microphone, video, sign-in, or internet connection.
+- Try joining again from the original class link or invitation.
+- If you can join but audio or microphone still does not work, use the audio and microphone checks above.
 
 When to contact OBL:
 - Contact Online and Blended Learning (OBL) for help with course-related Zoom support, online learning tools, or questions about how Zoom is being used in a class.
 
-When to contact IT for Zoom help:
-- Contact CCA IT Support for Zoom login issues, access problems, device-related trouble, or ongoing technical issues that prevent you from joining or using Zoom.
-- If you need to know who to contact for Zoom help at CCA, contact CCA IT Support.
+Still need help with Zoom?:
+- Contact the CCA IT Helpdesk for Zoom login issues, access problems, device-related trouble, or ongoing technical issues that prevent you from joining or using Zoom.
+- For Zoom SSO issues or Duo assistance during Zoom sign-in, call 303-360-4900.
+
+What to include when asking for help:
+- Whether you are trying to join class, fix audio, fix your microphone, fix video, or solve a sign-in problem.
+- Whether Zoom is asking for SSO, the CCCS-EDU company domain, a license, or Duo during Zoom sign-in.
+- Whether you are using the Zoom app or a web browser.
+- The device you are using.
+- The exact error message or prompt you see.
+- Whether the issue happens with one class link or more than one Zoom meeting.
+- What steps you already tried.
+- A screenshot if the page shows an error or warning.
 
 CCA IT Helpdesk:
-- Phone: 303-360-4900
+- Phone: 303-360-4900, Monday–Friday, 8 a.m.–5 p.m.
+- After-hours/weekend support: 1-888-800-9198
+- Email: HelpdeskTickets.CCA@ccaurora.edu
 
 - TITLE: Zoom Support
 - AUDIENCE: Students
-- TAGS: zoom, online class, audio, video, sign-in
+- TAGS: zoom, online class, audio, video, sign-in, sso, cccs-edu, company domain, license, duo
 - CONTEXT:
   - What this helps with:
 - STEPS:
+  - Try this first:
   - Joining Zoom classes:
+  - Zoom SSO login:
+  - Zoom company domain:
+  - Zoom license not showing:
+  - Zoom not working:
   - App or browser:
+  - Zoom audio not working:
+  - Microphone not working:
   - Audio or video problems:
 - IF NOT FIXED:
+  - If that did not work:
   - Sign-in problems:
 - ESCALATE:
   - When to contact OBL:
-  - When to contact IT for Zoom help:
+  - Still need help with Zoom?:
+  - What to include when asking for help:

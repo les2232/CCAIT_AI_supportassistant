@@ -23,17 +23,15 @@
 
   Using your school account with Microsoft 365:
 
-  - Students can use a CCA school account to access Microsoft 365 tools such as Outlook, Teams, OneDrive, and Office Online.
-  - OneDrive can be used to store, sync, and share school files across supported devices.
-  - If you can sign in to your school account, you can use the Microsoft 365 services available to students.
+  - Sign in with your CCA school account to access Microsoft 365 tools such as Outlook, Teams, OneDrive, and Office Online.
+  - Open OneDrive after you sign in if you want to store, sync, or share school files across supported devices.
+  - Use the Microsoft 365 services available to students if your CCA school account sign-in works.
 
   How students access the training:
 
-  - Some tutorials are housed in LinkedIn Learning.
-  - Students need to activate their LinkedIn Learning account before using those tutorials.
-  - LinkedIn Learning access uses a CCA email account.
-  - Students sign in using their S# and MyCCA password when prompted.
-  - Access to the training requires a LinkedIn Learning account if the tutorial is hosted there.
+  - Open the training resource and check whether the tutorial is hosted in LinkedIn Learning.
+  - Activate your LinkedIn Learning account before using a tutorial that is hosted there.
+  - Sign in with your CCA email account, S#, and MyCCA password when prompted for LinkedIn Learning access.
 
   Things to know:
 
@@ -45,8 +43,12 @@
 
   Where to get help / When to contact IT:
 
-  - No specific IT contact or escalation details were included in the pasted content.
-  - IT support is available for account or access issues.
+  - Contact the CCA IT Helpdesk for account or access issues related to Microsoft 365, Outlook, Teams, or OneDrive.
+
+  CCA IT Helpdesk:
+  - Phone: 303-360-4900, Monday–Friday, 8 a.m.–5 p.m.
+  - After-hours/weekend support: 1-888-800-9198
+  - Email: HelpdeskTickets.CCA@ccaurora.edu
 
 - TITLE: Student Email and Office 365 Training
 - AUDIENCE: Students
@@ -59,4 +61,4 @@
 - IF NOT FIXED:
   - Things to know:
 - ESCALATE:
-  - IT support is available for account or access issues.
+  - Where to get help / When to contact IT:

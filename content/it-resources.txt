@@ -1,0 +1,34 @@
+SOURCE: Community College of Aurora IT Resources
+
+==================================================
+
+IT RESOURCES
+
+CCA IT Help Portal:
+- The CCA IT Help Portal is a self-service resource for IT-related topics.
+- Access it by scanning the IT Help QR code or searching for IT Help on the CCA website.
+- The portal provides helpful guidance on common IT issues.
+
+The Hub:
+- The Hub offers technology assistance, tutoring, library research, and printing services.
+- The Hub is available at both CentreTech and Lowry campuses.
+- To find The Hub, search "HUB" from the CCA college home page or scan the Hub QR code.
+- CentreTech location: Classroom Building 107.
+- CentreTech phone: 303-360-4736.
+
+When to use The Hub:
+- Visit The Hub for in-person technology assistance on either campus.
+- The Hub also supports tutoring, library research, and printing from personal devices.
+
+- TITLE: CCA IT Resources and Campus Support
+- AUDIENCE: Students and faculty
+- TAGS: IT help portal, hub, tutoring, printing, library, CentreTech, Lowry, campus, resources, QR code, technology assistance
+- CONTEXT:
+  - CCA IT Help Portal:
+- STEPS:
+  - CCA IT Help Portal:
+  - The Hub:
+- IF NOT FIXED:
+  - When to use The Hub:
+- ESCALATE:
+  - CCA IT Help Portal:

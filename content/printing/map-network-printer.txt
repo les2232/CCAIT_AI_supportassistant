@@ -1,0 +1,65 @@
+TITLE:
+Map a Network Printer
+
+STATUS:
+Draft — source document imported; pending CCA IT review
+
+SOURCE DOCUMENT:
+How to Map Printers.docx
+
+AUDIENCE:
+CCA IT staff, student workers, interns, and temporary staff
+
+SUMMARY:
+Use this SOP when helping a user add or map a shared CCA network printer on a Windows computer.
+
+WHEN TO USE:
+- A user needs to add a CCA shared printer.
+- A printer is not showing in the user's printer list.
+- A user needs to print to a specific room or department printer.
+
+STEPS:
+1. Open the Windows search bar.
+2. Search for Printers & Scanners.
+3. Select Add Device.
+4. Select Add manually.
+5. In the new window, choose Select a shared printer by name.
+6. Enter the shared printer path using this format:
+
+   \\ccadprint01.ccc.ccofc.edu\[printer name]
+
+7. Wait for the printer list to populate or enter the printer name directly.
+8. Select the correct printer.
+9. Click Next.
+10. Wait for the installation to finish.
+11. Click Next again if prompted.
+12. Finish by printing a test page to confirm the printer mapped successfully.
+
+EXAMPLES:
+- \\ccadprint01.ccc.ccofc.edu\S102-XE Color
+- \\ccadprint01.ccc.ccofc.edu\L965-107-XE-Color
+
+TICKET NOTES TO INCLUDE:
+- User/requester:
+- User ID, if applicable: S# / S-number / W# / W-number
+- Contact method:
+- Location:
+- Computer/device:
+- Printer name:
+- Printer path used:
+- Error message, if any:
+- Whether test page printed:
+- Result:
+- Next step:
+
+ESCALATE IF:
+- The printer path does not resolve.
+- The printer does not appear in the shared printer list.
+- Installation fails with an error.
+- The user does not have permission to add the printer.
+- The printer maps successfully but does not print.
+- Multiple users cannot print to the same printer.
+
+RELATED ARTICLES:
+- Writing a Good IT Ticket Note
+- When to Escalate an IT Ticket

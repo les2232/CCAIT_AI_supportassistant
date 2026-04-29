@@ -5,9 +5,12 @@ URL: https://cccs.libguides.com/c.php?g=1401795&p=11251646
 
 STUDENT EMAIL
 
+You are in the right place. These steps can help you find and open your CCA student email.
+
 What this is:
 - All students enrolled at the Community College of Aurora are assigned a college email account.
 - The student email account is the college’s primary method of communication with students.
+- This guide is for first-time access, account setup, and finding your student email address.
 
 What students use it for:
 - Receiving official college communications.
@@ -17,15 +20,38 @@ What students use it for:
   - Financial deadlines
   - Important academic and administrative notices
 
-Accessing MyCCA and Student Email:
+What this helps with:
+- Use this guide if you need to open student email for the first time.
+- Use this guide if you need to find your student email address.
+- Use this guide if you are trying to understand which password to use for student email.
 
-MyCCA login:
-- Navigate to the Community College of Aurora website using a web browser.
-- Click the MyCCA link.
-- Log in using the following credentials:
+Try this first:
+1. Open a web browser.
+2. Navigate to the Community College of Aurora website.
+3. Click the MyCCA link.
+4. Log in using the following credentials:
   - Username: Student ID number (S00000000)
   - Password: StudentMMDDYYYY (default) or an updated password created by the student
-- After the first login, students are required to change their password.
+5. After logging into MyCCA, click the email icon in the top right corner.
+6. Enter your CCA email address, which ends in @student.cccs.edu.
+7. When prompted for a password, enter your MyCCA password.
+
+MyCCA login:
+1. Navigate to the Community College of Aurora website using a web browser.
+2. Click the MyCCA link.
+3. Log in using your student ID number and password.
+4. After the first login, students are required to change their password.
+
+Finding your student email address:
+1. Log in to MyCCA.
+2. Locate the “Student Email Notification” section in MyCCA.
+3. Click the link that says “what is my school email address.”
+4. Use the email address shown there when signing in to student email.
+
+Accessing student email:
+1. After logging into MyCCA, click the email icon in the top right corner.
+2. Enter your CCA email address, which ends in @student.cccs.edu.
+3. When prompted for a password, enter your MyCCA password.
 
 Password requirements:
 - Passwords must be at least 14 characters long.
@@ -34,18 +60,10 @@ Password requirements:
   - Lowercase letters
   - Numbers and/or special characters
 
-Accessing student email:
-- After logging into MyCCA, click the student email icon in the top right corner.
-- Enter your student email address, which ends in @student.cccs.edu.
-- If unsure of your email address:
-  - Locate the “Student Email Notification” section in MyCCA.
-  - Click the link that says “what is my school email address.”
-- When prompted for a password, enter your MyCCA password.
-
 Alternative access:
-- Student email can also be accessed by navigating directly to Microsoft Office.
-- Click Sign in and enter your student email address and MyCCA password.
-- Launch the Outlook app to view your email.
+1. You can also access email by navigating directly to Microsoft Office.
+2. Click Sign in and enter your CCA email address and MyCCA password.
+3. Launch the Outlook app to view your email.
 
 First access to student email:
 - Upon first login, students will be prompted to set up Multi-Factor Authentication (MFA).
@@ -58,22 +76,45 @@ On-campus computer login:
   - Password: StudentMMDDYYYY or updated password
 - Updated passwords remain valid for 180 days and continue to work across semesters.
 
-Where to get help / When to contact IT:
-- If you are unable to log into MyCCA, student email, or campus computers, contact:
-  - CCA IT Helpdesk: 303-360-4900
-  - 24/7 Helpdesk Support: 888-800-9198
+If that did not work:
+1. Check that you are using your CCA student email address when signing in to email.
+2. Check that you are using your current MyCCA password.
+3. If the password does not work, use the CCA Login and Password Help guide.
+4. If MFA or verification is blocking sign-in, use the MFA and Account Security guide.
+5. If Outlook opens in a browser but not in the app, use the Student Email Troubleshooting guide.
+
+Still need help?:
+- If you are unable to log into MyCCA, student email, or campus computers, contact the CCA IT Helpdesk.
+
+What to include when asking for help:
+- Your student ID (S#) or CCA username.
+- Whether you can sign in to MyCCA.
+- Whether you know your CCA student email address.
+- Whether the issue happens in Outlook on the web, the Outlook app, or both.
+- The exact error message or sign-in prompt you see.
+- Whether MFA or verification appears during sign-in.
+- What steps you already tried.
+
+CCA IT Helpdesk:
+- Phone: 303-360-4900, Monday–Friday, 8 a.m.–5 p.m.
+- After-hours/weekend support: 1-888-800-9198
+- Email: HelpdeskTickets.CCA@ccaurora.edu
 
 - TITLE: Student Email
 - AUDIENCE: Students
 - TAGS: student email, mycca, outlook, office 365, campus computer login
 - CONTEXT:
-  - What this is:
+  - What this helps with:
 - STEPS:
+  - Try this first:
   - MyCCA login:
+  - Finding your student email address:
   - Accessing student email:
   - Alternative access:
 - IF NOT FIXED:
+  - If that did not work:
   - First access to student email:
   - On-campus computer login:
 - ESCALATE:
-  - Where to get help / When to contact IT:
+  - Still need help?:
+  - What to include when asking for help:

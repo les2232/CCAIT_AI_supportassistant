@@ -4,35 +4,75 @@ SOURCE: Community College of Aurora Student Email Troubleshooting
 
 STUDENT EMAIL TROUBLESHOOTING
 
+You are in the right place. These steps can help you get back into your student email.
+
 What this helps with:
 - Use this guide if you are having trouble with your Community College of Aurora student email account.
 - It covers common problems with Outlook, Microsoft 365 email access, password prompts, and sign-in verification.
 
+Try this first:
+1. Sign in with your correct CCA student email account and current password.
+2. Confirm that your Microsoft Authenticator or MFA enrollment is complete before trying to sign in to student email.
+3. Approve the Microsoft Authenticator or MFA sign-in prompt and finish the verification step before returning to Outlook.
+4. Try Outlook on the web to check whether your student email account opens there.
+5. If Outlook on the web works but the app does not, close Outlook completely and open it again.
+6. Sign in to the Outlook app again with your CCA student email account.
+
 Cannot access student email:
-- Make sure you are using your CCA student email account and the correct password.
-- If sign-in does not work, start again and confirm that your account information is correct.
-- If you still cannot open your student email, CCA IT Support can help.
+1. Make sure you are using your CCA student email account and the correct password.
+2. If sign-in does not work, start again and confirm that your account information is correct.
+3. Approve the Microsoft Authenticator or MFA prompt and complete the verification step if the sign-in page asks for it.
+4. If you still cannot access student email, try Outlook on the web before contacting CCA IT Support.
 
 Outlook keeps asking for my password:
-- If Outlook keeps prompting for your password, enter your current CCA account password carefully and try again.
-- If the password prompt keeps coming back, close Outlook and reopen it.
-- If you still cannot get into your email, the issue may be related to your account, password, or sign-in verification.
+1. Enter your current CCA account password carefully and try again.
+2. If the password prompt keeps coming back, close Outlook and reopen it.
+3. If you still cannot get into your email, the issue may be related to your account, password, or sign-in verification.
+
+Outlook is not loading or email won't open:
+1. Close Outlook completely and open it again.
+2. If your email will not open, try using Outlook on the web to check whether the issue is limited to the app.
+3. If the web version works but the Outlook app does not, the problem may be limited to the app on your device.
+4. If Outlook still is not loading and your student email still is not working, continue with the additional checks below.
 
 MFA or verification loop:
 - If your student email keeps sending you back to a verification screen or you cannot finish sign-in, start again and make sure your account information is correct.
-- If you changed phones, lost access to your verification method, or are not receiving the verification prompt or code, contact CCA IT Support.
+- Approve the Microsoft Authenticator prompt or complete the required verification step without closing the sign-in window if student email sends you back to verification.
+- If your Microsoft Authenticator or MFA enrollment is incomplete or you cannot finish setup, complete enrollment before signing in again, or contact the CCA IT Helpdesk.
+- If you changed phones, lost access to your verification method, or are not receiving the verification prompt or code, contact the CCA IT Helpdesk.
 - Verification problems may prevent access even when your password is correct.
 
 Outlook app or web access:
+- Use this section if you are deciding whether to use Outlook on the web or the Outlook app for student email.
 - Student email may be available through Outlook in Microsoft 365 or through the Outlook app, depending on how you are signing in.
+- If you are not sure whether to use the app or the web version, start with Outlook on the web and confirm that your student email opens there.
 - If the Outlook app is not working, try accessing your student email through the web version instead.
 - If web access works but the app does not, the problem may be limited to the app on your device.
 
+If that did not work:
+- Check whether the issue is a password problem, an MFA or verification problem, an Outlook app problem, or a web access problem.
+- If the password is not working, use the CCA Login and Password Help guide.
+- If MFA or verification is blocking sign-in, use the MFA and Account Security guide.
+
+Still need help?:
+- Contact the CCA IT Helpdesk if you cannot access your student email, Outlook keeps asking for your password, or verification problems prevent you from signing in.
+
 When to contact IT for student email help:
-- Contact CCA IT Support if you cannot access your student email, Outlook keeps asking for your password, or verification problems prevent you from signing in.
+- Contact the CCA IT Helpdesk if you cannot access your student email, Outlook keeps asking for your password, or verification problems prevent you from signing in.
+
+What to include when asking for help:
+- Your student ID (S#) or CCA username.
+- Whether the issue happens in Outlook on the web, the Outlook app, or both.
+- Whether MFA or verification appears during sign-in.
+- The exact error message or prompt you see.
+- The device and browser or app you are using.
+- What steps you already tried.
+- A screenshot if the page shows an error or warning.
 
 CCA IT Helpdesk:
-- Phone: 303-360-4900
+- Phone: 303-360-4900, Monday–Friday, 8 a.m.–5 p.m.
+- After-hours/weekend support: 1-888-800-9198
+- Email: HelpdeskTickets.CCA@ccaurora.edu
 
 - TITLE: Student Email Troubleshooting
 - AUDIENCE: Students
@@ -40,10 +80,15 @@ CCA IT Helpdesk:
 - CONTEXT:
   - What this helps with:
 - STEPS:
+  - Try this first:
   - Cannot access student email:
   - Outlook keeps asking for my password:
+  - Outlook is not loading or email won't open:
   - Outlook app or web access:
 - IF NOT FIXED:
+  - If that did not work:
   - MFA or verification loop:
 - ESCALATE:
+  - Still need help?:
   - When to contact IT for student email help:
+  - What to include when asking for help:

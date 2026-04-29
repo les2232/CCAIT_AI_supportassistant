@@ -1,7 +1,7 @@
 venv/
 __pycache__/
 *.pyc
+.env
+logs/
+*.sqlite3
 *.db
-exports_test/
-exports_test_run/
-.semantic_cache/

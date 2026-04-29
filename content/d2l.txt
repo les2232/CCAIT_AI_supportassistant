@@ -4,9 +4,15 @@ SOURCE: Community College of Aurora D2L (Brightspace) Student Access
 
 D2L (Brightspace)
 
+You are in the right place. These steps can help you get to your course materials.
+
 What this is:
 - D2L, also called Brightspace, is the learning management system used by the Community College of Aurora.
 - Students use D2L to access course content and online learning resources.
+
+What this helps with:
+- Use this guide if you need to access D2L, Brightspace, course materials, assignments, or online course resources.
+- Use this guide if you are new to D2L and need a simple starting point.
 
 What students use it for:
 - Viewing course materials.
@@ -14,21 +20,51 @@ What students use it for:
 - Participating in online course activities.
 - Accessing course-related learning resources.
 
-How to access:
-- Access D2L through the Community College of Aurora student systems using your student account credentials.
-- Sign in with your CCA student account to open your courses and course materials.
+Try this first:
+1. Access D2L through the Community College of Aurora student systems using your student account credentials.
+2. Sign in with your CCA student account.
+3. Open your course list.
+4. Select the course you need.
+5. Open the course materials, assignment, or online learning resource you need for class.
 
-Where to get help:
-- If you are unable to access D2L or your course materials, contact CCA IT Support for assistance.
+How to access:
+1. Access D2L through the Community College of Aurora student systems using your student account credentials.
+2. Sign in with your CCA student account to open your courses and course materials.
+3. Select the course or course material you need.
+
+If that did not work:
+1. Try signing in again and enter your CCA student account information carefully.
+2. Check whether the issue is with signing in, seeing your course, opening course content, or submitting an assignment.
+3. Use the D2L Troubleshooting guide if D2L does not load, your course is missing, or an assignment upload is not working.
+
+Still need help?:
+- If you are unable to access D2L or your course materials, contact the CCA IT Helpdesk.
+
+What to include when asking for help:
+- Your student ID (S#) or CCA username if the issue affects sign-in.
+- Whether you can sign in to D2L.
+- Whether the issue affects one course or multiple courses.
+- The course, assignment, or page you are trying to open.
+- The exact error message or page behavior you see.
+- The device and browser you are using.
+- What steps you already tried.
+
+CCA IT Helpdesk:
+- Phone: 303-360-4900, Monday–Friday, 8 a.m.–5 p.m.
+- After-hours/weekend support: 1-888-800-9198
+- Email: HelpdeskTickets.CCA@ccaurora.edu
 
 - TITLE: D2L Brightspace Access
 - AUDIENCE: Students
 - TAGS: d2l, brightspace, course materials, assignments, login
 - CONTEXT:
-  - What this is:
+  - What this helps with:
 - STEPS:
+  - Try this first:
   - How to access:
 - IF NOT FIXED:
+  - If that did not work:
   - What students use it for:
 - ESCALATE:
-  - Where to get help:
+  - Still need help?:
+  - What to include when asking for help:

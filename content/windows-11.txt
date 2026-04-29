@@ -43,10 +43,14 @@
 
   Where to get help / When to contact IT:
 
-  - Contact IT if mapped drives still do not work after rebooting, connecting to VPN if remote, running the MapDrives
+  - Contact the CCA IT Helpdesk if mapped drives still do not work after rebooting, connecting to VPN if remote, running the MapDrives
   file, and reopening File Explorer.
-  - Contact the IT Helpdesk if you have questions, concerns, or problems during the Windows 11 upgrade process.
-  - Submit a ticket to HelpdeskTickets.CCA@ccaurora.edu or call 303-360-4900.
+  - Contact the CCA IT Helpdesk if you have questions, concerns, or problems during the Windows 11 upgrade process.
+
+  CCA IT Helpdesk:
+  - Phone: 303-360-4900, Monday–Friday, 8 a.m.–5 p.m.
+  - After-hours/weekend support: 1-888-800-9198
+  - Email: HelpdeskTickets.CCA@ccaurora.edu
 
   Video resources:
 

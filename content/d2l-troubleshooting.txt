@@ -4,39 +4,67 @@ SOURCE: Community College of Aurora D2L Troubleshooting
 
 D2L TROUBLESHOOTING
 
+You are in the right place. These steps can help when D2L is blocking class access.
+
 What this helps with:
-- Use this guide if you are having trouble with D2L (Brightspace) at the Community College of Aurora.
-- It covers common problems such as not being able to sign in, missing courses, and assignment upload issues.
+- Use this guide when D2L (Brightspace) is not working as expected at the Community College of Aurora.
+- It covers common sign-in, browser, course visibility, and assignment upload issues.
+
+Common symptoms:
+- D2L sign-in, course access, or assignment submission is not working as expected.
+- A D2L page does not load correctly or shows an error.
+
+Try this first:
+1. Make sure you are using your correct CCA student account information.
+2. Start the sign-in process again.
+3. Enter your username and password carefully.
+4. Keep the sign-in page open until the sign-in process finishes.
+5. If D2L opens, go to the course, assignment, or page you need for class.
 
 Cannot access D2L or log into D2L:
-- Make sure you are using your correct CCA student account information.
-- Start the sign-in process again and make sure your username and password are entered correctly.
-- If your login still does not work, the problem may be related to your account, password, or verification method.
-- If you cannot access D2L because of a login problem, contact CCA IT Support.
-
-Course not showing:
-- If one of your classes is not showing in D2L, first check whether you are looking in the correct term or course area.
-- Some courses may not appear until the instructor makes them available.
-- If you are enrolled in the course but do not see it, contact your instructor first.
-
-Assignment upload problems:
-- Make sure you selected the correct file and that the upload had enough time to finish.
-- If the upload does not go through, refresh the page and upload the file again.
-- If you are still unable to submit the assignment, contact your instructor right away so they know you are having trouble.
+1. Check whether the problem is a password issue, account issue, or verification issue.
+2. If the password is not working, use the CCA Login and Password Help guide.
+3. If a verification prompt or code is blocking sign-in, use the MFA and Account Security guide.
+4. If the sign-in page still fails, write down the exact error message before contacting IT.
 
 Browser or cache issues:
-- If D2L pages are not loading correctly, close the browser and try again.
-- You can also try a different browser.
-- If the problem continues, clear your browser cache and reopen D2L.
+1. Close the browser and open D2L again.
+2. Try a different browser if the page does not load correctly.
+3. If the problem continues, clear your browser cache and reopen D2L.
+
+Assignment upload problems:
+1. Open the assignment submission area in D2L and make sure you are submitting to the correct assignment.
+2. Make sure you selected the correct file and gave the upload enough time to finish.
+3. Refresh the page and try the upload again.
+4. Confirm whether the problem affects one assignment or multiple uploads.
+
+If that did not work:
+- Check whether the issue is limited to sign-in, course access, or assignment submission.
+- If you are still unable to submit an assignment, notify your instructor right away so they know you are having trouble.
+
+Still need help?:
+- Contact the CCA IT Helpdesk if you cannot sign in to D2L, your account access is not working, or D2L continues having technical problems after you retry sign-in, reopen the browser, or clear cache.
+
+What to include when asking for help:
+- Your student ID (S#) or CCA username if the issue affects sign-in.
+- The exact error message or page behavior you see.
+- The device and browser you are using.
+- Whether the issue affects sign-in, a specific course, or assignment submission.
+- Whether the issue affects one class or multiple classes.
+- What steps you already tried.
+- A screenshot if the page shows an error or failed submission.
+
+Course not showing:
+- Check whether you are looking in the correct term or course area.
+- Some courses may not appear until the instructor makes them available.
 
 When to contact your instructor:
 - Contact your instructor if a course is missing, an assignment is unavailable, a due date looks wrong, or course content does not appear as expected.
 
-When to contact IT:
-- Contact CCA IT Support if you cannot sign in to D2L, your account access is not working, or you continue having technical problems after restarting your browser or trying a different browser.
-
 CCA IT Helpdesk:
-- Phone: 303-360-4900
+- Phone: 303-360-4900, Monday–Friday, 8 a.m.–5 p.m.
+- After-hours/weekend support: 1-888-800-9198
+- Email: HelpdeskTickets.CCA@ccaurora.edu
 
 - TITLE: D2L Troubleshooting
 - AUDIENCE: Students
@@ -44,11 +72,14 @@ CCA IT Helpdesk:
 - CONTEXT:
   - What this helps with:
 - STEPS:
+  - Try this first:
   - Cannot access D2L or log into D2L:
-  - Assignment upload problems:
   - Browser or cache issues:
+  - Assignment upload problems:
 - IF NOT FIXED:
+  - If that did not work:
   - Course not showing:
   - When to contact your instructor:
 - ESCALATE:
-  - When to contact IT:
+  - Still need help?:
+  - What to include when asking for help:

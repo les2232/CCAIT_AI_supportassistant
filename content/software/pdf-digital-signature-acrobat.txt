@@ -1,0 +1,97 @@
+TITLE:
+Create a Self-Signed Digital ID in Adobe Acrobat
+
+STATUS:
+Draft — source document imported; pending CCA IT review
+
+SOURCE DOCUMENT:
+PDF Digital Signature Instructions.docx
+
+AUDIENCE:
+CCA IT staff, student workers, interns, temporary staff, and users who need help with PDF signatures
+
+SUMMARY:
+Use this SOP when helping a user create a self-signed digital ID in Adobe Acrobat for signing PDF documents.
+
+WHEN TO USE:
+- A user needs to create a digital ID in Adobe Acrobat.
+- A user needs to sign a PDF with a digital signature.
+- A user needs a self-signed digital ID for basic PDF signing.
+
+IMPORTANT LIMITATION:
+Sensitive business transactions may require a digital ID from a certificate authority instead of a self-signed digital ID. Do not tell users that a self-signed digital ID is appropriate for all official or sensitive transactions unless confirmed by department policy.
+
+STEPS:
+1. Open Adobe Acrobat.
+2. Click Edit.
+3. Select Preferences.
+4. Select Signatures.
+5. Next to Identities & Trusted Certificates, click More.
+6. Select Digital IDs on the left.
+7. Click Add ID.
+8. Select A New Digital ID I Want To Create Now.
+9. Click Next.
+10. Choose where to store the digital ID.
+
+STORAGE OPTIONS:
+- New PKCS#12 Digital ID File:
+  Stores the digital ID in a file. The file extension is .pfx in Windows and .p12 in Mac OS.
+- Windows Certificate Store:
+  Windows only. Stores the digital ID in a common location where other Windows applications may retrieve it.
+
+USER INFORMATION:
+The user may be asked to enter:
+- Name
+- Email address
+- Other personal information for the digital ID
+
+The name may appear in the Signatures panel and in the signature field when the user certifies or signs a document.
+
+KEY ALGORITHM:
+- 2048-bit RSA offers more security than 1024-bit RSA.
+- 1024-bit RSA may be more universally compatible.
+
+USE DIGITAL ID FOR:
+The user can choose whether to use the digital ID for:
+- Signatures
+- Data encryption
+- Both
+
+PASSWORD:
+1. Have the user create a password for the digital ID file.
+2. Have the user confirm the password.
+3. Remind the user not to share the password.
+4. Click Finish.
+
+COMPLETION:
+After the digital ID is created, the user can export and send the certificate file to contacts who need to validate the signature.
+
+DO NOT:
+- Do not choose a password for the user.
+- Do not ask the user to share their password.
+- Do not claim a self-signed certificate is valid for all sensitive or official transactions.
+- Do not store the user's certificate password in a ticket.
+
+TICKET NOTES TO INCLUDE:
+- User/requester:
+- User ID, if applicable: S# / S-number / W# / W-number
+- Contact method:
+- Device/computer:
+- Adobe Acrobat version, if known:
+- Issue reported:
+- Step where user got stuck:
+- Error message, if any:
+- Whether digital ID was created:
+- Result:
+- Next step:
+
+ESCALATE IF:
+- Adobe Acrobat is missing or not licensed.
+- The user needs a certificate-authority digital ID.
+- The user cannot access the Signatures settings.
+- The user forgot the digital ID password.
+- The issue involves official, legal, HR, financial, or sensitive document-signing requirements.
+
+RELATED ARTICLES:
+- Writing a Good IT Ticket Note
+- When to Escalate an IT Ticket

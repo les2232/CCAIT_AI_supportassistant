@@ -35,8 +35,13 @@ Things to know:
 - Accessibility features are built into YuJa-supported content to improve student access.
 
 Where to get help / When to contact support:
-- For accessibility issues related to course videos or YuJa content, students should follow course guidance or contact IT support if the video issue continues.
-- For general technical issues, contact the IT Helpdesk at 303-360-4900.
+- For accessibility issues related to course videos or YuJa content, students should follow course guidance or contact the CCA IT Helpdesk if the video issue continues.
+- For general technical issues, contact the CCA IT Helpdesk.
+
+CCA IT Helpdesk:
+- Phone: 303-360-4900, Monday–Friday, 8 a.m.–5 p.m.
+- After-hours/weekend support: 1-888-800-9198
+- Email: HelpdeskTickets.CCA@ccaurora.edu
 
 - TITLE: YuJa Panorama
 - AUDIENCE: Students and Faculty

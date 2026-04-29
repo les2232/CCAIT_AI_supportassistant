@@ -5,6 +5,7 @@ import sys
 
 CHECKS = [
     ("Knowledge Base Validation", ["./venv/bin/python", "validate_kb.py"]),
+    ("Agent Service Evaluation", ["./venv/bin/python", "evaluate_agent_service.py"]),
     ("Disambiguation Evaluation", ["./venv/bin/python", "evaluate_disambiguation.py"]),
     ("Routing Evaluation", ["./venv/bin/python", "evaluate_routing.py", "--strict"]),
     ("Retrieval Evaluation", ["./venv/bin/python", "evaluate_retrieval.py", "--strict"]),

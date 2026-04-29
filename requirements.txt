@@ -44,6 +44,7 @@ nvidia-nvjitlink==13.0.88
 nvidia-nvshmem-cu13==3.4.5
 nvidia-nvtx==13.0.85
 openai==2.32.0
+openai-agents
 packaging==26.1
 pyasn1==0.6.3
 pydantic==2.13.3

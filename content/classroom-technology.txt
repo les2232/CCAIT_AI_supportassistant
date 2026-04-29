@@ -5,26 +5,19 @@ URL: https://cccs.libguides.com/c.php?g=1401795&p=10739286
 
 CLASSROOM TECHNOLOGY
 
-What this is:
+What this helps with:
 - Use this guide when classroom presentation technology is preventing normal instruction.
 - It covers common faculty-facing classroom display, projector, and audio problems at the Community College of Aurora.
 
-What students use it for:
-- Viewing presentations and instructional content using projectors and interactive displays.
-- Participating in group work and collaborative activities using whiteboards and touchscreen technology.
-- Engaging with accessible classroom technology that supports different learning styles.
-
-Common classroom support issues:
-- A classroom display will not turn on.
-- A projector has no signal or does not show the expected content.
-- Classroom audio is not working during instruction.
-- A classroom technology issue is preventing normal teaching or presentation use.
+Common symptoms:
+- Classroom display, projector, or classroom audio is not working as expected.
+- Teaching or presentation use is interrupted by a classroom technology issue.
 
 Classroom display won’t turn on:
 1. Confirm the classroom display or projector has power.
 2. Check that the display, projector, or instructor station is turned on.
 3. Confirm the connected classroom computer or presentation device is awake and showing an active screen.
-4. If the display still does not turn on, try reconnecting the presentation source and checking the selected input.
+4. If the display still does not turn on, reconnect the presentation source and check the selected input.
 
 Projector has no signal:
 1. Confirm the classroom computer or connected laptop is powered on and not asleep.
@@ -38,13 +31,30 @@ Audio not working in classroom:
 3. Make sure the correct speaker or audio output is selected on the device.
 4. Try the audio again using the same media or presentation source after confirming the output setting.
 
-Additional classroom checks:
-- Restart the presentation source if the display or audio still is not responding.
-- If a laptop adapter or cable is being used, reconnect it securely and try again.
-- Note the room number and the specific symptom before contacting IT so the issue can be resolved more quickly.
+If that does not work:
+- Restart the presentation source if the display, projector, or audio still is not responding.
+- Reconnect any laptop cable or adapter securely and try again.
+- Confirm whether the issue affects display, projector, audio, or more than one classroom function.
+
+Where to get help / When to contact IT:
+- If classroom display, projector, or audio issues continue after the steps above, contact the CCA IT Helpdesk.
+
+CCA IT Helpdesk:
+- Phone: 303-360-4900, Monday–Friday, 8 a.m.–5 p.m.
+- After-hours/weekend support: 1-888-800-9198
+- Email: HelpdeskTickets.CCA@ccaurora.edu
+
+Include when contacting IT:
+- The room number.
+- Whether the issue affects the display, projector, audio, or multiple classroom functions.
+- The connected source device you are using.
+- Any cable or adapter involved.
+- The exact symptom or on-screen message.
+- What steps you already tried.
+- A screenshot if the issue shows an error or incorrect source display.
 
 Classroom technology upgrades include:
-- New whiteboards
+- Whiteboards
 - Projectors
 - Adjustable instructor podiums
 - Touchscreen computers
@@ -53,23 +63,19 @@ Classroom technology upgrades include:
 Things to know:
 - Interactive displays can be vertically adjusted to support accessibility.
 - Classroom setups are designed to support collaborative learning and group work.
-- Technology upgrades are intended to ensure equitable and accessible learning experiences for students.
-
-Where to get help / When to contact IT:
-- If classroom display, projector, or audio issues continue after the steps above, contact:
-  HelpDeskTickets.CCA@ccaurora.edu
-- Include the room number and a short description of the issue when requesting help.
+- Technology upgrades are intended to support equitable and accessible learning experiences for students.
 
 - TITLE: Classroom Technology
 - AUDIENCE: Faculty
 - TAGS: classroom display, projector, audio, classroom technology, teaching support
 - CONTEXT:
-  - What this is:
+  - What this helps with:
 - STEPS:
   - Classroom display won’t turn on:
   - Projector has no signal:
   - Audio not working in classroom:
 - IF NOT FIXED:
-  - Additional classroom checks:
+  - If that does not work:
 - ESCALATE:
   - Where to get help / When to contact IT:
+  - Include when contacting IT:

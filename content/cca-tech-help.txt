@@ -13,13 +13,9 @@ Use this guide when you need help finding the right IT support option and do not
 IT SUPPORT CONTACTS
 
 IT Helpdesk
-- Phone: 303-360-4900
-- Hours: Monday–Friday, 8:00am–5:00pm
-- After-hours support available 24/7
-
-MyCourses / D2L (Canvas) Helpdesk
-- Phone: 1-888-800-9198
-- Available 24/7
+- Phone: 303-360-4900, Monday–Friday, 8 a.m.–5 p.m.
+- After-hours/weekend support: 1-888-800-9198
+- Email: HelpdeskTickets.CCA@ccaurora.edu
 
 --------------------------------------------------
 WHERE TO GET TECH HELP
@@ -61,7 +57,7 @@ What to know:
 - Use this section to find where programs are available on campus.
 
 Where to go for more:
-- Contact IT for troubleshooting or additional software needs.
+- Contact the CCA IT Helpdesk for troubleshooting or additional software needs.
 
 --------------------------------------------------
 Loan Calculators
@@ -87,8 +83,8 @@ Where to go for more:
   - Use the sections in this guide to identify the right office, desk, support resource, or IT support option for your question.
 - IF NOT FIXED:
   - For semester-long laptop loans, visit Student Success.
-  - Contact IT for troubleshooting or additional software needs.
+  - Contact the CCA IT Helpdesk for troubleshooting or additional software needs.
   - If you are not sure where to go next, ask the Hub Front Desk for help.
 - ESCALATE:
   - IT Helpdesk
-  - Use the MyCourses / D2L help option if the issue is specifically related to course access.
+  - Use the D2L troubleshooting guide if the issue is specifically related to course access.
