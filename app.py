@@ -2,6 +2,9 @@ import os
 import sys
 import json
 import logging
+import hmac
+import secrets
+import time
 from urllib import error as urllib_error
 from urllib import request as urllib_request
 
@@ -39,6 +42,11 @@ from support_service import resolve_question
 
 
 DEFAULT_FLASK_SECRET = "temporary-dev-session-secret-key"
+CSRF_SESSION_KEY = "_csrf_token"
+FORM_POST_ENDPOINTS = {"login", "index"}
+LOGIN_RATE_LIMIT_ATTEMPTS_DEFAULT = 5
+LOGIN_RATE_LIMIT_WINDOW_SECONDS_DEFAULT = 300
+FAILED_LOGIN_ATTEMPTS = {}
 LOGGER = logging.getLogger(__name__)
 
 
@@ -60,6 +68,96 @@ def env_flag_with_optional(name, default):
     if raw_value is None or not raw_value.strip():
         return default
     return raw_value.strip().lower() in {"1", "true", "yes", "on"}
+
+
+def env_int(name, default):
+    raw_value = os.environ.get(name, "").strip()
+    if not raw_value:
+        return default
+    try:
+        return int(raw_value)
+    except ValueError:
+        return default
+
+
+def csrf_token_for_session(session_data):
+    """
+    Return a stable CSRF token for a Flask session-like mapping.
+    """
+    token = session_data.get(CSRF_SESSION_KEY)
+    if not token:
+        token = secrets.token_urlsafe(32)
+        session_data[CSRF_SESSION_KEY] = token
+    return token
+
+
+def csrf_token():
+    return csrf_token_for_session(session)
+
+
+def valid_csrf_token(submitted_token):
+    expected_token = session.get(CSRF_SESSION_KEY)
+    if not expected_token or not submitted_token:
+        return False
+    return hmac.compare_digest(str(expected_token), str(submitted_token))
+
+
+def csrf_failure_response():
+    return "The form session expired. Please reload the page and try again.", 400
+
+
+def login_rate_limit_attempts():
+    return max(0, env_int("LOGIN_RATE_LIMIT_ATTEMPTS", LOGIN_RATE_LIMIT_ATTEMPTS_DEFAULT))
+
+
+def login_rate_limit_window_seconds():
+    return max(1, env_int("LOGIN_RATE_LIMIT_WINDOW_SECONDS", LOGIN_RATE_LIMIT_WINDOW_SECONDS_DEFAULT))
+
+
+def current_monotonic_time():
+    return time.monotonic()
+
+
+def login_rate_limit_key():
+    forwarded_for = request.headers.get("X-Forwarded-For", "")
+    first_forwarded_ip = forwarded_for.split(",", 1)[0].strip()
+    return first_forwarded_ip or request.remote_addr or "unknown"
+
+
+def get_login_failure_state(key, now=None):
+    now = current_monotonic_time() if now is None else now
+    state = FAILED_LOGIN_ATTEMPTS.get(key)
+    if not state:
+        return None
+    if now - state["first_failed_at"] > login_rate_limit_window_seconds():
+        FAILED_LOGIN_ATTEMPTS.pop(key, None)
+        return None
+    return state
+
+
+def login_rate_limited(key=None):
+    if login_rate_limit_attempts() <= 0:
+        return False
+    key = key or login_rate_limit_key()
+    state = get_login_failure_state(key)
+    return bool(state and state["count"] >= login_rate_limit_attempts())
+
+
+def register_failed_login(key=None):
+    if login_rate_limit_attempts() <= 0:
+        return
+    key = key or login_rate_limit_key()
+    now = current_monotonic_time()
+    state = get_login_failure_state(key, now=now)
+    if not state:
+        state = {"count": 0, "first_failed_at": now}
+        FAILED_LOGIN_ATTEMPTS[key] = state
+    state["count"] += 1
+
+
+def clear_failed_login(key=None):
+    key = key or login_rate_limit_key()
+    FAILED_LOGIN_ATTEMPTS.pop(key, None)
 
 
 def internal_kb_user_authorized():
@@ -207,8 +305,20 @@ validate_startup_config()
 app = Flask(__name__)
 app.secret_key = os.environ.get("FLASK_SECRET_KEY", DEFAULT_FLASK_SECRET)
 configure_session_security(app)
+app.jinja_env.globals["csrf_token"] = csrf_token
 
 init_logging_db()
+
+
+@app.before_request
+def require_csrf_for_form_posts():
+    if request.method != "POST":
+        return None
+    if request.endpoint not in FORM_POST_ENDPOINTS:
+        return None
+    if valid_csrf_token(request.form.get("csrf_token")):
+        return None
+    return csrf_failure_response()
 
 
 def current_openai_api_key():
@@ -279,6 +389,14 @@ def login():
 
     error_message = None
     if request.method == "POST":
+        rate_limit_key = login_rate_limit_key()
+        if login_rate_limited(rate_limit_key):
+            return render_template(
+                "login.html",
+                error_message="Too many unsuccessful sign-in attempts. Wait a few minutes and try again.",
+                allow_dev_login=ALLOW_DEV_LOGIN,
+            ), 429
+
         username = request.form.get("username", "").strip()
         password = request.form.get("password", "")
 
@@ -290,9 +408,17 @@ def login():
                 error_message = None
 
         if authenticated:
+            clear_failed_login(rate_limit_key)
             session["logged_in"] = True
             session["username"] = username
             return redirect(url_for("index"))
+        register_failed_login(rate_limit_key)
+        if login_rate_limited(rate_limit_key):
+            return render_template(
+                "login.html",
+                error_message="Too many unsuccessful sign-in attempts. Wait a few minutes and try again.",
+                allow_dev_login=ALLOW_DEV_LOGIN,
+            ), 429
 
     return render_template(
         "login.html",

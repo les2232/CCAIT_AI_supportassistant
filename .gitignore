@@ -16,3 +16,5 @@ exports_test/
 exports_test_run/
 *_review.csv
 *_audit.csv
+
+=0.6.0

@@ -32,6 +32,7 @@
               Describe the issue and use the quick examples below if you want a faster starting point.
             </p>
             <form method="POST" action="/#response" id="question-form">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
               <div class="example-groups">
                 <div class="example-group student-group">
                   <div class="example-group-title">Students</div>
@@ -93,6 +94,7 @@
                     <div class="choice-actions">
                       {% for option in input_guard_response.chips %}
                         <form method="POST" action="/#response">
+                          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                           <input type="hidden" name="form_type" value="input_guard_choice">
                           <input type="hidden" name="question" value="{{ option.query }}">
                           <button class="choice-button" type="submit">{{ option.label }}</button>
@@ -114,6 +116,7 @@
                   <div class="choice-actions">
                     {% for option in disambiguation_options %}
                       <form method="POST" action="/#response">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="form_type" value="disambiguation">
                         <input type="hidden" name="question" value="{{ option.query }}">
                         <button class="choice-button" type="submit">{{ option.label }}</button>
@@ -235,6 +238,7 @@
                         <div class="feedback-title">Did this solve your issue?</div>
                         <div class="feedback-actions">
                           <form method="POST" action="/#response">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="form_type" value="followup">
                             <input type="hidden" name="request_log_id" value="{{ request_log_id }}">
                             <input type="hidden" name="question" value="{{ asked_question }}">
@@ -242,6 +246,7 @@
                             <button class="feedback-button" type="submit">Yes, it worked</button>
                           </form>
                           <form method="POST" action="/#response">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                             <input type="hidden" name="form_type" value="followup">
                             <input type="hidden" name="request_log_id" value="{{ request_log_id }}">
                             <input type="hidden" name="question" value="{{ asked_question }}">

@@ -7,7 +7,7 @@ from unittest.mock import patch
 
 from flask import template_rendered
 
-from app import app
+from app import app, csrf_token_for_session
 
 
 QUERIES = [
@@ -196,6 +196,13 @@ def captured_templates(flask_app):
         yield recorded
     finally:
         template_rendered.disconnect(record, flask_app)
+
+
+def with_csrf(client, data):
+    payload = dict(data)
+    with client.session_transaction() as sess:
+        payload["csrf_token"] = csrf_token_for_session(sess)
+    return payload
 
 
 def contains_guidance(step_list):
@@ -397,7 +404,7 @@ def evaluate_agent_metadata_rendering(client, failures):
         with captured_templates(app) as templates:
             response = client.post(
                 "/",
-                data={"question": "Agent metadata rendering smoke"},
+                data=with_csrf(client, {"question": "Agent metadata rendering smoke"}),
                 follow_redirects=True,
             )
 
@@ -436,7 +443,7 @@ def evaluate_agent_metadata_rendering(client, failures):
 def evaluate_input_guard_cases(client, failures):
     for query, expected_response_type, expected_chip_text in INPUT_GUARD_CASES:
         with captured_templates(app) as templates:
-            response = client.post("/", data={"question": query}, follow_redirects=True)
+            response = client.post("/", data=with_csrf(client, {"question": query}), follow_redirects=True)
 
         body = response.get_data(as_text=True)
         if response.status_code != 200:
@@ -476,7 +483,7 @@ def evaluate_input_guard_cases(client, failures):
 def evaluate_contact_guard_cases(client, failures):
     for query in CONTACT_CASES:
         with captured_templates(app) as templates:
-            response = client.post("/", data={"question": query}, follow_redirects=True)
+            response = client.post("/", data=with_csrf(client, {"question": query}), follow_redirects=True)
 
         body = response.get_data(as_text=True)
         if response.status_code != 200:
@@ -531,7 +538,7 @@ def evaluate_known_weak_queries(client, failures):
     for case in WEAK_QUERY_CASES:
         query = case["query"]
         with captured_templates(app) as templates:
-            response = client.post("/", data={"question": query}, follow_redirects=True)
+            response = client.post("/", data=with_csrf(client, {"question": query}), follow_redirects=True)
 
         if response.status_code != 200:
             failures.append((query, f"unexpected status code: {response.status_code}"))
@@ -612,7 +619,7 @@ def evaluate_known_weak_queries(client, failures):
 def evaluate_access_cleanup_cases(client, failures):
     for query in D2L_ACCESS_CASES:
         with captured_templates(app) as templates:
-            response = client.post("/", data={"question": query}, follow_redirects=True)
+            response = client.post("/", data=with_csrf(client, {"question": query}), follow_redirects=True)
 
         body = response.get_data(as_text=True)
         if response.status_code != 200:
@@ -648,7 +655,7 @@ def evaluate_access_cleanup_cases(client, failures):
 
     query = "I can't get into my homework"
     with captured_templates(app) as templates:
-        response = client.post("/", data={"question": query}, follow_redirects=True)
+        response = client.post("/", data=with_csrf(client, {"question": query}), follow_redirects=True)
 
     if response.status_code != 200:
         failures.append((query, f"unexpected status code: {response.status_code}"))
@@ -670,7 +677,7 @@ def evaluate_access_cleanup_cases(client, failures):
 
     query = "I am new and need to get online"
     with captured_templates(app) as templates:
-        response = client.post("/", data={"question": query}, follow_redirects=True)
+        response = client.post("/", data=with_csrf(client, {"question": query}), follow_redirects=True)
 
     body = response.get_data(as_text=True)
     if response.status_code != 200:
@@ -692,7 +699,7 @@ def evaluate_access_cleanup_cases(client, failures):
 
     query = "internet broke"
     with captured_templates(app) as templates:
-        response = client.post("/", data={"question": query}, follow_redirects=True)
+        response = client.post("/", data=with_csrf(client, {"question": query}), follow_redirects=True)
 
     if response.status_code != 200:
         failures.append((query, f"unexpected status code: {response.status_code}"))
@@ -717,7 +724,7 @@ def evaluate_zoom_sso_cases(client, failures):
     for case in ZOOM_SSO_CASES:
         query = case["query"]
         with captured_templates(app) as templates:
-            response = client.post("/", data={"question": query}, follow_redirects=True)
+            response = client.post("/", data=with_csrf(client, {"question": query}), follow_redirects=True)
 
         if response.status_code != 200:
             failures.append((query, f"unexpected status code: {response.status_code}"))
@@ -754,7 +761,7 @@ def evaluate_printing_cases(client, failures):
     for case in PRINTING_CASES:
         query = case["query"]
         with captured_templates(app) as templates:
-            response = client.post("/", data={"question": query}, follow_redirects=True)
+            response = client.post("/", data=with_csrf(client, {"question": query}), follow_redirects=True)
 
         if response.status_code != 200:
             failures.append((query, f"unexpected status code: {response.status_code}"))
@@ -801,7 +808,7 @@ def evaluate_mfa_clarification_cases(client, failures):
     expected_labels = ("Student Microsoft Authenticator", "Faculty/Staff Duo", "I'm not sure")
     for query in MFA_CLARIFICATION_CASES:
         with captured_templates(app) as templates:
-            response = client.post("/", data={"question": query}, follow_redirects=True)
+            response = client.post("/", data=with_csrf(client, {"question": query}), follow_redirects=True)
 
         body = response.get_data(as_text=True)
         if response.status_code != 200:
@@ -832,7 +839,7 @@ def evaluate_mfa_authenticator_cases(client, failures):
     for case in MFA_AUTHENTICATOR_CASES:
         query = case["query"]
         with captured_templates(app) as templates:
-            response = client.post("/", data={"question": query}, follow_redirects=True)
+            response = client.post("/", data=with_csrf(client, {"question": query}), follow_redirects=True)
 
         body = response.get_data(as_text=True)
         if response.status_code != 200:
@@ -900,7 +907,7 @@ def main():
 
         for query in QUERIES:
             with captured_templates(app) as templates:
-                response = client.post("/", data={"question": query}, follow_redirects=True)
+                response = client.post("/", data=with_csrf(client, {"question": query}), follow_redirects=True)
 
             if response.status_code != 200:
                 failures.append((query, f"unexpected status code: {response.status_code}"))

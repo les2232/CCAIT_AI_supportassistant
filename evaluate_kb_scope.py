@@ -5,7 +5,7 @@ from contextlib import contextmanager
 
 from flask import template_rendered
 
-from app import app
+from app import app, csrf_token_for_session
 from kb_scope import load_scoped_content_texts
 from support_service import resolve_question
 
@@ -48,6 +48,13 @@ def captured_templates(flask_app):
         template_rendered.disconnect(record, flask_app)
 
 
+def with_csrf(client, data):
+    payload = dict(data)
+    with client.session_transaction() as sess:
+        payload["csrf_token"] = csrf_token_for_session(sess)
+    return payload
+
+
 def evaluate_loader_scope(failures):
     public_texts = load_scoped_content_texts()
     internal_texts = load_scoped_content_texts(internal_only=True)
@@ -77,7 +84,7 @@ def evaluate_student_leakage(failures):
 
             for query in STUDENT_LEAKAGE_CASES:
                 with captured_templates(app) as templates:
-                    response = client.post("/", data={"question": query}, follow_redirects=True)
+                    response = client.post("/", data=with_csrf(client, {"question": query}), follow_redirects=True)
 
                 body = response.get_data(as_text=True).lower()
                 if response.status_code != 200:
@@ -121,7 +128,7 @@ def evaluate_student_cannot_force_internal_mode(failures):
             with captured_templates(app) as templates:
                 response = client.post(
                     "/",
-                    data={"question": "how do I map a printer", "internal_mode": "1"},
+                    data=with_csrf(client, {"question": "how do I map a printer", "internal_mode": "1"}),
                     follow_redirects=True,
                 )
 
@@ -187,7 +194,7 @@ def evaluate_internal_mode(failures):
             with captured_templates(app) as templates:
                 response = client.post(
                     "/",
-                    data={"question": "how do I map a printer", "internal_mode": "1"},
+                    data=with_csrf(client, {"question": "how do I map a printer", "internal_mode": "1"}),
                     follow_redirects=True,
                 )
             body = response.get_data(as_text=True)
