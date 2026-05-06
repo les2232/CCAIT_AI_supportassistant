@@ -10,6 +10,15 @@ How to Map Printers.docx
 AUDIENCE:
 CCA IT staff, student workers, interns, and temporary staff
 
+VISIBILITY:
+internal
+
+TOPIC:
+printing
+
+SAFE_FOR_STUDENT:
+no
+
 SUMMARY:
 Use this SOP when helping a user add or map a shared CCA network printer on a Windows computer.
 

@@ -250,12 +250,16 @@ Tables:
 
 What is logged:
 
-- raw question
+- redacted question text
 - routed topic/article
 - response type
 - escalation flag
 - whether LLM polishing was used
 - helpful/unhelpful feedback linked back to a request when possible
+
+The logging layer redacts obvious sensitive values before writing request or
+feedback text, including passwords, MFA codes, student IDs, email addresses,
+and phone numbers.
 
 ## Knowledge Base Format
 
@@ -373,15 +377,34 @@ pip install -r requirements.txt
 
 ### 3. Configure environment variables
 
-At minimum, configure:
+Copy the safe example file and keep your local values out of git:
+
+```bash
+cp .env.example .env
+```
+
+At minimum, set:
 
 - `FLASK_SECRET_KEY`
-- LDAP settings for your environment
+
+Generate a local secret with:
+
+```bash
+python -c "import secrets; print(secrets.token_urlsafe(32))"
+```
+
+Paste that value into `.env` as `FLASK_SECRET_KEY`. Do not commit `.env` or
+real secrets.
 
 Optional features:
 
+- LDAP settings for your environment
 - LLM rewriting
+- OpenAI-backed classification
+- Realtime voice support
 - semantic retrieval fallback
+- additive agent metadata
+- internal KB notes for explicitly allowed staff users
 - development fallback login
 
 ### 4. Run the Flask app
@@ -402,6 +425,9 @@ http://127.0.0.1:5000
 
 - `FLASK_SECRET_KEY`
 
+Local development should set this in `.env`. Production deployments should use
+the target hosting platform's secret-management mechanism.
+
 ### LDAP authentication
 
 - `LDAP_SERVER`
@@ -421,6 +447,16 @@ When enabled, the app allows a temporary local fallback login. This should remai
 - `OPENAI_API_KEY`
 - `IT_SUPPORT_LLM_ENABLED`
 - `IT_SUPPORT_LLM_MODEL`
+- `IT_SUPPORT_CLASSIFIER_MODEL`
+
+OpenAI-backed features are optional. The app must remain usable without
+`OPENAI_API_KEY`.
+
+### Optional Realtime voice settings
+
+- `OPENAI_REALTIME_PROMPT_ID`
+- `OPENAI_REALTIME_MODEL`
+- `OPENAI_REALTIME_VOICE`
 
 ### Optional semantic retrieval settings
 
@@ -430,6 +466,27 @@ When enabled, the app allows a temporary local fallback login. This should remai
 The semantic layer also uses a local cache:
 
 - `.semantic_cache/section_index.json`
+
+### Optional agent metadata settings
+
+- `ENABLE_AGENTS`
+- `IT_SUPPORT_AGENT_MODEL`
+- `IT_SUPPORT_AGENT_TIMEOUT_SECONDS`
+
+`ENABLE_AGENTS` defaults to off. When enabled with `OPENAI_API_KEY`, agent
+output is additive metadata only. The local KB and deterministic response fields
+remain authoritative.
+
+### Optional internal KB settings
+
+- `ENABLE_INTERNAL_KB`
+- `INTERNAL_KB_ALLOWED_USERS`
+- `INTERNAL_KB_DEFAULT`
+
+`ENABLE_INTERNAL_KB` defaults to off. When enabled, internal notes are still
+shown only to logged-in usernames listed in comma-separated
+`INTERNAL_KB_ALLOWED_USERS`. `INTERNAL_KB_DEFAULT=1` applies only to those
+allowlisted users.
 
 ## Development Workflow
 
@@ -444,8 +501,11 @@ Commands:
 
 ```bash
 ./venv/bin/python validate_kb.py
+./venv/bin/python evaluate_disambiguation.py
 ./venv/bin/python evaluate_routing.py --strict
 ./venv/bin/python evaluate_retrieval.py --strict
+./venv/bin/python evaluate_rendered_responses.py
+./venv/bin/python check_all.py
 ./venv/bin/python app.py
 ```
 

@@ -21,6 +21,7 @@ Keep the product focused on a clean, pilot-ready support experience. Avoid broad
 - `auth.py` handles LDAP authentication and the development-only fallback login.
 - `logging_store.py` writes request and feedback logs to SQLite.
 - `realtime_tools.py` exposes structured support tools for the Realtime voice interface.
+- `kb_scope.py` classifies KB files as public/student-safe or internal-only before retrieval.
 - `templates/` and `static/` contain the Flask UI.
 - `evaluate_*.py`, `validate_kb.py`, and `check_all.py` are part of the quality gate and should be kept working.
 
@@ -66,10 +67,15 @@ Useful environment variables:
 - `OPENAI_REALTIME_PROMPT_ID`
 - `OPENAI_REALTIME_MODEL`
 - `OPENAI_REALTIME_VOICE`
+- `ENABLE_INTERNAL_KB`
+- `INTERNAL_KB_ALLOWED_USERS`
+- `INTERNAL_KB_DEFAULT`
 
 Production-like runs must not rely on the default Flask secret or development fallback login.
 
 `ENABLE_AGENTS` defaults to off. When enabled with `OPENAI_API_KEY`, the Campus IT Triage Agent may add metadata such as missing-info suggestions or a ticket summary after deterministic KB retrieval. Agent output is additive metadata only; local KB retrieval and deterministic response fields remain authoritative.
+
+`ENABLE_INTERNAL_KB` defaults to off. When enabled, internal SOP retrieval is available only to logged-in users listed in comma-separated `INTERNAL_KB_ALLOWED_USERS`. Authorized users can request explicit internal mode (`internal_mode=1`), or `INTERNAL_KB_DEFAULT=1` can enable it by default for that allowlisted staff audience. Internal SOP matches render only in an "Internal IT Notes" section and must not replace the student-facing answer.
 
 ## Validation And Checks
 
@@ -84,6 +90,7 @@ Individual checks:
 ```bash
 ./venv/bin/python validate_kb.py
 ./venv/bin/python evaluate_agent_service.py
+./venv/bin/python evaluate_kb_scope.py
 ./venv/bin/python evaluate_disambiguation.py
 ./venv/bin/python evaluate_routing.py --strict
 ./venv/bin/python evaluate_retrieval.py --strict
@@ -102,6 +109,10 @@ For Realtime tool changes, also run:
 
 - Preserve retrieval-first behavior. A response should come from matched KB content or clearly fall back to an unsupported/escalation path.
 - Keep `content/` grounded and reviewable. When adding or editing support guidance, include only approved institutional information.
+- Public/student-facing KB articles must be marked or inferable as `VISIBILITY: public` and `SAFE_FOR_STUDENT: yes`. Existing top-level public articles default to public/student-safe for backward compatibility.
+- Internal SOPs must be marked with `VISIBILITY: internal` and `SAFE_FOR_STUDENT: no`. Nested SOP folders under `content/` are treated as internal unless explicitly made public and reviewed.
+- Never let internal SOP content affect normal student-facing titles, summaries, guided steps, escalation text, source footers, or response confidence.
+- Internal SOP content may be shown only in a clearly labeled "Internal IT Notes" section when internal mode is enabled.
 - Do not make OpenAI calls mandatory for normal support answers. Local deterministic fallback behavior must remain usable.
 - Do not let LLM polishing add facts, steps, URLs, contact information, or policy language beyond retrieved source text.
 - Do not let agent metadata replace retrieved source, section heading, steps, escalation text, supported state, contact details, password reset details, or Wi-Fi instructions.

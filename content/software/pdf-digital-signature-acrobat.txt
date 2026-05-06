@@ -10,6 +10,15 @@ PDF Digital Signature Instructions.docx
 AUDIENCE:
 CCA IT staff, student workers, interns, temporary staff, and users who need help with PDF signatures
 
+VISIBILITY:
+internal
+
+TOPIC:
+software
+
+SAFE_FOR_STUDENT:
+no
+
 SUMMARY:
 Use this SOP when helping a user create a self-signed digital ID in Adobe Acrobat for signing PDF documents.
 

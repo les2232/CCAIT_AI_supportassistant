@@ -22,6 +22,9 @@ Optional feature flags:
 - `OPENAI_API_KEY`
 - `IT_SUPPORT_EMBEDDINGS_ENABLED`
 - `IT_SUPPORT_SEMANTIC_MIN_SCORE`
+- `ENABLE_INTERNAL_KB`
+- `INTERNAL_KB_ALLOWED_USERS`
+- `INTERNAL_KB_DEFAULT`
 
 ## Startup Validation
 
@@ -33,6 +36,7 @@ In production mode (`APP_ENV=production`), startup fails if:
 - `FLASK_SECRET_KEY` is still using the development fallback
 - `ALLOW_DEV_LOGIN=1`
 - required LDAP settings are missing
+- `ENABLE_INTERNAL_KB=1` but `INTERNAL_KB_ALLOWED_USERS` is empty
 
 In non-production mode, these conditions produce warnings instead of failing startup.
 

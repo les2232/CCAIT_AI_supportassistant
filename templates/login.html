@@ -7,8 +7,14 @@
   <body class="login-page">
     <div class="page">
       <div class="card">
-        <p class="kicker">Temporary Login</p>
-        <h1>CCA IT Support Assistant</h1>
+        <div class="hero-brand compact-brand">
+          <!-- TODO: Replace this text brand marker with an approved CCA logo asset when one is added to static/. -->
+          <div class="brand-mark" aria-hidden="true">CCA</div>
+          <div class="brand-lockup">
+            <div class="brand-school">Community College of Aurora</div>
+            <h1>IT Support Assistant</h1>
+          </div>
+        </div>
         <p class="subtitle">
           Sign in with your CCA account to access the assistant.
         </p>
@@ -25,7 +31,7 @@
           <input id="username" name="username" type="text" autocomplete="username">
           <label for="password">Password</label>
           <input id="password" name="password" type="password" autocomplete="current-password">
-          <button type="submit">Sign in</button>
+          <button class="question-submit-button login-submit-button" type="submit">Sign in</button>
         </form>
       </div>
     </div>

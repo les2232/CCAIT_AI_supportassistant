@@ -1,5 +1,6 @@
 from pathlib import Path
 import re
+from kb_scope import load_scoped_content_texts
 
 CONTENT_DIR = Path(__file__).parent / "content"
 EXCLUDED_DOCS = {
@@ -8,6 +9,33 @@ EXCLUDED_DOCS = {
 }
 
 TOPIC_CONFIGS = [
+    {
+        "article_id": "mfa-account-security.txt",
+        "keywords": {
+            "mfa": 7,
+            "verification": 4,
+            "authenticator": 5,
+            "prompt": 4,
+            "code": 3,
+            "phone": 2,
+            "lost": 3,
+            "changed": 3,
+        },
+        "phrases": {
+            "mfa": 8,
+            "mfa keeps asking": 10,
+            "mfa keeps prompting": 10,
+            "lost my phone": 10,
+            "lost phone": 9,
+            "changed phones": 9,
+            "changed phone": 9,
+            "lost mfa access": 10,
+            "multi factor": 8,
+            "multi factor authentication": 9,
+            "authenticator": 7,
+            "verification code": 7,
+        },
+    },
     {
         "article_id": "password-reset.txt",
         "keywords": {
@@ -50,14 +78,22 @@ TOPIC_CONFIGS = [
             "wireless": 3,
             "connection": 2,
             "connect": 2,
+            "students": 2,
+            "showing": 2,
+            "visible": 2,
+            "see": 1,
         },
         "phrases": {
             "wi fi": 6,
             "wifi": 6,
+            "cca students": 7,
             "wireless network": 5,
             "internet not working": 5,
             "cannot connect": 3,
             "can t connect": 3,
+            "do not see cca students": 8,
+            "student wifi is not showing": 8,
+            "wifi is not showing": 7,
             "network issue": 4,
         },
     },
@@ -151,6 +187,52 @@ TOPIC_CONFIGS = [
             "video help": 3,
         },
     },
+    {
+        "article_id": "zoom-support.txt",
+        "keywords": {
+            "zoom": 6,
+            "sso": 8,
+            "company": 4,
+            "domain": 5,
+            "license": 6,
+            "cccs": 5,
+            "edu": 4,
+        },
+        "phrases": {
+            "zoom sso": 12,
+            "zoom sso login": 14,
+            "zoom asks for sso": 14,
+            "zoom company domain": 14,
+            "company domain": 10,
+            "cccs edu": 12,
+            "zoom license": 12,
+            "license not showing": 12,
+        },
+    },
+    {
+        "article_id": "printing.txt",
+        "keywords": {
+            "print": 5,
+            "printer": 6,
+            "printing": 5,
+            "map": 7,
+            "add": 3,
+            "device": 2,
+            "shared": 5,
+            "path": 5,
+            "error": 4,
+            "showing": 3,
+        },
+        "phrases": {
+            "map a printer": 12,
+            "add a printer": 10,
+            "shared printer": 10,
+            "printer path": 9,
+            "printer not showing": 10,
+            "printer says error": 10,
+            "printing problem": 8,
+        },
+    },
 ]
 
 TOKEN_SYNONYMS = {
@@ -185,19 +267,26 @@ TOKEN_SYNONYMS = {
     "borrowing": ("borrow",),
     "loaner": ("loan", "laptop"),
     "zoom": ("zoom", "online"),
+    "printers": ("printer",),
+    "printing": ("print", "printer"),
+    "mapped": ("map", "printer"),
+    "mapping": ("map", "printer"),
 }
 
 
-def load_content_texts():
+def load_content_texts(include_internal=False, internal_only=False):
     """
     Load supported .txt files from the content/ directory.
     Returns a dict: { filename: text }
     """
-    texts = {}
-    for path in CONTENT_DIR.glob("*.txt"):
-        if path.name in EXCLUDED_DOCS:
-            continue
-        texts[path.name] = path.read_text(encoding="utf-8")
+    texts = load_scoped_content_texts(
+        include_internal=include_internal,
+        internal_only=internal_only,
+        content_dir=CONTENT_DIR,
+    )
+    for article_id in list(texts):
+        if article_id in EXCLUDED_DOCS:
+            texts.pop(article_id)
     return texts
 
 
@@ -298,6 +387,12 @@ def select_response(question, content_texts, min_score=4):
     Route a question to the best supported article using lightweight scoring.
     """
     if not question or not question.strip():
+        return None, None
+    normalized_question = normalize_text(question)
+    if "duo" in normalized_question or normalized_question in {
+        "verification code is not working",
+        "the verification code is not working",
+    }:
         return None, None
 
     best_config = None

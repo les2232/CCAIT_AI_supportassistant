@@ -70,6 +70,9 @@ ALLOW_DEV_LOGIN=0
 # OPENAI_API_KEY=
 # IT_SUPPORT_EMBEDDINGS_ENABLED=0
 # IT_SUPPORT_SEMANTIC_MIN_SCORE=0.45
+# ENABLE_INTERNAL_KB=0
+# INTERNAL_KB_ALLOWED_USERS=
+# INTERNAL_KB_DEFAULT=0
 EOF
 ```
 
@@ -88,6 +91,7 @@ Before starting the service, confirm:
 - `FLASK_SECRET_KEY` is set and not using the development fallback
 - LDAP variables are set explicitly
 - `ALLOW_DEV_LOGIN=0`
+- if `ENABLE_INTERNAL_KB=1`, `INTERNAL_KB_ALLOWED_USERS` contains only approved staff usernames
 
 ## Gunicorn Command
 

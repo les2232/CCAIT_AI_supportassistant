@@ -1,6 +1,7 @@
 from pathlib import Path
 import sys
 
+from kb_scope import get_article_scope, article_id_for_path
 from response_builder import (
     GUIDE_FIELD_NAMES,
     count_user_facing_steps,
@@ -32,11 +33,28 @@ def heading_reference_errors(field_name, items, section_map):
 
 def validate_file(path):
     content_text = path.read_text(encoding="utf-8")
+    scope = get_article_scope(article_id_for_path(path), content_text)
     guide = parse_guide_content(content_text)
     section_map = parse_section_map(content_text)
 
     warnings = []
     errors = []
+
+    if scope.is_internal:
+        for field_name, value in (
+            ("AUDIENCE", scope.audience),
+            ("VISIBILITY", scope.visibility),
+            ("SAFE_FOR_STUDENT", "no" if not scope.safe_for_student else "yes"),
+        ):
+            if not value:
+                errors.append(f"Internal article missing {field_name}.")
+        if scope.visibility != "internal":
+            errors.append("Internal article VISIBILITY must be internal.")
+        if scope.safe_for_student:
+            errors.append("Internal article SAFE_FOR_STUDENT must be no.")
+        if not content_text.strip():
+            errors.append("Internal article is empty.")
+        return warnings, errors
 
     is_guide_ready = any(field in guide for field in GUIDE_FIELD_NAMES)
 
@@ -96,7 +114,7 @@ def validate_file(path):
 
 
 def main():
-    files = sorted(CONTENT_DIR.glob("*.txt"))
+    files = sorted(CONTENT_DIR.rglob("*.txt"))
     files_checked = 0
     passing_files = []
     warning_files = []
@@ -106,11 +124,11 @@ def main():
         files_checked += 1
         warnings, errors = validate_file(path)
         if errors:
-            error_files.append((path.name, warnings, errors))
+            error_files.append((path.relative_to(CONTENT_DIR).as_posix(), warnings, errors))
         elif warnings:
-            warning_files.append((path.name, warnings))
+            warning_files.append((path.relative_to(CONTENT_DIR).as_posix(), warnings))
         else:
-            passing_files.append(path.name)
+            passing_files.append(path.relative_to(CONTENT_DIR).as_posix())
 
     print("Knowledge base validation")
     print("========================================================================")

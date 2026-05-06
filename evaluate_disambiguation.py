@@ -7,7 +7,7 @@ from response_builder import detect_disambiguation_options
 TEST_CASES = [
     {
         "query": "can't log in",
-        "expected_labels": ["D2L", "Email", "Account"],
+        "expected_labels": ["D2L", "Student email", "MyCCA", "Campus computer", "Wi-Fi", "MFA/Auth", "I'm not sure"],
     },
     {
         "query": "can't access my class",
@@ -23,7 +23,23 @@ TEST_CASES = [
     },
     {
         "query": "problem with login",
-        "expected_labels": ["D2L", "Email", "Account"],
+        "expected_labels": ["D2L", "Student email", "MyCCA", "Campus computer", "Wi-Fi", "MFA/Auth", "I'm not sure"],
+    },
+    {
+        "query": "it won't let me in",
+        "expected_labels": ["D2L", "Student email", "MyCCA", "Campus computer", "Wi-Fi", "MFA/Auth", "I'm not sure"],
+    },
+    {
+        "query": "MFA is not working",
+        "expected_labels": ["Student Microsoft Authenticator", "Faculty/Staff Duo", "I'm not sure"],
+    },
+    {
+        "query": "verification code is not working",
+        "expected_labels": ["Student Microsoft Authenticator", "Faculty/Staff Duo", "I'm not sure"],
+    },
+    {
+        "query": "Duo not working",
+        "expected_labels": ["Student Microsoft Authenticator", "Faculty/Staff Duo", "I'm not sure"],
     },
 ]
 

@@ -9,7 +9,6 @@ You are in the right place. These steps can help you join class and fix common Z
 What this helps with:
 - Use this guide if you need help joining a Zoom class or fixing common Zoom problems at the Community College of Aurora.
 - Zoom may be used for online, blended, or remote class meetings.
-- Use the Zoom SSO steps if Zoom asks you to sign in with your CCA account.
 
 Try this first:
 1. Open the Zoom link provided by your instructor or in your course materials.
@@ -24,22 +23,6 @@ Joining Zoom classes:
 3. Open the Zoom link provided by your instructor or in your course materials.
 4. Follow the prompts to join the meeting.
 5. If the meeting does not open right away, reopen the link and join the Zoom meeting again.
-
-Zoom SSO login:
-1. Go to the Zoom sign-in page.
-2. Choose SSO.
-3. Enter the company domain CCCS-EDU.
-4. Enter your S# and password.
-5. Complete any verification prompt if Zoom asks for it.
-6. If you are not on campus, Zoom may prompt for Duo during SSO sign-in.
-
-Zoom company domain:
-- Use CCCS-EDU as the Zoom company domain when Zoom asks for SSO.
-- Enter your S# and password after choosing the CCCS-EDU domain.
-
-Zoom license not showing:
-- Wait up to 24 hours after you log in through Zoom SSO for license sync.
-- If the license still does not show after the sync period, contact support for Zoom sign-in help.
 
 Zoom not working:
 1. Close Zoom completely and open it again before retrying the class link.
@@ -79,11 +62,9 @@ Audio or video problems:
 5. You can also restart the Zoom app or browser and try again.
 
 Sign-in problems:
-- If Zoom is asking you to sign in and you cannot continue, start again and use Zoom SSO with the CCCS-EDU company domain.
-- Enter your S# and password when Zoom redirects you to sign in.
-- If you are not on campus, Zoom may prompt for Duo during SSO sign-in.
+- If Zoom is asking you to sign in and you cannot continue, start again and make sure you are using the correct account information if sign-in is required.
 - If the meeting link is not working, check your course instructions and try opening the link again from the original source.
-- If you still cannot join because of a Zoom login, SSO, license, or Duo prompt problem, call 303-360-4900.
+- If you still cannot join because of a login or access problem, contact the CCA IT Helpdesk.
 
 If that did not work:
 - Check whether the problem is the class link, the Zoom app, browser access, audio, microphone, video, sign-in, or internet connection.
@@ -95,11 +76,9 @@ When to contact OBL:
 
 Still need help with Zoom?:
 - Contact the CCA IT Helpdesk for Zoom login issues, access problems, device-related trouble, or ongoing technical issues that prevent you from joining or using Zoom.
-- For Zoom SSO issues or Duo assistance during Zoom sign-in, call 303-360-4900.
 
 What to include when asking for help:
 - Whether you are trying to join class, fix audio, fix your microphone, fix video, or solve a sign-in problem.
-- Whether Zoom is asking for SSO, the CCCS-EDU company domain, a license, or Duo during Zoom sign-in.
 - Whether you are using the Zoom app or a web browser.
 - The device you are using.
 - The exact error message or prompt you see.
@@ -114,15 +93,12 @@ CCA IT Helpdesk:
 
 - TITLE: Zoom Support
 - AUDIENCE: Students
-- TAGS: zoom, online class, audio, video, sign-in, sso, cccs-edu, company domain, license, duo
+- TAGS: zoom, online class, audio, video, sign-in
 - CONTEXT:
   - What this helps with:
 - STEPS:
   - Try this first:
   - Joining Zoom classes:
-  - Zoom SSO login:
-  - Zoom company domain:
-  - Zoom license not showing:
   - Zoom not working:
   - App or browser:
   - Zoom audio not working:

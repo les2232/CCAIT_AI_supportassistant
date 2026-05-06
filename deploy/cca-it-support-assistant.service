@@ -1,0 +1,17 @@
+[Unit]
+Description=CCA IT Support Assistant
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/project/it-ai-agent
+EnvironmentFile=/etc/cca-it-support-assistant.env
+ExecStart=/opt/project/it-ai-agent/venv/bin/gunicorn --workers 3 --bind 127.0.0.1:8000 app:app
+Restart=always
+RestartSec=5
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

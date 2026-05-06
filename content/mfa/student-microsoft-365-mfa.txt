@@ -10,6 +10,15 @@ Multi-Factor Authentication to protect your Student Microsoft 365 Sign-In.pdf
 AUDIENCE:
 CCA IT staff, student workers, interns, temporary staff, and students who need MFA help
 
+VISIBILITY:
+internal
+
+TOPIC:
+mfa
+
+SAFE_FOR_STUDENT:
+no
+
 SUMMARY:
 Use this SOP when helping a student understand or set up Multi-Factor Authentication for their student Microsoft 365 sign-in.
 

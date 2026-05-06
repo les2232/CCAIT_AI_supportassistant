@@ -10,6 +10,15 @@ SSO Zoom web login instructions.pdf
 AUDIENCE:
 CCA IT staff, student workers, interns, temporary staff, and users who need Zoom login help
 
+VISIBILITY:
+internal
+
+TOPIC:
+zoom
+
+SAFE_FOR_STUDENT:
+no
+
 SUMMARY:
 Use this SOP when helping a user log into their CCA Zoom account using Single Sign-On, also called SSO.
 

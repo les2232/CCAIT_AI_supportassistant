@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+  <head>
+    <title>CCA IT Support Voice Demo</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  </head>
+  <body class="console-page">
+    <div class="page">
+      <header class="app-header">
+        <div class="hero-swirls" aria-hidden="true">
+          <span class="hero-swirl swirl-red"></span>
+          <span class="hero-swirl swirl-slate"></span>
+          <span class="hero-swirl swirl-silver"></span>
+        </div>
+        <div class="app-header__inner">
+          <div class="app-header__brand">
+            <p class="app-header__eyebrow">Community College of Aurora</p>
+            <h1 class="app-header__title">Realtime Voice Demo</h1>
+            <p class="app-header__subtitle">
+              Use voice interaction to test supported IT assistant workflows.
+            </p>
+          </div>
+          <div class="app-header__actions">
+            <a class="app-header__logout" href="/">Back to assistant</a>
+            <a class="app-header__logout" href="/logout">Log out</a>
+          </div>
+        </div>
+      </header>
+
+      <div class="layout single-column">
+        <div class="main-column">
+          <div class="card realtime-card">
+            <div class="realtime-controls">
+              <button id="start-voice-session" class="question-submit-button" type="button">
+                Start voice session
+              </button>
+              <button id="stop-voice-session" class="secondary-button" type="button" disabled>
+                End session
+              </button>
+            </div>
+
+            <div class="realtime-status-grid">
+              <div class="status-panel">
+                <div class="section-label">Session status</div>
+                <p id="voice-status" class="status-copy">Idle</p>
+              </div>
+              <div class="status-panel">
+                <div class="section-label">What to try</div>
+                <p class="status-copy">Say “I can’t connect to Wi-Fi” after the session connects.</p>
+              </div>
+            </div>
+
+            <div class="answer-section realtime-log-section">
+              <div class="section-label">Realtime event log</div>
+              <pre id="realtime-log" class="realtime-log" aria-live="polite">Ready.</pre>
+            </div>
+
+            <audio id="realtime-audio" autoplay></audio>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='realtime.js') }}"></script>
+  </body>
+</html>

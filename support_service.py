@@ -91,7 +91,45 @@ def adjust_query_analysis_for_retrieval(question, query_analysis):
     return query_analysis
 
 
-def resolve_question(question, query_analysis=None, preferred_article_ids=None):
+def build_internal_notes(question, query_analysis=None):
+    """
+    Retrieve internal SOP context separately from the student-facing answer.
+    """
+    internal_texts = load_retrieval_texts(internal_only=True)
+    if not internal_texts:
+        return None
+
+    internal_result = retrieve_best_section(
+        question,
+        content_texts=internal_texts,
+        article_ids=list(internal_texts),
+        min_score=4,
+        query_analysis=query_analysis,
+    )
+    if internal_result is None:
+        return None
+
+    content = internal_result.answer_text
+    if any(
+        marker in (internal_result.section_heading or "").lower()
+        for marker in ("audience", "visibility", "safe_for_student", "source document")
+    ):
+        content = internal_result.full_document_text
+
+    return {
+        "source_name": internal_result.article_id,
+        "section_heading": internal_result.section_heading,
+        "retrieval_confidence": internal_result.confidence,
+        "content": content,
+    }
+
+
+def resolve_question(
+    question,
+    query_analysis=None,
+    preferred_article_ids=None,
+    include_internal=False,
+):
     """
     Run the retrieval-first flow and return renderable response details.
     """
@@ -202,5 +240,11 @@ def resolve_question(question, query_analysis=None, preferred_article_ids=None):
         "show_password_reset_portal": show_password_reset_portal,
         "password_reset_portal_url": password_reset_portal_url,
         "llm_used": llm_used,
+        "internal_notes": build_internal_notes(
+            question,
+            query_analysis=retrieval_query_analysis,
+        )
+        if include_internal
+        else None,
     }
     return maybe_run_agent_triage(question, result)

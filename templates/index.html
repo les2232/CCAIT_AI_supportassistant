@@ -1,75 +1,116 @@
 <!doctype html>
 <html>
   <head>
-    <title>CCA IT Department Assistant</title>
+    <title>CCA IT Support Assistant</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
   </head>
   <body class="console-page">
     <div class="page">
-      <div class="topbar">
-        <a class="logout-link" href="/logout">Log out</a>
-      </div>
-      <div class="hero">
-        <p class="hero-kicker">Guided Technology Help</p>
-        <h1>CCA IT Support Assistant</h1>
-        <p class="subtitle">
-          Get help with common student and faculty technology issues.
-        </p>
-      </div>
+      <header class="app-header">
+        <div class="hero-swirls" aria-hidden="true">
+          <span class="hero-swirl swirl-red"></span>
+          <span class="hero-swirl swirl-slate"></span>
+          <span class="hero-swirl swirl-silver"></span>
+        </div>
+        <div class="app-header__inner">
+          <div class="app-header__brand">
+            <p class="app-header__eyebrow">Community College of Aurora</p>
+            <h1 class="app-header__title">IT Support Assistant</h1>
+            <p class="app-header__subtitle">
+              Clear, approved help for common student and faculty technology issues.
+            </p>
+          </div>
+          <a class="app-header__logout" href="/logout">Log out</a>
+        </div>
+      </header>
 
-      <div class="layout">
+      <div class="layout single-column">
         <div class="main-column">
           <div class="card search-card">
-            <div class="search-label">What do you need help with?</div>
+            <h2 class="search-label">What do you need help with?</h2>
             <p class="search-copy">
-              Find approved support guidance for common technology issues affecting students and faculty.
+              Describe the issue and use the quick examples below if you want a faster starting point.
             </p>
-            <div class="search-frame">
-              <form method="POST" action="/#response" id="question-form">
-                <div class="example-groups">
-                  <div class="example-group">
-                    <div class="example-group-title">Student Support</div>
-                    <ul class="examples">
-                      <li><button class="example-chip" type="button" data-question="Connect to Wi-Fi">Connect to Wi-Fi</button></li>
-                      <li><button class="example-chip" type="button" data-question="Access D2L / Brightspace">Access D2L / Brightspace</button></li>
-                      <li><button class="example-chip" type="button" data-question="Student email not working">Student email not working</button></li>
-                      <li><button class="example-chip" type="button" data-question="Reset my password">Reset my password</button></li>
-                    </ul>
-                  </div>
-                  <div class="example-group">
-                    <div class="example-group-title">Faculty Support</div>
-                    <ul class="examples">
-                      <li><button class="example-chip" type="button" data-question="Classroom display won’t turn on">Classroom display won’t turn on</button></li>
-                      <li><button class="example-chip" type="button" data-question="Zoom not working">Zoom not working</button></li>
-                      <li><button class="example-chip" type="button" data-question="Projector has no signal">Projector has no signal</button></li>
-                      <li><button class="example-chip" type="button" data-question="Audio not working in classroom">Audio not working in classroom</button></li>
-                    </ul>
+            <form method="POST" action="/#response" id="question-form">
+              <div class="example-groups">
+                <div class="example-group student-group">
+                  <div class="example-group-title">Students</div>
+                  <ul class="examples">
+                    <li><button class="example-chip student-chip" type="button" data-question="Connect to Wi-Fi">Connect to Wi-Fi</button></li>
+                    <li><button class="example-chip student-chip" type="button" data-question="Access D2L / Brightspace">Access D2L / Brightspace</button></li>
+                    <li><button class="example-chip student-chip" type="button" data-question="Student email not working">Student email not working</button></li>
+                    <li><button class="example-chip student-chip" type="button" data-question="Reset my password">Reset my password</button></li>
+                  </ul>
+                </div>
+                <div class="example-group faculty-group">
+                  <div class="example-group-title">Faculty</div>
+                  <ul class="examples">
+                    <li><button class="example-chip faculty-chip" type="button" data-question="Classroom display won’t turn on">Classroom display won’t turn on</button></li>
+                    <li><button class="example-chip faculty-chip" type="button" data-question="Zoom not working">Zoom not working</button></li>
+                    <li><button class="example-chip faculty-chip" type="button" data-question="Projector has no signal">Projector has no signal</button></li>
+                    <li><button class="example-chip faculty-chip" type="button" data-question="Audio not working in classroom">Audio not working in classroom</button></li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="search-row">
+                <textarea id="question-input" name="question" rows="1" placeholder="Describe the issue, affected system, or procedure you need."></textarea>
+                <button class="question-submit-button" type="submit">Get help</button>
+              </div>
+            </form>
+            <div class="loading-panel" id="loading-panel" hidden aria-live="polite">
+              <div class="loading-panel-header">
+                <div class="loading-spinner" aria-hidden="true"></div>
+                <div>
+                  <div class="loading-label">Working on your request</div>
+                  <p class="loading-question" id="loading-question">Searching for the best approved support guide.</p>
+                </div>
+              </div>
+              <div class="loading-message" id="loading-message">Searching approved IT documentation...</div>
+              <div class="loading-skeleton">
+                <span class="skeleton-line long"></span>
+                <span class="skeleton-line medium"></span>
+                <span class="skeleton-line short"></span>
+              </div>
+            </div>
+            <p class="search-footnote">Press Enter to submit. Press Shift + Enter for a new line.</p>
+          </div>
+
+          {% set response_theme = "faculty" if source_name in ["classroom-technology.txt", "online-blended-learning.txt"] else "student" %}
+          {% if show_response %}
+            <div class="response-card {{ response_theme }}-response" id="response" data-has-response="1">
+              {% if input_guard_response %}
+                <div class="response-header">
+                  <span class="topic-pill">IT support</span>
+                  <div class="response-heading-group">
+                    <h2 class="issue-title">{{ input_guard_response.title }}</h2>
+                    <p class="header-copy">{{ input_guard_response.summary }}</p>
                   </div>
                 </div>
 
-                <textarea id="question-input" name="question" placeholder="Describe the issue, affected system, or procedure you need."></textarea>
-                <br>
-                <button class="question-submit-button" type="submit">Get help</button>
-              </form>
-            </div>
-            <p class="search-footnote">Press Enter to submit. Press Shift + Enter to add a new line.</p>
-          </div>
-
-          {% if show_response %}
-            <div class="response-card" id="response">
-              {% if disambiguation_options %}
-                <h2 class="response-title">Let’s narrow it down:</h2>
-
-                {% if asked_question %}
-                  <div class="asked-question">
-                    <div class="asked-question-label">You asked</div>
-                    <p class="asked-question-text">{{ asked_question }}</p>
+                {% if input_guard_response.chips %}
+                  <div class="procedure-block">
+                    <div class="choice-actions">
+                      {% for option in input_guard_response.chips %}
+                        <form method="POST" action="/#response">
+                          <input type="hidden" name="form_type" value="input_guard_choice">
+                          <input type="hidden" name="question" value="{{ option.query }}">
+                          <button class="choice-button" type="submit">{{ option.label }}</button>
+                        </form>
+                      {% endfor %}
+                    </div>
                   </div>
                 {% endif %}
+              {% elif disambiguation_options %}
+                <div class="response-header">
+                  <span class="topic-pill">Need help choosing</span>
+                  <div class="response-heading-group">
+                    <h2 class="issue-title">Let’s narrow it down</h2>
+                    <p class="header-copy">Pick the option that sounds closest to the problem.</p>
+                  </div>
+                </div>
 
                 <div class="procedure-block">
-                  <div class="section-label">Choose the area you need help with</div>
-                  <p class="procedure-note">This request could match more than one type of issue. Select the closest option to continue.</p>
                   <div class="choice-actions">
                     {% for option in disambiguation_options %}
                       <form method="POST" action="/#response">
@@ -81,182 +122,215 @@
                   </div>
                 </div>
               {% else %}
-                <h2 class="response-title">Recommended help</h2>
-
-                {% if section_heading %}
-                  <div class="response-heading">{{ section_heading }}</div>
-                {% endif %}
-
-                {% if asked_question %}
-                  <div class="asked-question">
-                    <div class="asked-question-label">You asked</div>
-                    <p class="asked-question-text">{{ asked_question }}</p>
+                {% set answer_title = support_title or (section_heading[:-1] if section_heading and section_heading.endswith(':') else (section_heading or "Support guidance")) %}
+                <div class="response-header">
+                  <span class="topic-pill">{{ "Faculty support" if response_theme == "faculty" else "Student support" }}</span>
+                  <div class="response-heading-group">
+                    <h2 class="issue-title">{{ answer_title }}</h2>
+                    {% if quick_summary or (guided_context and show_context) %}
+                      <p class="header-copy">{{ quick_summary or guided_context }}</p>
+                    {% endif %}
                   </div>
-                {% endif %}
+                </div>
 
-                {% if guided_context %}
-                  <div class="context-panel">
-                    <div class="section-label">Context</div>
-                    <p class="context-copy">{{ guided_context }}</p>
-                  </div>
-                {% endif %}
-
-                <div class="procedure-block">
-                  <div class="section-label">{{ tone_profile.steps_label }}</div>
-                  {% if tone_profile.guided_intro %}
-                    <p class="procedure-intro">{{ tone_profile.guided_intro }}</p>
+                <div class="answer-flow">
+                  {% if asked_question %}
+                    <p class="asked-question-inline">
+                      <span class="asked-question-label">You asked:</span>
+                      <span class="asked-question-text">“{{ asked_question }}”</span>
+                    </p>
                   {% endif %}
-                  <p class="procedure-note">{{ tone_profile.steps_note }}</p>
-                  {% if guided_steps %}
-                    <ol class="response-steps guided-steps">
-                      {% for item in guided_steps %}
-                        <li>{{ item }}</li>
+
+                  <section class="answer-section answer-primary">
+                    <div class="section-label">{{ response_profile.primary_label or "Try this first" }}</div>
+                    {% if guided_steps %}
+                      {% if response_profile.kind == "contact" %}
+                      <ul class="response-bullets contact-detail-list">
+                        {% for item in guided_steps %}
+                          <li>{{ item }}</li>
+                        {% endfor %}
+                      </ul>
+                      {% else %}
+                      <ol class="response-steps guided-steps">
+                        {% for item in guided_steps %}
+                          <li data-step="{{ loop.index }}">{{ item }}</li>
+                        {% endfor %}
+                      </ol>
+                      {% endif %}
+                    {% elif not missing_steps_message %}
+                      <div class="response-body">
+                        {% for block in answer_blocks %}
+                          {% if block.type == "paragraph" %}
+                            <p>
+                              {% if block.lead %}
+                                <strong>{{ block.lead }}</strong>{% if block.remainder %} {{ block.remainder }}{% endif %}
+                              {% else %}
+                                {{ block.remainder }}
+                              {% endif %}
+                            </p>
+                          {% elif block.type == "steps" %}
+                            <ol class="response-steps">
+                              {% for item in block.items %}
+                                <li data-step="{{ loop.index }}">{{ item }}</li>
+                              {% endfor %}
+                            </ol>
+                          {% elif block.type == "bullets" %}
+                            <ul class="response-bullets">
+                              {% for item in block.items %}
+                                <li>{{ item }}</li>
+                              {% endfor %}
+                            </ul>
+                          {% endif %}
+                        {% endfor %}
+                      </div>
+                    {% endif %}
+                    {% if missing_steps_message %}
+                      <p class="missing-steps-note">{{ missing_steps_message }}</p>
+                    {% endif %}
+                  </section>
+
+                  {% if additional_steps and response_profile.show_followup %}
+                    <section class="answer-section answer-followup{% if followup_status == 'no' %} is-emphasized{% endif %}">
+                      <div class="section-label">{{ response_profile.followup_label or tone_profile.followup_label or "Still need help?" }}</div>
+                      <ul class="response-bullets followup-bullets">
+                        {% for item in additional_steps %}
+                          <li>{{ item }}</li>
+                        {% endfor %}
+                      </ul>
+                    </section>
+                  {% endif %}
+
+                  <section class="answer-section answer-escalation">
+                    <h3>{{ response_profile.escalation_title or "Need help from IT?" }}</h3>
+                    {% if escalation_text %}
+                      {% for paragraph in escalation_text.split('\n') %}
+                        <p>{{ paragraph }}</p>
                       {% endfor %}
-                    </ol>
-                  {% else %}
-                    <div class="response-body">
-                      {% for block in answer_blocks %}
-                        {% if block.type == "paragraph" %}
-                          <p>
-                            {% if block.lead %}
-                              <strong>{{ block.lead }}</strong>{% if block.remainder %} {{ block.remainder }}{% endif %}
-                            {% else %}
-                              {{ block.remainder }}
-                            {% endif %}
-                          </p>
-                        {% elif block.type == "steps" %}
-                          <ol class="response-steps">
-                            {% for item in block.items %}
-                              <li>{{ item }}</li>
+                    {% endif %}
+                    {% if ticket_help_items %}
+                      <div class="section-label escalation-detail-label">{{ response_profile.ticket_help_label or "Include when you contact IT" }}</div>
+                      <ul class="response-bullets escalation-bullets">
+                        {% for item in ticket_help_items %}
+                          <li>{{ item }}</li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </section>
+
+                  {% if show_password_reset_portal %}
+                    <div class="response-action">
+                      {% if password_reset_portal_url %}
+                        <a href="{{ password_reset_portal_url }}" target="_blank" rel="noopener noreferrer">
+                          Open the password reset portal
+                        </a>
+                      {% else %}
+                        Password reset portal
+                      {% endif %}
+                    </div>
+                  {% endif %}
+                  <div class="response-footer">
+                    {% if response_profile.show_feedback %}
+                    <div class="feedback-section resolution-panel">
+                      {% if request_log_id and not followup_status %}
+                        <div class="feedback-title">Did this solve your issue?</div>
+                        <div class="feedback-actions">
+                          <form method="POST" action="/#response">
+                            <input type="hidden" name="form_type" value="followup">
+                            <input type="hidden" name="request_log_id" value="{{ request_log_id }}">
+                            <input type="hidden" name="question" value="{{ asked_question }}">
+                            <input type="hidden" name="resolution" value="yes">
+                            <button class="feedback-button" type="submit">Yes, it worked</button>
+                          </form>
+                          <form method="POST" action="/#response">
+                            <input type="hidden" name="form_type" value="followup">
+                            <input type="hidden" name="request_log_id" value="{{ request_log_id }}">
+                            <input type="hidden" name="question" value="{{ asked_question }}">
+                            <input type="hidden" name="resolution" value="no">
+                            <button class="feedback-button negative" type="submit">No, I still need help</button>
+                          </form>
+                        </div>
+                      {% elif followup_status == "yes" %}
+                        <div class="feedback-thanks">Thanks. This response was marked as helpful.</div>
+                      {% elif followup_status == "no" %}
+                        <div class="feedback-thanks">Thanks. This response was marked as not yet helpful.</div>
+                      {% endif %}
+                    </div>
+                    {% endif %}
+                    <p class="source-footnote source-footer-line">
+                      Answered using CCA IT support guidance{% if display_source_name %}. Source: {{ display_source_name }}{% endif %}
+                    </p>
+                    {% if internal_notes %}
+                      <section class="agent-metadata-panel internal-notes-panel" aria-label="Internal IT Notes">
+                        <div class="section-label">Internal IT Notes</div>
+                        <p class="agent-metadata-subtitle">
+                          Internal source: {{ internal_notes.source_name }}
+                          {% if internal_notes.section_heading %} · {{ internal_notes.section_heading }}{% endif %}
+                        </p>
+                        {% if internal_notes.content %}
+                          <div class="response-body">
+                            {% for block in build_response_blocks(internal_notes.content) %}
+                              {% if block.type == "paragraph" %}
+                                <p>{{ block.remainder }}</p>
+                              {% elif block.type == "steps" %}
+                                <ol class="response-steps">
+                                  {% for item in block.items %}
+                                    <li data-step="{{ loop.index }}">{{ item }}</li>
+                                  {% endfor %}
+                                </ol>
+                              {% elif block.type == "bullets" %}
+                                <ul class="response-bullets">
+                                  {% for item in block.items %}
+                                    <li>{{ item }}</li>
+                                  {% endfor %}
+                                </ul>
+                              {% endif %}
                             {% endfor %}
-                          </ol>
-                        {% elif block.type == "bullets" %}
-                          <ul class="response-bullets">
-                            {% for item in block.items %}
+                          </div>
+                        {% endif %}
+                      </section>
+                    {% endif %}
+                    {% if agent_triage or suggested_missing_info or ticket_summary or confidence_note %}
+                      <section class="agent-metadata-panel" aria-label="Internal triage notes">
+                        <div class="section-label">Internal triage notes</div>
+                        {% if agent_triage %}
+                          {% if agent_triage.triage_note %}
+                            <p>{{ agent_triage.triage_note }}</p>
+                          {% endif %}
+                          <p>Escalation required: {{ "Yes" if agent_triage.escalation_required else "No" }}</p>
+                        {% endif %}
+                        {% if suggested_missing_info %}
+                          <div class="agent-metadata-subtitle">Suggested missing information</div>
+                          <ul class="agent-metadata-list">
+                            {% for item in suggested_missing_info %}
                               <li>{{ item }}</li>
                             {% endfor %}
                           </ul>
                         {% endif %}
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-                </div>
-
-                {% if show_password_reset_portal %}
-                  <div class="response-action">
-                    {% if password_reset_portal_url %}
-                      <a href="{{ password_reset_portal_url }}" target="_blank" rel="noopener noreferrer">
-                        Open the Password Reset Portal
-                      </a>
-                    {% else %}
-                      Password Reset Portal
+                        {% if ticket_summary %}
+                          <div class="agent-metadata-subtitle">Ticket summary</div>
+                          <p>{{ ticket_summary }}</p>
+                        {% endif %}
+                        {% if confidence_note %}
+                          <div class="agent-metadata-subtitle">Confidence note</div>
+                          <p>{{ confidence_note }}</p>
+                        {% endif %}
+                      </section>
                     {% endif %}
                   </div>
-                {% endif %}
-
-                {% if request_log_id and not followup_status %}
-                  <div class="feedback-section resolution-panel">
-                    <div class="feedback-title">Did this fix your issue?</div>
-                    <div class="feedback-actions">
-                      <form method="POST" action="/#response">
-                        <input type="hidden" name="form_type" value="followup">
-                        <input type="hidden" name="request_log_id" value="{{ request_log_id }}">
-                        <input type="hidden" name="question" value="{{ asked_question }}">
-                        <input type="hidden" name="resolution" value="yes">
-                        <button class="feedback-button" type="submit">Yes</button>
-                      </form>
-                      <form method="POST" action="/#response">
-                        <input type="hidden" name="form_type" value="followup">
-                        <input type="hidden" name="request_log_id" value="{{ request_log_id }}">
-                        <input type="hidden" name="question" value="{{ asked_question }}">
-                        <input type="hidden" name="resolution" value="no">
-                        <button class="feedback-button negative" type="submit">No</button>
-                      </form>
-                    </div>
-                  </div>
-                {% endif %}
-
-                {% if followup_status == "yes" %}
-                  <div class="feedback-thanks">Thanks. This issue was marked as resolved.</div>
-                {% elif followup_status == "no" %}
-                  <div class="followup-panel">
-                    <div class="section-label">{{ tone_profile.followup_label }}</div>
-                    <p class="procedure-note">{{ tone_profile.followup_note }}</p>
-                    <ol class="response-steps guided-steps">
-                      {% for item in additional_steps %}
-                        <li>{{ item }}</li>
-                      {% endfor %}
-                    </ol>
-                  </div>
-
-                  {% if escalation_text %}
-                    <div class="response-escalation">
-                      <h3>{{ tone_profile.escalation_label }}</h3>
-                      <p class="next-step">{{ tone_profile.escalation_intro }}</p>
-                      {% for paragraph in escalation_text.split('\n') %}
-                        <p>{{ paragraph }}</p>
-                      {% endfor %}
-                    </div>
-                  {% endif %}
-                {% endif %}
-
-                {% if source_name or section_heading or retrieval_confidence %}
-                  <div class="match-details">
-                    <h3>Source</h3>
-                    <div class="match-row">
-                      <div class="match-label">Article</div>
-                      <div class="match-value">{{ display_source_name or "Not available" }}</div>
-                      <div class="match-label">Procedure section</div>
-                      <div class="match-value">{{ section_heading or "Not available" }}</div>
-                      <div class="match-label">Confidence</div>
-                      <div class="match-value">{{ retrieval_confidence or "Not available" }}</div>
-                    </div>
-                  </div>
-                {% endif %}
-
-                <div class="response-source">
-                  Based on approved CCA IT documentation.
                 </div>
               {% endif %}
             </div>
+          {% else %}
+            <div class="response-card placeholder-card" id="response" data-has-response="0">
+              <div class="placeholder-label">Response will appear here</div>
+              <div class="placeholder-skeleton">
+                <span class="skeleton-line long"></span>
+                <span class="skeleton-line medium"></span>
+                <span class="skeleton-line short"></span>
+              </div>
+            </div>
           {% endif %}
         </div>
-
-        <aside class="sidebar">
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Popular help topics</h3>
-            <ol class="workflow-list">
-              <li>Account access and password issues</li>
-              <li>Wi-Fi and connection problems</li>
-              <li>D2L, Zoom, and learning tools</li>
-              <li>Classroom display and audio problems</li>
-            </ol>
-          </div>
-
-          <div class="sidebar-card scope-note">
-            <h3 class="sidebar-title">Who this helps</h3>
-            <p class="sidebar-copy">
-              This assistant is designed for students and faculty who need help with common CCA technology issues using approved support guidance.
-            </p>
-          </div>
-
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Support features</h3>
-            <div class="status-chips">
-              <span class="status-chip good">Approved guidance</span>
-              <span class="status-chip good">Guided steps</span>
-              <span class="status-chip good">Source shown</span>
-              <span class="status-chip">Feedback enabled</span>
-            </div>
-          </div>
-
-          <div class="sidebar-card">
-            <h3 class="sidebar-title">Need more help?</h3>
-            <p class="sidebar-copy">
-              After trying the suggested steps, use the follow-up buttons to let IT know whether the guidance helped.
-            </p>
-          </div>
-        </aside>
       </div>
     </div>
     <script src="{{ url_for('static', filename='app.js') }}"></script>
