@@ -133,7 +133,7 @@ High-level flow:
 1. user signs in through `/login`
 2. authenticated user submits a question to `/`
 3. the app checks for a lightweight disambiguation case for broad login-style questions
-4. retrieval-first lookup runs against `content/*.txt`
+4. retrieval-first lookup runs against public KB articles in `content/public/`
 5. if retrieval finds a match:
    - the matched article and section are used
    - confidence is included
@@ -153,7 +153,7 @@ The main retriever is in [retriever.py](./retriever.py).
 
 It works by:
 
-- loading all knowledge files under `content/`
+- loading knowledge files under `content/public/`
 - splitting each document into searchable sections
 - scoring sections against the user question
 
@@ -263,7 +263,12 @@ and phone numbers.
 
 ## Knowledge Base Format
 
-Knowledge articles live in [content/](./content/).
+Knowledge articles live under [content/](./content/):
+
+- `content/public/` contains student/faculty-facing support articles.
+- `content/internal/` contains staff-only SOPs that can appear only as internal notes for allowlisted users.
+
+The loader keeps existing article IDs stable. For example, `content/public/password-reset.txt` is still identified as `password-reset.txt`, and `content/internal/printing/map-network-printer.txt` is still identified as `printing/map-network-printer.txt`.
 
 The system supports two content styles:
 
@@ -351,7 +356,7 @@ Run:
 ./venv/bin/python validate_kb.py
 ```
 
-This validates structured guide fields and guide-heading references for `content/*.txt`.
+This validates structured guide fields and guide-heading references for KB files under `content/public/` and `content/internal/`.
 
 What it checks:
 
@@ -492,7 +497,7 @@ allowlisted users.
 
 Recommended workflow for safe changes:
 
-1. edit or add knowledge articles in `content/`
+1. edit or add public knowledge articles in `content/public/`, or staff-only SOPs in `content/internal/`
 2. run KB validation
 3. run routing and retrieval evaluations
 4. smoke test the Flask UI
@@ -560,17 +565,24 @@ Current limitations:
 ## Project Structure
 
 ```txt
-app.py
-auth.py
-logging_store.py
-response_builder.py
-retriever.py
-semantic_retriever.py
-llm_answer.py
-validate_kb.py
-evaluate_routing.py
-evaluate_retrieval.py
+app.py                    Flask web entry point
+support_service.py        retrieval-first orchestration
+retriever.py              section retrieval
+router.py                 fallback article routing
+response_builder.py       guided response shaping
+auth.py                   LDAP and dev login helpers
+logging_store.py          SQLite request and feedback logs
+llm_answer.py             optional retrieved-text polishing
 content/
-templates/
-static/
+  public/                 student/faculty-facing KB articles
+  internal/               staff-only SOPs for internal notes
+templates/                Flask templates
+static/                   browser assets
+docs/                     runbooks and review docs
+deploy/                   service and nginx examples
+validate_kb.py            KB validator
+evaluate_*.py             regression checks
+*_eval_cases.py           evaluation case data
+report_logs.py            local log reporting
+export_*.py               local review/audit exports
 ```

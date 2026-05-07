@@ -70,7 +70,7 @@ class RetrievalResult:
 
 def load_retrieval_texts(include_internal=False, internal_only=False):
     """
-    Load all text files from content/ for section retrieval.
+    Load scoped KB text files for section retrieval.
     """
     return load_scoped_content_texts(
         include_internal=include_internal,

@@ -6,7 +6,7 @@ Last updated: 2026-04-27
 
 ## Method
 
-- Reviewed every `content/*.txt` file in the KB.
+- Reviewed every public KB article under `content/public/`.
 - Compared high-risk factual claims against public CCA sources when available.
 - Used these source-status labels:
   - `verified_public_source`

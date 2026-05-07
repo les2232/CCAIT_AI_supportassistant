@@ -285,7 +285,7 @@ sqlite3 it_help_logs.db "SELECT id, created_at, request_log_id, helpful FROM fee
 
 Recommended update workflow:
 
-1. edit `content/*.txt`
+1. edit public KB articles in `content/public/` or staff-only SOPs in `content/internal/`
 2. run:
 
 ```bash

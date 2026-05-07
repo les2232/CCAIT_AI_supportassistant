@@ -276,8 +276,8 @@ TOKEN_SYNONYMS = {
 
 def load_content_texts(include_internal=False, internal_only=False):
     """
-    Load supported .txt files from the content/ directory.
-    Returns a dict: { filename: text }
+    Load scoped KB text files for fallback routing.
+    Returns a dict: {article_id: text}.
     """
     texts = load_scoped_content_texts(
         include_internal=include_internal,

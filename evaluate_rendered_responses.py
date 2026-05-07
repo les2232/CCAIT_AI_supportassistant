@@ -361,9 +361,9 @@ def has_all_sequential_rendered_step_numbers(rendered_html):
 
 
 def fake_agent_metadata_result():
-    content_text = (Path(__file__).parent / "content" / "wifi-troubleshooting.txt").read_text(
-        encoding="utf-8"
-    )
+    content_text = (
+        Path(__file__).parent / "content" / "public" / "wifi-troubleshooting.txt"
+    ).read_text(encoding="utf-8")
     return {
         "source_name": "wifi-troubleshooting.txt",
         "section_heading": "Cannot connect to CCA Wi-Fi:",

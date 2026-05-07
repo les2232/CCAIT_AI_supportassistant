@@ -4,7 +4,7 @@
 
 This repository is a retrieval-first internal IT support assistant for Community College of Aurora. It is not a general chatbot.
 
-Approved local knowledge base files in `content/` are the source of truth. OpenAI-backed features are optional and secondary: query classification, answer polishing, and Realtime voice support only. Do not add behavior that invents policy, support procedures, URLs, contact details, institutional claims, or escalation instructions that are not grounded in the local KB.
+Approved local knowledge base files in `content/public/` and `content/internal/` are the source of truth. OpenAI-backed features are optional and secondary: query classification, answer polishing, and Realtime voice support only. Do not add behavior that invents policy, support procedures, URLs, contact details, institutional claims, or escalation instructions that are not grounded in the local KB.
 
 Keep the product focused on a clean, pilot-ready support experience. Avoid broad abstractions, multi-agent conversation state, or platform rewrites unless explicitly requested.
 
@@ -12,7 +12,7 @@ Keep the product focused on a clean, pilot-ready support experience. Avoid broad
 
 - `app.py` is the Flask entry point. It owns login/logout, session protection, the main question form, guided follow-up handling, feedback submission, and Realtime endpoints.
 - `support_service.py` coordinates the retrieval-first question resolution flow.
-- `retriever.py` performs primary heuristic section retrieval over `content/*.txt`.
+- `retriever.py` performs primary heuristic section retrieval over public KB articles in `content/public/` and optional staff-only SOP retrieval from `content/internal/`.
 - `semantic_retriever.py` is an optional conservative fallback when embeddings are enabled.
 - `router.py` provides fallback article selection when direct section retrieval is not confident.
 - `response_builder.py` turns retrieved KB content into guided UI data: summaries, context, steps, additional troubleshooting, escalation, and ticket-help text.
@@ -108,9 +108,9 @@ For Realtime tool changes, also run:
 ## Safe Coding Rules
 
 - Preserve retrieval-first behavior. A response should come from matched KB content or clearly fall back to an unsupported/escalation path.
-- Keep `content/` grounded and reviewable. When adding or editing support guidance, include only approved institutional information.
+- Keep `content/public/` and `content/internal/` grounded and reviewable. When adding or editing support guidance, include only approved institutional information.
 - Public/student-facing KB articles must be marked or inferable as `VISIBILITY: public` and `SAFE_FOR_STUDENT: yes`. Existing top-level public articles default to public/student-safe for backward compatibility.
-- Internal SOPs must be marked with `VISIBILITY: internal` and `SAFE_FOR_STUDENT: no`. Nested SOP folders under `content/` are treated as internal unless explicitly made public and reviewed.
+- Internal SOPs belong under `content/internal/` and must be marked with `VISIBILITY: internal` and `SAFE_FOR_STUDENT: no`.
 - Never let internal SOP content affect normal student-facing titles, summaries, guided steps, escalation text, source footers, or response confidence.
 - Internal SOP content may be shown only in a clearly labeled "Internal IT Notes" section when internal mode is enabled.
 - Do not make OpenAI calls mandatory for normal support answers. Local deterministic fallback behavior must remain usable.

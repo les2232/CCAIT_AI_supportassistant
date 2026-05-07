@@ -1,7 +1,7 @@
 from pathlib import Path
 import sys
 
-from kb_scope import get_article_scope, article_id_for_path
+from kb_scope import article_id_for_path, content_namespace_for_path, get_article_scope
 from response_builder import (
     GUIDE_FIELD_NAMES,
     count_user_facing_steps,
@@ -33,7 +33,11 @@ def heading_reference_errors(field_name, items, section_map):
 
 def validate_file(path):
     content_text = path.read_text(encoding="utf-8")
-    scope = get_article_scope(article_id_for_path(path), content_text)
+    scope = get_article_scope(
+        article_id_for_path(path),
+        content_text,
+        namespace=content_namespace_for_path(path),
+    )
     guide = parse_guide_content(content_text)
     section_map = parse_section_map(content_text)
 
@@ -123,12 +127,13 @@ def main():
     for path in files:
         files_checked += 1
         warnings, errors = validate_file(path)
+        article_id = article_id_for_path(path)
         if errors:
-            error_files.append((path.relative_to(CONTENT_DIR).as_posix(), warnings, errors))
+            error_files.append((article_id, warnings, errors))
         elif warnings:
-            warning_files.append((path.relative_to(CONTENT_DIR).as_posix(), warnings))
+            warning_files.append((article_id, warnings))
         else:
-            passing_files.append(path.relative_to(CONTENT_DIR).as_posix())
+            passing_files.append(article_id)
 
     print("Knowledge base validation")
     print("========================================================================")

@@ -1,5 +1,11 @@
 from pathlib import Path
 
+from kb_scope import (
+    article_id_for_path,
+    content_namespace_for_path,
+    get_article_scope,
+    iter_content_paths,
+)
 from response_builder import GUIDE_FIELD_NAMES, parse_guide_content, parse_section_map
 
 
@@ -36,14 +42,15 @@ def format_field_items(items):
 
 def build_article_section(path):
     content_text = path.read_text(encoding="utf-8")
+    article_id = article_id_for_path(path)
     guide = parse_guide_content(content_text)
     section_map = parse_section_map(content_text)
     source_label = read_source_label(content_text)
 
     lines = [
-        f"## {path.name}",
+        f"## {article_id}",
         "",
-        f"- File name: `{path.name}`",
+        f"- File name: `{article_id}`",
         f"- SOURCE: {format_scalar(source_label)}",
         f"- TITLE: {format_scalar((guide.get('TITLE') or '').strip())}",
         f"- AUDIENCE: {format_scalar((guide.get('AUDIENCE') or '').strip())}",
@@ -103,14 +110,23 @@ def build_article_section(path):
 
 def build_document():
     sections = []
-    for path in sorted(CONTENT_DIR.glob("*.txt")):
+    for path in iter_content_paths(CONTENT_DIR):
+        content_text = path.read_text(encoding="utf-8")
+        article_id = article_id_for_path(path)
+        scope = get_article_scope(
+            article_id,
+            content_text,
+            namespace=content_namespace_for_path(path),
+        )
+        if scope.is_internal:
+            continue
         sections.append(build_article_section(path))
 
     return "\n".join(
         [
             "# Manual KB Review",
             "",
-            "Generated from `content/*.txt` by `export_kb_audit.py`.",
+            "Generated from public KB articles under `content/public/` by `export_kb_audit.py`.",
             "",
             "Use this document to review article claims, confirm sources of truth, and record revision decisions without editing the source articles directly.",
             "",
