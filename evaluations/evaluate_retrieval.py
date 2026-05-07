@@ -1,5 +1,9 @@
 import argparse
 
+from _bootstrap import ensure_repo_root_on_path
+
+ensure_repo_root_on_path()
+
 from retrieval_eval_cases import RETRIEVAL_EVAL_CASES
 from retriever import load_retrieval_texts, retrieve_best_section
 

@@ -1,5 +1,8 @@
-from pathlib import Path
 import sys
+
+from _bootstrap import REPO_ROOT, ensure_repo_root_on_path
+
+ensure_repo_root_on_path()
 
 from kb_scope import article_id_for_path, content_namespace_for_path, get_article_scope
 from response_builder import (
@@ -15,7 +18,7 @@ from response_builder import (
 )
 
 
-CONTENT_DIR = Path(__file__).parent / "content"
+CONTENT_DIR = REPO_ROOT / "content"
 
 
 def heading_reference_errors(field_name, items, section_map):

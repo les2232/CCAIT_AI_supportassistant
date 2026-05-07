@@ -9,6 +9,10 @@ from pathlib import Path
 
 from flask import Flask
 
+from _bootstrap import ensure_repo_root_on_path
+
+ensure_repo_root_on_path()
+
 import app as app_module
 import logging_store
 

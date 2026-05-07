@@ -1,5 +1,9 @@
 import json
 
+from _bootstrap import ensure_repo_root_on_path
+
+ensure_repo_root_on_path()
+
 from realtime_tools import (
     log_support_interaction,
     prepare_it_ticket,

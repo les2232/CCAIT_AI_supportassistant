@@ -129,7 +129,7 @@ After deployment, verify:
 Before each deployment:
 
 1. `./venv/bin/python check_all.py`
-2. `./venv/bin/python evaluate_pilot_queries.py`
+2. `./venv/bin/python evaluations/evaluate_pilot_queries.py`
 3. manual login and smoke test in the target environment
 
 ## Remaining Operational Risks

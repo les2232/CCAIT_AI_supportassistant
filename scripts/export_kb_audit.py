@@ -1,4 +1,6 @@
-from pathlib import Path
+from _bootstrap import REPO_ROOT, ensure_repo_root_on_path
+
+ensure_repo_root_on_path()
 
 from kb_scope import (
     article_id_for_path,
@@ -9,7 +11,7 @@ from kb_scope import (
 from response_builder import GUIDE_FIELD_NAMES, parse_guide_content, parse_section_map
 
 
-ROOT_DIR = Path(__file__).parent
+ROOT_DIR = REPO_ROOT
 CONTENT_DIR = ROOT_DIR / "content"
 OUTPUT_PATH = ROOT_DIR / "docs" / "manual-kb-review.md"
 
@@ -126,7 +128,7 @@ def build_document():
         [
             "# Manual KB Review",
             "",
-            "Generated from public KB articles under `content/public/` by `export_kb_audit.py`.",
+            "Generated from public KB articles under `content/public/` by `scripts/export_kb_audit.py`.",
             "",
             "Use this document to review article claims, confirm sources of truth, and record revision decisions without editing the source articles directly.",
             "",

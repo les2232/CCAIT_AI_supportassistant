@@ -2,7 +2,10 @@ import argparse
 import sqlite3
 from pathlib import Path
 
-DEFAULT_DB_PATH = Path(__file__).parent / "it_help_logs.db"
+from _bootstrap import REPO_ROOT
+
+
+DEFAULT_DB_PATH = REPO_ROOT / "it_help_logs.db"
 
 
 def resolve_db_path() -> Path:

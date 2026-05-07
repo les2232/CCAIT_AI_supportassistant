@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 import sys
 
+from _bootstrap import ensure_repo_root_on_path
+
+ensure_repo_root_on_path()
+
 from response_builder import detect_disambiguation_options
 
 

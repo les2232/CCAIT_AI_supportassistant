@@ -1,0 +1,11 @@
+from pathlib import Path
+import sys
+
+
+REPO_ROOT = Path(__file__).resolve().parent.parent
+
+
+def ensure_repo_root_on_path():
+    root = str(REPO_ROOT)
+    if root not in sys.path:
+        sys.path.insert(0, root)

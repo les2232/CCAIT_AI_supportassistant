@@ -1,5 +1,9 @@
 import argparse
 
+from _bootstrap import ensure_repo_root_on_path
+
+ensure_repo_root_on_path()
+
 from router import legacy_select_response, load_content_texts, select_response
 from routing_eval_cases import ROUTING_EVAL_CASES
 

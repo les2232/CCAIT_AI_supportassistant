@@ -1,3 +1,7 @@
+from _bootstrap import ensure_repo_root_on_path
+
+ensure_repo_root_on_path()
+
 from query_classifier import classify_query_with_openai
 
 

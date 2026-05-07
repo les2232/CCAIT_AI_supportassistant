@@ -2,6 +2,10 @@
 import argparse
 import sys
 
+from _bootstrap import ensure_repo_root_on_path
+
+ensure_repo_root_on_path()
+
 from app import resolve_question
 from pilot_eval_cases import PILOT_EVAL_CASES
 from response_builder import (

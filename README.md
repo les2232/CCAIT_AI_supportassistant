@@ -333,7 +333,7 @@ This project includes explicit evaluation scripts and a knowledge-base validator
 Run:
 
 ```bash
-./venv/bin/python evaluate_routing.py --strict
+./venv/bin/python evaluations/evaluate_routing.py --strict
 ```
 
 This validates topic/article routing behavior for representative support questions.
@@ -343,7 +343,7 @@ This validates topic/article routing behavior for representative support questio
 Run:
 
 ```bash
-./venv/bin/python evaluate_retrieval.py --strict
+./venv/bin/python evaluations/evaluate_retrieval.py --strict
 ```
 
 This validates section-level retrieval behavior, including expected article and matched heading.
@@ -353,7 +353,7 @@ This validates section-level retrieval behavior, including expected article and 
 Run:
 
 ```bash
-./venv/bin/python validate_kb.py
+./venv/bin/python scripts/validate_kb.py
 ```
 
 This validates structured guide fields and guide-heading references for KB files under `content/public/` and `content/internal/`.
@@ -505,11 +505,11 @@ Recommended workflow for safe changes:
 Commands:
 
 ```bash
-./venv/bin/python validate_kb.py
-./venv/bin/python evaluate_disambiguation.py
-./venv/bin/python evaluate_routing.py --strict
-./venv/bin/python evaluate_retrieval.py --strict
-./venv/bin/python evaluate_rendered_responses.py
+./venv/bin/python scripts/validate_kb.py
+./venv/bin/python evaluations/evaluate_disambiguation.py
+./venv/bin/python evaluations/evaluate_routing.py --strict
+./venv/bin/python evaluations/evaluate_retrieval.py --strict
+./venv/bin/python evaluations/evaluate_rendered_responses.py
 ./venv/bin/python check_all.py
 ./venv/bin/python app.py
 ```
@@ -580,9 +580,6 @@ templates/                Flask templates
 static/                   browser assets
 docs/                     runbooks and review docs
 deploy/                   service and nginx examples
-validate_kb.py            KB validator
-evaluate_*.py             regression checks
-*_eval_cases.py           evaluation case data
-report_logs.py            local log reporting
-export_*.py               local review/audit exports
+evaluations/              regression checks and evaluation case data
+scripts/                  KB validation and operational helper scripts
 ```

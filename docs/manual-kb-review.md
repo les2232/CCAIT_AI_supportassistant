@@ -1,6 +1,6 @@
 # Manual KB Review
 
-Generated from public KB articles under `content/public/` by `export_kb_audit.py`.
+Generated from public KB articles under `content/public/` by `scripts/export_kb_audit.py`.
 
 Use this document to review article claims, confirm sources of truth, and record revision decisions without editing the source articles directly.
 

@@ -205,7 +205,7 @@ Run these checks after deployment:
 ```bash
 cd /opt/cca-it-support-assistant
 ./venv/bin/python check_all.py
-./venv/bin/python evaluate_pilot_queries.py
+./venv/bin/python evaluations/evaluate_pilot_queries.py
 ```
 
 ## Rollback Plan
@@ -289,9 +289,9 @@ Recommended update workflow:
 2. run:
 
 ```bash
-./venv/bin/python validate_kb.py
+./venv/bin/python scripts/validate_kb.py
 ./venv/bin/python check_all.py
-./venv/bin/python evaluate_pilot_queries.py
+./venv/bin/python evaluations/evaluate_pilot_queries.py
 ```
 
 3. manually smoke test one student query and one faculty query

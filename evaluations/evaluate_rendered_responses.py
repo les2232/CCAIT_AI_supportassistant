@@ -7,6 +7,10 @@ from unittest.mock import patch
 
 from flask import template_rendered
 
+from _bootstrap import REPO_ROOT, ensure_repo_root_on_path
+
+ensure_repo_root_on_path()
+
 from app import app, csrf_token_for_session
 
 
@@ -362,7 +366,7 @@ def has_all_sequential_rendered_step_numbers(rendered_html):
 
 def fake_agent_metadata_result():
     content_text = (
-        Path(__file__).parent / "content" / "public" / "wifi-troubleshooting.txt"
+        REPO_ROOT / "content" / "public" / "wifi-troubleshooting.txt"
     ).read_text(encoding="utf-8")
     return {
         "source_name": "wifi-troubleshooting.txt",

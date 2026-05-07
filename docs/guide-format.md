@@ -2,7 +2,7 @@
 
 This project supports a guide-ready article format for structured troubleshooting responses.
 
-The guide fields are parsed in [response_builder.py](../response_builder.py) and validated by [validate_kb.py](../validate_kb.py).
+The guide fields are parsed in [response_builder.py](../response_builder.py) and validated by [scripts/validate_kb.py](../scripts/validate_kb.py).
 
 ## Supported Fields
 
@@ -92,7 +92,7 @@ Escalation guidance for the guided flow. This should resolve to actionable suppo
 Run:
 
 ```bash
-./venv/bin/python validate_kb.py
+./venv/bin/python scripts/validate_kb.py
 ```
 
 The validator checks:

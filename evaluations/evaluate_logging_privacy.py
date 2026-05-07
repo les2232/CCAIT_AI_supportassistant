@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+from _bootstrap import ensure_repo_root_on_path
+
+ensure_repo_root_on_path()
+
 from logging_store import redact_sensitive_log_text
 
 

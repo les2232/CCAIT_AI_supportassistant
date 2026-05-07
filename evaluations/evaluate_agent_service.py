@@ -4,6 +4,10 @@ import os
 import sys
 from contextlib import contextmanager
 
+from _bootstrap import ensure_repo_root_on_path
+
+ensure_repo_root_on_path()
+
 from agent_service import maybe_run_agent_triage
 
 

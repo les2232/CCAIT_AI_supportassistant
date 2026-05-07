@@ -2,6 +2,10 @@
 import os
 from contextlib import contextmanager
 
+from _bootstrap import ensure_repo_root_on_path
+
+ensure_repo_root_on_path()
+
 import app as app_module
 
 

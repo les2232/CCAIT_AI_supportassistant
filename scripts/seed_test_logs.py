@@ -3,7 +3,10 @@ import sqlite3
 from datetime import datetime, UTC, timedelta
 from pathlib import Path
 
-DEFAULT_DB_PATH = Path(__file__).parent / "it_help_logs_test.db"
+from _bootstrap import REPO_ROOT
+
+
+DEFAULT_DB_PATH = REPO_ROOT / "it_help_logs_test.db"
 REAL_DB_NAME = "it_help_logs.db"
 
 SAMPLE_LOGS = [

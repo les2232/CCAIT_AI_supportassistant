@@ -5,6 +5,10 @@ from contextlib import contextmanager
 
 from flask import template_rendered
 
+from _bootstrap import ensure_repo_root_on_path
+
+ensure_repo_root_on_path()
+
 from app import app, csrf_token_for_session
 from kb_scope import load_scoped_content_texts
 from support_service import resolve_question

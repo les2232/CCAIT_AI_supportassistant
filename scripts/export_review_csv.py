@@ -3,8 +3,11 @@ import csv
 import sqlite3
 from pathlib import Path
 
-DEFAULT_DB_PATH = Path(__file__).parent / "it_help_logs.db"
-DEFAULT_OUTPUT_DIR = Path(__file__).parent / "exports"
+from _bootstrap import REPO_ROOT
+
+
+DEFAULT_DB_PATH = REPO_ROOT / "it_help_logs.db"
+DEFAULT_OUTPUT_DIR = REPO_ROOT / "exports"
 
 UNSUPPORTED_FILENAME = "unsupported_topics.csv"
 ESCALATIONS_FILENAME = "escalations.csv"

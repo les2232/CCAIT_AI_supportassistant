@@ -23,7 +23,7 @@ Keep the product focused on a clean, pilot-ready support experience. Avoid broad
 - `realtime_tools.py` exposes structured support tools for the Realtime voice interface.
 - `kb_scope.py` classifies KB files as public/student-safe or internal-only before retrieval.
 - `templates/` and `static/` contain the Flask UI.
-- `evaluate_*.py`, `validate_kb.py`, and `check_all.py` are part of the quality gate and should be kept working.
+- `evaluations/evaluate_*.py`, `scripts/validate_kb.py`, and `check_all.py` are part of the quality gate and should be kept working.
 
 ## Running Locally
 
@@ -88,21 +88,21 @@ Before changing retrieval, routing, response rendering, or KB content, run the f
 Individual checks:
 
 ```bash
-./venv/bin/python validate_kb.py
-./venv/bin/python evaluate_agent_service.py
-./venv/bin/python evaluate_kb_scope.py
-./venv/bin/python evaluate_disambiguation.py
-./venv/bin/python evaluate_routing.py --strict
-./venv/bin/python evaluate_retrieval.py --strict
-./venv/bin/python evaluate_pilot_queries.py
-./venv/bin/python evaluate_rendered_responses.py
-./venv/bin/python evaluate_query_classifier.py
+./venv/bin/python scripts/validate_kb.py
+./venv/bin/python evaluations/evaluate_agent_service.py
+./venv/bin/python evaluations/evaluate_kb_scope.py
+./venv/bin/python evaluations/evaluate_disambiguation.py
+./venv/bin/python evaluations/evaluate_routing.py --strict
+./venv/bin/python evaluations/evaluate_retrieval.py --strict
+./venv/bin/python evaluations/evaluate_pilot_queries.py
+./venv/bin/python evaluations/evaluate_rendered_responses.py
+./venv/bin/python evaluations/evaluate_query_classifier.py
 ```
 
 For Realtime tool changes, also run:
 
 ```bash
-./venv/bin/python exercise_realtime_tools.py
+./venv/bin/python scripts/exercise_realtime_tools.py
 ```
 
 ## Safe Coding Rules
@@ -145,13 +145,13 @@ For Realtime tool changes, also run:
 
 ## Testing Expectations
 
-- For KB format changes, run `validate_kb.py`.
-- For routing changes, run `evaluate_routing.py --strict`.
-- For retrieval scoring or section parsing changes, run `evaluate_retrieval.py --strict`.
-- For disambiguation changes, run `evaluate_disambiguation.py`.
-- For guided response rendering changes, run `evaluate_rendered_responses.py` and manually smoke test the Flask UI when feasible.
+- For KB format changes, run `scripts/validate_kb.py`.
+- For routing changes, run `evaluations/evaluate_routing.py --strict`.
+- For retrieval scoring or section parsing changes, run `evaluations/evaluate_retrieval.py --strict`.
+- For disambiguation changes, run `evaluations/evaluate_disambiguation.py`.
+- For guided response rendering changes, run `evaluations/evaluate_rendered_responses.py` and manually smoke test the Flask UI when feasible.
 - For classifier changes, verify both OpenAI-enabled behavior and local fallback behavior when practical.
 - For authentication changes, smoke test login, logout, unauthorized redirects, LDAP configuration handling, and development fallback behavior.
 - For logging changes, verify request and feedback rows are still written to SQLite.
-- For Realtime changes, verify `/realtime/session`, `/realtime/tool`, and `exercise_realtime_tools.py`.
+- For Realtime changes, verify `/realtime/session`, `/realtime/tool`, and `scripts/exercise_realtime_tools.py`.
 - If a check cannot be run, state why and describe the remaining risk.
