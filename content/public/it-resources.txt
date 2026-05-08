@@ -10,19 +10,19 @@ CCA IT Help Portal:
 - The portal provides helpful guidance on common IT issues.
 
 The Hub:
-- The Hub offers technology assistance, tutoring, library research, and printing services.
-- The Hub is available at both CentreTech and Lowry campuses.
-- To find The Hub, search "HUB" from the CCA college home page or scan the Hub QR code.
-- CentreTech location: Classroom Building 107.
-- CentreTech phone: 303-360-4736.
+- The Hub may be a starting point for in-person campus support, but current services, locations, phone numbers, and hours
+  should be confirmed through official CCA sources before visiting.
+- To find current Hub information, search "HUB" from the CCA college home page, use official CCA support pages, or ask the
+  CCA IT Helpdesk where to go for your issue.
 
 When to use The Hub:
-- Visit The Hub for in-person technology assistance on either campus.
-- The Hub also supports tutoring, library research, and printing from personal devices.
+- Use The Hub as a possible starting point for in-person campus support after confirming current services and locations.
+- For account, login, Wi-Fi, device, printing, or classroom technology problems, use the CCA IT Help Portal or contact the
+  CCA IT Helpdesk.
 
 - TITLE: CCA IT Resources and Campus Support
 - AUDIENCE: Students and faculty
-- TAGS: IT help portal, hub, tutoring, printing, library, CentreTech, Lowry, campus, resources, QR code, technology assistance
+- TAGS: IT help portal, hub, campus support, resources, QR code, technology assistance
 - CONTEXT:
   - CCA IT Help Portal:
 - STEPS:

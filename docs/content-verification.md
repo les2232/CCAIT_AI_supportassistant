@@ -55,8 +55,8 @@ Last updated: 2026-05-08
 | `d2l-troubleshooting.txt` | LMS naming | `D2L (Brightspace)` | low | `likely_but_needs_human_verification` | Keep wording; confirm if CCA wants student-facing copy to say `D2L`, `Brightspace`, or both. |
 | `d2l-troubleshooting.txt` | Support ownership split | IT for sign-in / technical issues, instructor for missing course or assignment availability | medium | `likely_but_needs_human_verification` | Confirm with Academic Affairs / OBL that this escalation split is official. |
 | `d2l.txt` | D2L access via student account credentials | Students sign in with CCA student credentials | medium | `likely_but_needs_human_verification` | Confirm exact entry path and whether CCA still routes through MyCCA or another SSO path. |
-| `it-resources.txt` | Hub campus coverage | Hub available at both CentreTech and Lowry campuses | medium | `needs_source` | Verify against current campus services page. |
-| `it-resources.txt` | Hub location and phone | `Classroom Building 107`, `303-360-4736` | high | `needs_source` | Verify with current CCA campus services source before relying on it in student-facing answers. |
+| `it-resources.txt` | Hub campus coverage | Public article no longer states CentreTech / Lowry availability | medium | `needs_source` | Confirm current Hub campus availability before adding campus-specific guidance back to student-facing answers. |
+| `it-resources.txt` | Hub services, location, phone, and hours | Public article no longer states specific services, `Classroom Building 107`, or `303-360-4736` | high | `needs_source` | Verify with current CCA campus services source or Hub owner before relying on specific Hub details in student-facing answers. |
 | `mfa-account-security.txt` | MFA requirement scope | MFA may affect MyCCA, student email, and other CCA services | high | `likely_but_needs_human_verification` | Student email MFA is supported publicly; verify whether MyCCA itself also enforces MFA. |
 | `mfa-account-security.txt` | Verification-code / prompt / changed-phone support path | IT Helpdesk owns blocked MFA access issues | medium | `likely_but_needs_human_verification` | Confirm with IT whether MFA account recovery always routes to the Helpdesk. |
 | `online-blended-learning.txt` | OBL contact email | `onlinelearning.cca@ccaurora.edu` | medium | `verified_public_source` | Keep; public source also shows mixed-case `OnlineLearning.CCA@ccaurora.edu`. |
@@ -100,7 +100,8 @@ Last updated: 2026-05-08
   - Stale Windows 11 rollout / deadline guidance was addressed 2026-05-08
   - Mapped-drive recovery remains verification-sensitive; do not publish internal server paths or self-service script steps unless explicitly approved for public guidance
 - `it-resources.txt`
-  - Hub location / phone / Lowry availability
+  - Hub services, locations, phone numbers, hours, and CentreTech / Lowry availability remain unverified
+  - Public `it-resources.txt` guidance was softened 2026-05-08 to avoid publishing unverified Hub details
 
 ## TODOs For Human Verification
 
@@ -108,10 +109,11 @@ Last updated: 2026-05-08
 - TODO: Confirm the current OBL physical location and whether `Fine Arts Building, Room F103` is still correct.
 - TODO: Confirm whether `onlinelearning.cca@ccaurora.edu` remains the public-facing OBL support address for students/faculty.
 - TODO: Confirm current Microsoft 365 / OneDrive / Teams entitlements for student accounts.
-- TODO: Confirm Hub locations, phone numbers, and which services are offered at CentreTech vs Lowry.
+- TODO: Confirm Hub locations, phone numbers, hours, and which services are offered at CentreTech vs Lowry.
 - TODO: Confirm whether D2L student support should explicitly reference `D2L`, `Brightspace`, `MyCourses`, or a preferred combination in student-facing copy.
 - TODO: Confirm the supported mapped-drive recovery process for Windows 11, including whether any internal server path or self-service script should appear in public-facing guidance.
 
 ## Addressed Cleanup Notes
 
 - 2026-05-08: Removed stale future-facing Windows 11 rollout / deadline guidance from `windows-11.txt` and replaced it with current neutral Windows 10 end-of-support wording.
+- 2026-05-08: Softened `it-resources.txt` Hub guidance to avoid unverified public-facing service, campus availability, location, phone, and hours details.
