@@ -1,5 +1,3 @@
-import os
-import sys
 import json
 import logging
 import hmac
@@ -16,10 +14,31 @@ from auth import (
     TEMP_LOGIN_USERNAME,
     authenticate_with_ldap,
 )
+from config import (
+    DEFAULT_FLASK_SECRET,
+    LOGIN_RATE_LIMIT_ATTEMPTS_DEFAULT,
+    LOGIN_RATE_LIMIT_WINDOW_SECONDS_DEFAULT,
+    build_realtime_session_payload,
+    configure_session_security,
+    current_openai_api_key,
+    current_runtime_mode,
+    env_flag,
+    env_flag_with_optional,
+    env_int,
+    env_list,
+    flask_secret_key,
+    internal_kb_allowed_users,
+    internal_kb_default_enabled,
+    internal_kb_enabled,
+    login_rate_limit_attempts,
+    login_rate_limit_window_seconds,
+    realtime_support_enabled,
+    validate_startup_config,
+)
 from logging_store import init_logging_db, log_feedback, log_request
 from input_guard import classify_input_guard
 from query_classifier import classify_query_with_openai
-from realtime_tools import REALTIME_FUNCTION_TOOLS, dispatch_realtime_tool_call
+from realtime_tools import dispatch_realtime_tool_call
 from response_builder import (
     build_additional_troubleshooting_steps,
     build_guided_context,
@@ -41,43 +60,10 @@ from response_builder import (
 from support_service import resolve_question
 
 
-DEFAULT_FLASK_SECRET = "temporary-dev-session-secret-key"
 CSRF_SESSION_KEY = "_csrf_token"
 FORM_POST_ENDPOINTS = {"login", "index"}
-LOGIN_RATE_LIMIT_ATTEMPTS_DEFAULT = 5
-LOGIN_RATE_LIMIT_WINDOW_SECONDS_DEFAULT = 300
 FAILED_LOGIN_ATTEMPTS = {}
 LOGGER = logging.getLogger(__name__)
-
-
-def env_flag(name, default="0"):
-    return os.environ.get(name, default).strip().lower() in {"1", "true", "yes", "on"}
-
-
-def env_list(name):
-    raw_value = os.environ.get(name, "")
-    return {
-        item.strip().lower()
-        for item in raw_value.split(",")
-        if item.strip()
-    }
-
-
-def env_flag_with_optional(name, default):
-    raw_value = os.environ.get(name)
-    if raw_value is None or not raw_value.strip():
-        return default
-    return raw_value.strip().lower() in {"1", "true", "yes", "on"}
-
-
-def env_int(name, default):
-    raw_value = os.environ.get(name, "").strip()
-    if not raw_value:
-        return default
-    try:
-        return int(raw_value)
-    except ValueError:
-        return default
 
 
 def csrf_token_for_session(session_data):
@@ -104,14 +90,6 @@ def valid_csrf_token(submitted_token):
 
 def csrf_failure_response():
     return "The form session expired. Please reload the page and try again.", 400
-
-
-def login_rate_limit_attempts():
-    return max(0, env_int("LOGIN_RATE_LIMIT_ATTEMPTS", LOGIN_RATE_LIMIT_ATTEMPTS_DEFAULT))
-
-
-def login_rate_limit_window_seconds():
-    return max(1, env_int("LOGIN_RATE_LIMIT_WINDOW_SECONDS", LOGIN_RATE_LIMIT_WINDOW_SECONDS_DEFAULT))
 
 
 def current_monotonic_time():
@@ -161,47 +139,22 @@ def clear_failed_login(key=None):
 
 
 def internal_kb_user_authorized():
-    if not env_flag("ENABLE_INTERNAL_KB"):
+    if not internal_kb_enabled():
         return False
 
     username = str(session.get("username") or "").strip().lower()
     if not username:
         return False
 
-    return username in env_list("INTERNAL_KB_ALLOWED_USERS")
+    return username in internal_kb_allowed_users()
 
 
 def internal_kb_mode_requested():
     if not internal_kb_user_authorized():
         return False
-    if env_flag("INTERNAL_KB_DEFAULT"):
+    if internal_kb_default_enabled():
         return True
     return request.form.get("internal_mode") == "1" or request.args.get("internal_mode") == "1"
-
-
-def current_runtime_mode():
-    """
-    Return a simple normalized runtime mode string.
-    """
-    return (
-        os.environ.get("APP_ENV")
-        or os.environ.get("FLASK_ENV")
-        or os.environ.get("ENV")
-        or "development"
-    ).strip().lower()
-
-
-def configure_session_security(flask_app):
-    """
-    Set conservative session-cookie defaults while keeping local development usable.
-    """
-    runtime_mode = current_runtime_mode()
-    secure_default = runtime_mode == "production"
-    flask_app.config.update(
-        SESSION_COOKIE_HTTPONLY=True,
-        SESSION_COOKIE_SAMESITE=os.environ.get("SESSION_COOKIE_SAMESITE", "Lax").strip() or "Lax",
-        SESSION_COOKIE_SECURE=env_flag_with_optional("SESSION_COOKIE_SECURE", secure_default),
-    )
 
 
 def record_log_failure(operation, exc):
@@ -232,78 +185,10 @@ def safe_log_feedback(**kwargs):
         return False
 
 
-def validate_startup_config():
-    """
-    Validate deployment-sensitive configuration.
-    In production, fail fast on unsafe settings.
-    In non-production, print warnings only.
-    """
-    runtime_mode = current_runtime_mode()
-    in_production = runtime_mode == "production"
-
-    errors = []
-    warnings = []
-
-    secret_key = os.environ.get("FLASK_SECRET_KEY", "").strip()
-    if not secret_key:
-        message = "FLASK_SECRET_KEY is not set."
-        if in_production:
-            errors.append(message)
-        else:
-            warnings.append(f"{message} Using a development fallback secret.")
-    elif secret_key == DEFAULT_FLASK_SECRET:
-        message = "FLASK_SECRET_KEY is using the default development fallback."
-        if in_production:
-            errors.append(message)
-        else:
-            warnings.append(message)
-
-    if ALLOW_DEV_LOGIN:
-        message = "ALLOW_DEV_LOGIN is enabled."
-        if in_production:
-            errors.append(f"{message} Disable dev login before deploying.")
-        else:
-            warnings.append(f"{message} This is only safe for local development.")
-
-    if env_flag("ENABLE_INTERNAL_KB") and not env_list("INTERNAL_KB_ALLOWED_USERS"):
-        message = "ENABLE_INTERNAL_KB is enabled but INTERNAL_KB_ALLOWED_USERS is empty."
-        if in_production:
-            errors.append(message)
-        else:
-            warnings.append(f"{message} Internal KB notes will not be available to any user.")
-
-    ldap_required_vars = (
-        "LDAP_SERVER",
-        "LDAP_PORT",
-        "LDAP_DOMAIN",
-        "LDAP_REQUIRED_GROUP_DN",
-    )
-    missing_ldap_vars = [name for name in ldap_required_vars if not os.environ.get(name, "").strip()]
-    if missing_ldap_vars:
-        message = "LDAP settings are relying on defaults or are unset: " + ", ".join(missing_ldap_vars)
-        if in_production:
-            errors.append(message)
-        else:
-            warnings.append(message)
-
-    if warnings:
-        print("Startup configuration warnings", file=sys.stderr)
-        print("=" * 72, file=sys.stderr)
-        for warning in warnings:
-            print(f"- {warning}", file=sys.stderr)
-
-    if errors:
-        print("Startup configuration errors", file=sys.stderr)
-        print("=" * 72, file=sys.stderr)
-        for error in errors:
-            print(f"- {error}", file=sys.stderr)
-        raise RuntimeError("Unsafe production configuration. Review startup settings before deployment.")
-
-
 validate_startup_config()
 
 app = Flask(__name__)
-app.secret_key = os.environ.get("FLASK_SECRET_KEY", DEFAULT_FLASK_SECRET)
+app.secret_key = flask_secret_key()
 configure_session_security(app)
 app.jinja_env.globals["csrf_token"] = csrf_token
 
@@ -320,48 +205,10 @@ def require_csrf_for_form_posts():
         return None
     return csrf_failure_response()
 
-
-def current_openai_api_key():
-    return os.environ.get("OPENAI_API_KEY", "").strip()
-
-
-def realtime_support_enabled():
-    return env_flag("ENABLE_REALTIME_SUPPORT")
-
-
 def require_logged_in():
     if not session.get("logged_in"):
         return False
     return True
-
-
-def build_realtime_session_payload():
-    prompt_id = os.environ.get("OPENAI_REALTIME_PROMPT_ID", "").strip()
-    if not prompt_id:
-        raise RuntimeError("OPENAI_REALTIME_PROMPT_ID is not configured.")
-
-    session_payload = {
-        "session": {
-            "type": "realtime",
-            "model": os.environ.get("OPENAI_REALTIME_MODEL", "gpt-realtime").strip() or "gpt-realtime",
-            "audio": {
-                "input": {
-                    "turn_detection": {
-                        "type": "server_vad",
-                    }
-                },
-                "output": {
-                    "voice": os.environ.get("OPENAI_REALTIME_VOICE", "marin").strip() or "marin",
-                },
-            },
-            "prompt": {
-                "id": prompt_id,
-            },
-            "tool_choice": "auto",
-            "tools": REALTIME_FUNCTION_TOOLS,
-        }
-    }
-    return session_payload
 
 
 def create_realtime_client_secret():
