@@ -24,28 +24,20 @@
 
   - Windows 11 Quick Tips provides short videos focused on common Windows questions, interface changes, apps, and files.
   - Essential Training for Windows 11 is intended for users who are new to Windows or upgrading from Windows 10.
-  - If you are on campus, mapped drives and the H: drive may update automatically after login.
-  - If mapped drives are not accessible on campus, reboot the computer first and check again.
-  - If mapped drives still are not accessible, open \\\\CCADFS01.ccc.ccofc.edu\\gpdeploy$\\SelfService and double-click the
-  MapDrives file. It takes 1-2 minutes to run.
-  - If you are working remotely, you must connect to VPN before opening \\\\CCADFS01.ccc.ccofc.edu\\gpdeploy$\\SelfService
-  and running the MapDrives file.
-  - After running MapDrives, close and reopen any open File Explorer windows.
-  - Some shared drives may be mapped to different drive letters after migration.
-  - If a shared drive needs a specific drive letter, it can be manually disconnected and remapped.
-  - Windows 10 users may receive a notification prompting them to upgrade to Windows 11.
-  - The Windows 11 upgrade was described as beginning Friday, September 19th for eligible Windows 10 devices.
-  - Users can start the upgrade or delay it, but the upgrade is required before the October deadline referenced in the
-  notice.
-  - Once started, the upgrade can take 1-2 hours.
-  - If a computer is already on Windows 11, the upgrade notice does not apply.
-  - The notice states that Windows 10 end of support is October 14th, 2025.
+  - If you recently moved to Windows 11 and mapped drives or shared folders are not accessible, restart the computer first
+  and check again.
+  - If mapped drives still do not work, include your device name, campus location, whether you are on campus or remote, and
+  which shared drive or folder you cannot access when you contact IT.
+  - Some shared drives may appear differently after a Windows upgrade or migration.
+  - Windows 10 reached Microsoft end of support on October 14, 2025.
+  - If you are using a CCA-managed computer that is still on Windows 10, contact the CCA IT Helpdesk for current upgrade
+  guidance.
 
   Where to get help / When to contact IT:
 
-  - Contact the CCA IT Helpdesk if mapped drives still do not work after rebooting, connecting to VPN if remote, running the MapDrives
-  file, and reopening File Explorer.
-  - Contact the CCA IT Helpdesk if you have questions, concerns, or problems during the Windows 11 upgrade process.
+  - Contact the CCA IT Helpdesk if mapped drives, shared folders, printers, shortcuts, or other work resources do not work
+  after moving to Windows 11.
+  - Contact the CCA IT Helpdesk if you have questions, concerns, or problems with Windows 11 on a CCA-managed computer.
 
   CCA IT Helpdesk:
   - Phone: 303-360-4900, Monday–Friday, 8 a.m.–5 p.m.

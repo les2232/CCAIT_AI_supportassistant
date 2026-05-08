@@ -2,7 +2,7 @@
 
 Practical knowledge-base verification audit for the CCA IT Support Assistant.
 
-Last updated: 2026-04-27
+Last updated: 2026-05-08
 
 ## Method
 
@@ -81,9 +81,9 @@ Last updated: 2026-04-27
 | `wifi-troubleshooting.txt` | Open/no-password Wi-Fi claim | `CCA-Students is an open network and does not require a password` | low | `verified_public_source` | Keep. Verified 2026-04-27 from CCA IT Support flyer / campus support handout. |
 | `wifi-troubleshooting.txt` | Captive portal / splash page behavior | open browser to trigger splash page / captive portal / consent page | low | `verified_public_source` | Keep. Verified 2026-04-27 from CCA IT Support flyer / campus support handout. |
 | `wifi-troubleshooting.txt` | IT escalation block | Standard Helpdesk block | low | `verified_public_source` | Keep. Verified 2026-04-27 from CCA contact page and CCA IT Support flyer / campus support handout. |
-| `windows-11.txt` | Windows 11 mapped-drive recovery path | `\\\\CCADFS01.ccc.ccofc.edu\\gpdeploy$\\SelfService` and `MapDrives` | medium | `verified_public_source` | Keep only if still active; verify periodically because infrastructure details can change. |
-| `windows-11.txt` | Remote access requirement | VPN required before mapped-drive repair when remote | medium | `verified_public_source` | Keep, but mark as time-sensitive in future review. |
-| `windows-11.txt` | Upgrade timeline and deadline | upgrade notice beginning `Friday, September 19th`; Windows 10 end of support `October 14th, 2025` | high | `verified_public_source` | Treat as stale/time-bound. Remove or archive dated rollout language if this article stays in production. |
+| `windows-11.txt` | Windows 11 mapped-drive recovery process | Public article now avoids internal server path / script instructions and tells users what details to include when contacting IT | medium | `likely_but_needs_human_verification` | Confirm the supported mapped-drive recovery process, including whether any internal server path or self-service script should appear in public-facing guidance. |
+| `windows-11.txt` | Remote mapped-drive recovery details | Public article asks users to tell IT whether they are on campus or remote instead of publishing VPN / internal path steps | medium | `likely_but_needs_human_verification` | Confirm whether remote mapped-drive recovery should include any public VPN guidance. |
+| `windows-11.txt` | Upgrade timeline and deadline | Stale rollout / deadline wording removed; article now says Windows 10 reached Microsoft end of support on `October 14, 2025` | medium | `verified_public_source` | Addressed 2026-05-08. Keep current wording neutral unless CCA publishes new upgrade guidance. |
 | `yuja-panorama.txt` | YuJa Panorama supports course videos and accessibility | YuJa used for media/accessibility in CCA courses | medium | `likely_but_needs_human_verification` | Keep; confirm ownership and student support path with OBL. |
 | `yuja-panorama.txt` | Accessibility support contact path | Follow course guidance first; IT Helpdesk if issue continues | medium | `likely_but_needs_human_verification` | Confirm whether OBL should be named before IT for accessibility/course-media issues. |
 | `zoom-support.txt` | Zoom usage context | Zoom is used for online / blended / remote class meetings | low | `likely_but_needs_human_verification` | Keep; low factual risk. |
@@ -97,7 +97,8 @@ Last updated: 2026-04-27
 - `student-email-office365.txt`
   - Whether all students currently have OneDrive / Teams / Office Online access with the same school account path described in the KB
 - `windows-11.txt`
-  - Whether dated upgrade instructions should remain published
+  - Stale Windows 11 rollout / deadline guidance was addressed 2026-05-08
+  - Mapped-drive recovery remains verification-sensitive; do not publish internal server paths or self-service script steps unless explicitly approved for public guidance
 - `it-resources.txt`
   - Hub location / phone / Lowry availability
 
@@ -109,4 +110,8 @@ Last updated: 2026-04-27
 - TODO: Confirm current Microsoft 365 / OneDrive / Teams entitlements for student accounts.
 - TODO: Confirm Hub locations, phone numbers, and which services are offered at CentreTech vs Lowry.
 - TODO: Confirm whether D2L student support should explicitly reference `D2L`, `Brightspace`, `MyCourses`, or a preferred combination in student-facing copy.
-- TODO: Review `windows-11.txt` for stale rollout dates and infrastructure details before long-term production use.
+- TODO: Confirm the supported mapped-drive recovery process for Windows 11, including whether any internal server path or self-service script should appear in public-facing guidance.
+
+## Addressed Cleanup Notes
+
+- 2026-05-08: Removed stale future-facing Windows 11 rollout / deadline guidance from `windows-11.txt` and replaced it with current neutral Windows 10 end-of-support wording.
