@@ -8,27 +8,66 @@ Set these explicitly in the deployment environment:
 
 - `APP_ENV=production`
 - `FLASK_SECRET_KEY`
+- `IT_SUPPORT_LOCAL_ONLY=1`
 - `LDAP_SERVER`
-- `LDAP_PORT`
+- `LDAP_PORT=636` or another approved LDAPS port
 - `LDAP_DOMAIN`
-- `LDAP_USE_SSL`
+- `LDAP_USE_SSL=1`
 - `LDAP_REQUIRED_GROUP_DN`
 - `ALLOW_DEV_LOGIN=0`
 
 Optional feature flags:
 
+- `OPENAI_API_KEY`
 - `IT_SUPPORT_LLM_ENABLED`
 - `IT_SUPPORT_LLM_MODEL`
-- `OPENAI_API_KEY`
+- `IT_SUPPORT_CLASSIFIER_ENABLED`
+- `IT_SUPPORT_CLASSIFIER_MODEL`
 - `IT_SUPPORT_EMBEDDINGS_ENABLED`
 - `IT_SUPPORT_SEMANTIC_MIN_SCORE`
+- `ENABLE_AGENTS`
+- `ENABLE_REALTIME_SUPPORT`
 - `ENABLE_INTERNAL_KB`
 - `INTERNAL_KB_ALLOWED_USERS`
 - `INTERNAL_KB_DEFAULT`
 
+## Local-only Deployment Posture
+
+The supported default is deterministic local KB-only mode. The assistant is not a chatbot that "knows things"; it is a local guided knowledge-base assistant.
+
+In this posture:
+
+- answers come from approved files under `content/public/`
+- deterministic routing, retrieval, disambiguation, and escalation stay authoritative
+- OpenAI API calls, generative answer writing, OpenAI classification, agent triage, Realtime support, and semantic embeddings are disabled
+- unsupported or low-confidence questions should disambiguate or escalate instead of guessing
+
+Use this block for the default pilot and production deployment:
+
+```env
+IT_SUPPORT_LOCAL_ONLY=1
+OPENAI_API_KEY=
+IT_SUPPORT_LLM_ENABLED=0
+IT_SUPPORT_CLASSIFIER_ENABLED=0
+IT_SUPPORT_EMBEDDINGS_ENABLED=0
+ENABLE_AGENTS=0
+ENABLE_REALTIME_SUPPORT=0
+```
+
+OpenAI-backed features are quarantined optional paths. They must not be enabled during the local-only pilot unless explicitly reviewed and `IT_SUPPORT_LOCAL_ONLY` is intentionally set to `0`.
+
 ## Startup Validation
 
 The app now validates deployment-sensitive configuration on startup.
+
+In any runtime mode, startup fails when `IT_SUPPORT_LOCAL_ONLY=1` conflicts with:
+
+- `OPENAI_API_KEY` being set
+- `IT_SUPPORT_LLM_ENABLED=1`
+- `IT_SUPPORT_CLASSIFIER_ENABLED=1`
+- `ENABLE_AGENTS=1`
+- `ENABLE_REALTIME_SUPPORT=1`
+- `IT_SUPPORT_EMBEDDINGS_ENABLED=1`
 
 In production mode (`APP_ENV=production`), startup fails if:
 
@@ -36,15 +75,17 @@ In production mode (`APP_ENV=production`), startup fails if:
 - `FLASK_SECRET_KEY` is still using the development fallback
 - `ALLOW_DEV_LOGIN=1`
 - required LDAP settings are missing
+- `LDAP_USE_SSL` is not enabled
+- `LDAP_PORT=389`
 - `ENABLE_INTERNAL_KB=1` but `INTERNAL_KB_ALLOWED_USERS` is empty
 
-In non-production mode, these conditions produce warnings instead of failing startup.
+In non-production mode, those production security conditions produce warnings instead of failing startup. Local-only conflicts still fail fast.
 
 ## LDAP Validation Steps
 
 Before pilot access is enabled:
 
-1. Confirm the target environment can reach the domain controller.
+1. Confirm the target environment can reach the domain controller over LDAPS.
 2. Confirm `ldap3` is installed in the deployed Python environment.
 3. Validate one successful login for a real user in the required AD group.
 4. Validate one failed login for:

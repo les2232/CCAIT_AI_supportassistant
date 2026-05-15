@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import os
 import subprocess
 import sys
 
@@ -16,11 +17,23 @@ CHECKS = [
     ("Rendered Response Evaluation", ["./venv/bin/python", "evaluations/evaluate_rendered_responses.py"]),
 ]
 
+DETERMINISTIC_ENV_OVERRIDES = {
+    "IT_SUPPORT_LOCAL_ONLY": "1",
+    "OPENAI_API_KEY": "",
+    "IT_SUPPORT_CLASSIFIER_ENABLED": "0",
+    "IT_SUPPORT_LLM_ENABLED": "0",
+    "IT_SUPPORT_EMBEDDINGS_ENABLED": "0",
+    "ENABLE_REALTIME_SUPPORT": "0",
+    "ENABLE_AGENTS": "0",
+}
+
 
 def run_check(title, command):
     print(title)
     print("=" * 72)
-    result = subprocess.run(command)
+    env = os.environ.copy()
+    env.update(DETERMINISTIC_ENV_OVERRIDES)
+    result = subprocess.run(command, env=env)
     print()
     return result.returncode
 

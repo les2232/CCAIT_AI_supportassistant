@@ -1,8 +1,6 @@
 import os
 import sys
 
-from auth import ALLOW_DEV_LOGIN
-
 
 DEFAULT_FLASK_SECRET = "temporary-dev-session-secret-key"
 LOGIN_RATE_LIMIT_ATTEMPTS_DEFAULT = 5
@@ -12,6 +10,10 @@ TRUE_ENV_VALUES = {"1", "true", "yes", "on"}
 
 def env_flag(name, default="0"):
     return os.environ.get(name, default).strip().lower() in TRUE_ENV_VALUES
+
+
+def local_only_mode_enabled():
+    return env_flag("IT_SUPPORT_LOCAL_ONLY", "1")
 
 
 def env_list(name):
@@ -131,7 +133,8 @@ def build_realtime_session_payload():
 def validate_startup_config():
     """
     Validate deployment-sensitive configuration.
-    In production, fail fast on unsafe settings.
+    Local-only conflicts always fail fast.
+    In production, fail fast on unsafe security settings.
     In non-production, print warnings only.
     """
     runtime_mode = current_runtime_mode()
@@ -139,6 +142,29 @@ def validate_startup_config():
 
     errors = []
     warnings = []
+
+    if local_only_mode_enabled():
+        if current_openai_api_key():
+            errors.append(
+                "IT_SUPPORT_LOCAL_ONLY=1 conflicts with OPENAI_API_KEY being set. "
+                "Remove OPENAI_API_KEY for deterministic KB-only deployment, or set "
+                "IT_SUPPORT_LOCAL_ONLY=0 only after explicit review."
+            )
+
+        local_only_conflict_flags = (
+            "IT_SUPPORT_LLM_ENABLED",
+            "IT_SUPPORT_CLASSIFIER_ENABLED",
+            "ENABLE_AGENTS",
+            "ENABLE_REALTIME_SUPPORT",
+            "IT_SUPPORT_EMBEDDINGS_ENABLED",
+        )
+        for flag_name in local_only_conflict_flags:
+            if env_flag(flag_name):
+                errors.append(
+                    f"IT_SUPPORT_LOCAL_ONLY=1 conflicts with {flag_name}=1. "
+                    f"Disable {flag_name} for deterministic KB-only deployment, or set "
+                    "IT_SUPPORT_LOCAL_ONLY=0 only after explicit review."
+                )
 
     secret_key = os.environ.get("FLASK_SECRET_KEY", "").strip()
     if not secret_key:
@@ -154,7 +180,7 @@ def validate_startup_config():
         else:
             warnings.append(message)
 
-    if ALLOW_DEV_LOGIN:
+    if env_flag("ALLOW_DEV_LOGIN"):
         message = "ALLOW_DEV_LOGIN is enabled."
         if in_production:
             errors.append(f"{message} Disable dev login before deploying.")
@@ -172,6 +198,7 @@ def validate_startup_config():
         "LDAP_SERVER",
         "LDAP_PORT",
         "LDAP_DOMAIN",
+        "LDAP_USE_SSL",
         "LDAP_REQUIRED_GROUP_DN",
     )
     missing_ldap_vars = [name for name in ldap_required_vars if not os.environ.get(name, "").strip()]
@@ -181,6 +208,32 @@ def validate_startup_config():
             errors.append(message)
         else:
             warnings.append(message)
+
+    ldap_use_ssl_raw = os.environ.get("LDAP_USE_SSL", "").strip()
+    if ldap_use_ssl_raw and not env_flag("LDAP_USE_SSL"):
+        message = "LDAP_USE_SSL must be set to 1 in production so LDAP binds use LDAPS."
+        if in_production:
+            errors.append(message)
+        else:
+            warnings.append(message)
+
+    ldap_port_raw = os.environ.get("LDAP_PORT", "").strip()
+    if ldap_port_raw:
+        try:
+            ldap_port = int(ldap_port_raw)
+        except ValueError:
+            message = "LDAP_PORT must be a valid integer."
+            if in_production:
+                errors.append(message)
+            else:
+                warnings.append(message)
+        else:
+            if ldap_port == 389:
+                message = "LDAP_PORT=389 is cleartext LDAP. Use an LDAPS port such as 636 in production."
+                if in_production:
+                    errors.append(message)
+                else:
+                    warnings.append(message)
 
     if warnings:
         print("Startup configuration warnings", file=sys.stderr)
@@ -193,4 +246,4 @@ def validate_startup_config():
         print("=" * 72, file=sys.stderr)
         for error in errors:
             print(f"- {error}", file=sys.stderr)
-        raise RuntimeError("Unsafe production configuration. Review startup settings before deployment.")
+        raise RuntimeError("Unsafe startup configuration. Review startup settings before deployment.")

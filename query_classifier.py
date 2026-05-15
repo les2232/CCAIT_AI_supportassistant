@@ -10,6 +10,15 @@ DEFAULT_CLASSIFIER_MODEL = "gpt-4.1-mini"
 DEFAULT_CLASSIFIER_TIMEOUT_SECONDS = 6.0
 ALLOWED_INTENTS = {"troubleshooting", "access", "contact", "informational"}
 ALLOWED_TOPICS = {"wifi", "email", "d2l", "zoom", "classroom", "general"}
+TRUE_ENV_VALUES = {"1", "true", "yes", "on"}
+
+
+def classifier_enabled():
+    return os.environ.get("IT_SUPPORT_CLASSIFIER_ENABLED", "0").strip().lower() in TRUE_ENV_VALUES
+
+
+def classifier_openai_enabled():
+    return classifier_enabled()
 
 
 def classifier_model_name():
@@ -206,9 +215,14 @@ def classify_query_with_openai(query):
     """
     Classify a user query into a small intent/topic schema using OpenAI.
     Falls back to deterministic local logic on any error or missing configuration.
+    OpenAI classification is opt-in; the deterministic local classifier is
+    always used unless IT_SUPPORT_CLASSIFIER_ENABLED is explicitly enabled.
     """
     fallback = classify_query_locally(query)
     if not query or not query.strip():
+        return fallback
+
+    if not classifier_enabled():
         return fallback
 
     api_key = openai_api_key()

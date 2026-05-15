@@ -142,7 +142,7 @@ High-level flow:
    - router fallback selects the best supporting article
    - section retrieval is retried inside that article
 7. guided response data is built from structured guide fields when available
-8. optional LLM rewriting can polish the retrieved answer text
+8. quarantined optional LLM rewriting can polish the retrieved answer text only when local-only mode is disabled
 9. the response is rendered in the Flask UI
 10. the request is logged to SQLite
 11. user feedback is stored in SQLite and linked to the original request log when available
@@ -167,6 +167,31 @@ The heuristic retrieval layer uses:
 - domain-specific boosts for common support patterns
 
 This is the primary retrieval system and remains authoritative.
+
+### Local-only deployment posture
+
+The supported default posture is deterministic local KB-only mode. The assistant is not a chatbot that "knows things"; it is a local guided knowledge-base assistant.
+
+In local-only mode:
+
+- answers come from approved files under `content/public/`
+- deterministic routing, retrieval, disambiguation, and escalation remain authoritative
+- OpenAI API calls, generative answer writing, OpenAI classification, agent triage, Realtime support, and semantic embeddings are disabled
+- unsupported or low-confidence questions should disambiguate or escalate instead of guessing
+
+Default pilot and production deployments should use:
+
+```env
+IT_SUPPORT_LOCAL_ONLY=1
+OPENAI_API_KEY=
+IT_SUPPORT_LLM_ENABLED=0
+IT_SUPPORT_CLASSIFIER_ENABLED=0
+IT_SUPPORT_EMBEDDINGS_ENABLED=0
+ENABLE_AGENTS=0
+ENABLE_REALTIME_SUPPORT=0
+```
+
+OpenAI-backed features are quarantined optional paths. They must not be enabled during the local-only pilot unless they have been explicitly reviewed, and `IT_SUPPORT_LOCAL_ONLY` has been intentionally set to `0`.
 
 ### Semantic retrieval fallback
 
@@ -404,11 +429,11 @@ real secrets.
 Optional features:
 
 - LDAP settings for your environment
-- LLM rewriting
-- OpenAI-backed classification
-- Realtime voice support
-- semantic retrieval fallback
-- additive agent metadata
+- quarantined LLM rewriting
+- quarantined OpenAI-backed classification
+- quarantined Realtime voice support
+- semantic retrieval fallback, disabled for deterministic local-only deployment
+- quarantined additive agent metadata
 - internal KB notes for explicitly allowed staff users
 - development fallback login
 
@@ -429,9 +454,13 @@ http://127.0.0.1:5000
 ### Required for normal deployment
 
 - `FLASK_SECRET_KEY`
+- `IT_SUPPORT_LOCAL_ONLY=1`
 
 Local development should set this in `.env`. Production deployments should use
 the target hosting platform's secret-management mechanism.
+
+`IT_SUPPORT_LOCAL_ONLY` defaults to enabled when unset. Keep it set to `1` for
+the supported local KB-only pilot and production posture.
 
 ### LDAP authentication
 
@@ -441,27 +470,37 @@ the target hosting platform's secret-management mechanism.
 - `LDAP_USE_SSL`
 - `LDAP_REQUIRED_GROUP_DN`
 
+Production LDAP authentication must use LDAPS: set `LDAP_USE_SSL=1` and use
+an LDAPS port such as `LDAP_PORT=636`, not cleartext LDAP port `389`.
+
 ### Development-only fallback login
 
 - `ALLOW_DEV_LOGIN`
 
 When enabled, the app allows a temporary local fallback login. This should remain disabled outside development.
 
-### Optional LLM rewrite settings
+### Quarantined optional OpenAI-backed settings
 
 - `OPENAI_API_KEY`
 - `IT_SUPPORT_LLM_ENABLED`
 - `IT_SUPPORT_LLM_MODEL`
+- `IT_SUPPORT_CLASSIFIER_ENABLED`
 - `IT_SUPPORT_CLASSIFIER_MODEL`
 
 OpenAI-backed features are optional. The app must remain usable without
-`OPENAI_API_KEY`.
+`OPENAI_API_KEY`. OpenAI-backed query classification also requires
+`IT_SUPPORT_CLASSIFIER_ENABLED=1`; otherwise the deterministic local classifier
+is used. Do not place an OpenAI API key in the environment for the default
+local-only pilot or production deployment.
 
 ### Optional Realtime voice settings
 
+- `ENABLE_REALTIME_SUPPORT`
 - `OPENAI_REALTIME_PROMPT_ID`
 - `OPENAI_REALTIME_MODEL`
 - `OPENAI_REALTIME_VOICE`
+
+Realtime support must remain disabled when `IT_SUPPORT_LOCAL_ONLY=1`.
 
 ### Optional semantic retrieval settings
 
@@ -472,6 +511,8 @@ The semantic layer also uses a local cache:
 
 - `.semantic_cache/section_index.json`
 
+Semantic embeddings must remain disabled when `IT_SUPPORT_LOCAL_ONLY=1`.
+
 ### Optional agent metadata settings
 
 - `ENABLE_AGENTS`
@@ -480,7 +521,8 @@ The semantic layer also uses a local cache:
 
 `ENABLE_AGENTS` defaults to off. When enabled with `OPENAI_API_KEY`, agent
 output is additive metadata only. The local KB and deterministic response fields
-remain authoritative.
+remain authoritative. Agent triage must remain disabled when
+`IT_SUPPORT_LOCAL_ONLY=1`.
 
 ### Optional internal KB settings
 
@@ -527,6 +569,7 @@ Detailed deployment guidance is documented in:
 
 - [docs/production-readiness.md](./docs/production-readiness.md)
 - [docs/deployment-runbook.md](./docs/deployment-runbook.md)
+- [docs/pilot-handoff.md](./docs/pilot-handoff.md)
 
 Before deployment:
 
@@ -535,7 +578,17 @@ Before deployment:
 - validate LDAP bind and group membership in the target environment
 - serve the app behind Gunicorn, Nginx, or equivalent
 - use HTTPS
-- verify that optional LLM and semantic features are intentionally enabled or disabled
+- enforce local-only mode for the default pilot/production deployment:
+
+```env
+IT_SUPPORT_LOCAL_ONLY=1
+OPENAI_API_KEY=
+IT_SUPPORT_LLM_ENABLED=0
+IT_SUPPORT_CLASSIFIER_ENABLED=0
+IT_SUPPORT_EMBEDDINGS_ENABLED=0
+ENABLE_AGENTS=0
+ENABLE_REALTIME_SUPPORT=0
+```
 
 This project should be treated as an internal support application, not a public anonymous chatbot endpoint.
 

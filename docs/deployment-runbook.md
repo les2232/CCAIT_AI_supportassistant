@@ -55,20 +55,26 @@ Create `/etc/cca-it-support-assistant.env`:
 sudo tee /etc/cca-it-support-assistant.env >/dev/null <<'EOF'
 APP_ENV=production
 FLASK_SECRET_KEY=<SET_A_LONG_RANDOM_SECRET>
+IT_SUPPORT_LOCAL_ONLY=1
 
 LDAP_SERVER=CCCDC01.ccc.ccofc.edu
-LDAP_PORT=389
+LDAP_PORT=636
 LDAP_DOMAIN=ccc.ccofc.edu
-LDAP_USE_SSL=0
+LDAP_USE_SSL=1
 LDAP_REQUIRED_GROUP_DN=CN=CCA_Leslie_Project,OU=CCA_Groups_Security_User,OU=CCA,DC=ccc,DC=ccofc,DC=edu
 
 ALLOW_DEV_LOGIN=0
 
-# Optional features
-# IT_SUPPORT_LLM_ENABLED=0
+OPENAI_API_KEY=
+IT_SUPPORT_LLM_ENABLED=0
+IT_SUPPORT_CLASSIFIER_ENABLED=0
+IT_SUPPORT_EMBEDDINGS_ENABLED=0
+ENABLE_AGENTS=0
+ENABLE_REALTIME_SUPPORT=0
+
+# Quarantined optional feature settings; keep disabled in local-only mode
 # IT_SUPPORT_LLM_MODEL=
-# OPENAI_API_KEY=
-# IT_SUPPORT_EMBEDDINGS_ENABLED=0
+# IT_SUPPORT_CLASSIFIER_MODEL=
 # IT_SUPPORT_SEMANTIC_MIN_SCORE=0.45
 # ENABLE_INTERNAL_KB=0
 # INTERNAL_KB_ALLOWED_USERS=
@@ -89,9 +95,43 @@ Before starting the service, confirm:
 
 - `APP_ENV=production`
 - `FLASK_SECRET_KEY` is set and not using the development fallback
+- `IT_SUPPORT_LOCAL_ONLY=1`
 - LDAP variables are set explicitly
+- LDAPS is enabled with `LDAP_USE_SSL=1` and an LDAPS port such as `LDAP_PORT=636`; do not use cleartext LDAP port `389` in production
 - `ALLOW_DEV_LOGIN=0`
+- OpenAI-backed and non-deterministic optional paths are disabled:
+  - `OPENAI_API_KEY=`
+  - `IT_SUPPORT_LLM_ENABLED=0`
+  - `IT_SUPPORT_CLASSIFIER_ENABLED=0`
+  - `IT_SUPPORT_EMBEDDINGS_ENABLED=0`
+  - `ENABLE_AGENTS=0`
+  - `ENABLE_REALTIME_SUPPORT=0`
 - if `ENABLE_INTERNAL_KB=1`, `INTERNAL_KB_ALLOWED_USERS` contains only approved staff usernames
+
+## Local-only Deployment Posture
+
+The supported default deployment is deterministic local KB-only mode. The assistant is not a chatbot that "knows things"; it is a local guided knowledge-base assistant.
+
+In this posture:
+
+- answers come from approved files under `content/public/`
+- deterministic routing, retrieval, disambiguation, and escalation stay authoritative
+- OpenAI API calls, generative answer writing, OpenAI classification, agent triage, Realtime support, and semantic embeddings are disabled
+- unsupported or low-confidence questions should disambiguate or escalate instead of guessing
+
+Use this block for the default pilot and production deployment:
+
+```env
+IT_SUPPORT_LOCAL_ONLY=1
+OPENAI_API_KEY=
+IT_SUPPORT_LLM_ENABLED=0
+IT_SUPPORT_CLASSIFIER_ENABLED=0
+IT_SUPPORT_EMBEDDINGS_ENABLED=0
+ENABLE_AGENTS=0
+ENABLE_REALTIME_SUPPORT=0
+```
+
+OpenAI-backed features are quarantined optional paths. They must not be enabled during the local-only pilot unless explicitly reviewed and `IT_SUPPORT_LOCAL_ONLY` is intentionally set to `0`.
 
 ## Gunicorn Command
 

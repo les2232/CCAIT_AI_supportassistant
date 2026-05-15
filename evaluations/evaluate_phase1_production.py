@@ -4,7 +4,7 @@ import logging
 import os
 import sqlite3
 import tempfile
-from contextlib import contextmanager
+from contextlib import contextmanager, redirect_stderr
 from pathlib import Path
 
 from flask import Flask
@@ -13,8 +13,20 @@ from _bootstrap import ensure_repo_root_on_path
 
 ensure_repo_root_on_path()
 
+# Keep this deterministic evaluation local-only even if the parent shell has
+# optional OpenAI-backed settings configured.
+os.environ["IT_SUPPORT_LOCAL_ONLY"] = "1"
+os.environ["OPENAI_API_KEY"] = ""
+os.environ["IT_SUPPORT_LLM_ENABLED"] = "0"
+os.environ["IT_SUPPORT_CLASSIFIER_ENABLED"] = "0"
+os.environ["ENABLE_AGENTS"] = "0"
+os.environ["ENABLE_REALTIME_SUPPORT"] = "0"
+os.environ["IT_SUPPORT_EMBEDDINGS_ENABLED"] = "0"
+
 import app as app_module
+import config
 import logging_store
+import query_classifier
 
 
 @contextmanager
@@ -48,6 +60,44 @@ def patched_attr(module, name, value):
 def assert_true(condition, message):
     if not condition:
         raise AssertionError(message)
+
+
+def production_startup_env(**overrides):
+    values = {
+        "APP_ENV": "production",
+        "FLASK_SECRET_KEY": "test-production-secret-key",
+        "LDAP_SERVER": "CCCDC01.ccc.ccofc.edu",
+        "LDAP_PORT": "636",
+        "LDAP_DOMAIN": "ccc.ccofc.edu",
+        "LDAP_USE_SSL": "1",
+        "LDAP_REQUIRED_GROUP_DN": "CN=CCA_Leslie_Project,OU=CCA_Groups_Security_User,OU=CCA,DC=ccc,DC=ccofc,DC=edu",
+        "ALLOW_DEV_LOGIN": "0",
+        "IT_SUPPORT_LOCAL_ONLY": "1",
+        "OPENAI_API_KEY": "",
+        "IT_SUPPORT_LLM_ENABLED": "0",
+        "IT_SUPPORT_CLASSIFIER_ENABLED": "0",
+        "ENABLE_AGENTS": "0",
+        "ENABLE_REALTIME_SUPPORT": "0",
+        "IT_SUPPORT_EMBEDDINGS_ENABLED": "0",
+        "ENABLE_INTERNAL_KB": "0",
+        "INTERNAL_KB_ALLOWED_USERS": None,
+    }
+    values.update(overrides)
+    return values
+
+
+def assert_startup_rejected(expected_message, **overrides):
+    stream = io.StringIO()
+    with patched_env(**production_startup_env(**overrides)):
+        with redirect_stderr(stream):
+            try:
+                config.validate_startup_config()
+            except RuntimeError:
+                pass
+            else:
+                raise AssertionError("unsafe production startup configuration was accepted")
+
+    assert_true(expected_message in stream.getvalue(), f"startup error did not include: {expected_message}")
 
 
 def test_configurable_logging_db_path():
@@ -193,6 +243,67 @@ def test_session_cookie_config_defaults():
         assert_true(flask_app.config["SESSION_COOKIE_SAMESITE"] == "Strict", "SameSite env override failed")
 
 
+def test_production_startup_rejects_cleartext_ldap():
+    assert_startup_rejected("LDAP_USE_SSL must be set to 1", LDAP_USE_SSL="0")
+    assert_startup_rejected("LDAP settings are relying on defaults or are unset: LDAP_USE_SSL", LDAP_USE_SSL=None)
+    assert_startup_rejected("LDAP_PORT=389 is cleartext LDAP", LDAP_PORT="389")
+
+    with patched_env(**production_startup_env()):
+        with redirect_stderr(io.StringIO()):
+            config.validate_startup_config()
+
+
+def test_local_only_rejects_optional_ai_paths():
+    conflict_cases = (
+        ("OPENAI_API_KEY", "test-key", "IT_SUPPORT_LOCAL_ONLY=1 conflicts with OPENAI_API_KEY"),
+        ("IT_SUPPORT_LLM_ENABLED", "1", "IT_SUPPORT_LOCAL_ONLY=1 conflicts with IT_SUPPORT_LLM_ENABLED=1"),
+        (
+            "IT_SUPPORT_CLASSIFIER_ENABLED",
+            "1",
+            "IT_SUPPORT_LOCAL_ONLY=1 conflicts with IT_SUPPORT_CLASSIFIER_ENABLED=1",
+        ),
+        ("ENABLE_AGENTS", "1", "IT_SUPPORT_LOCAL_ONLY=1 conflicts with ENABLE_AGENTS=1"),
+        (
+            "ENABLE_REALTIME_SUPPORT",
+            "1",
+            "IT_SUPPORT_LOCAL_ONLY=1 conflicts with ENABLE_REALTIME_SUPPORT=1",
+        ),
+        (
+            "IT_SUPPORT_EMBEDDINGS_ENABLED",
+            "1",
+            "IT_SUPPORT_LOCAL_ONLY=1 conflicts with IT_SUPPORT_EMBEDDINGS_ENABLED=1",
+        ),
+    )
+
+    for env_name, env_value, expected_message in conflict_cases:
+        assert_startup_rejected(expected_message, **{env_name: env_value})
+
+
+def test_classifier_disabled_uses_local_logic_without_openai():
+    openai_calls = []
+
+    class FailingOpenAI:
+        def __init__(self, *_args, **_kwargs):
+            openai_calls.append("client")
+            raise AssertionError("OpenAI classifier client should not be instantiated")
+
+    def failing_openai_api_key():
+        openai_calls.append("api_key")
+        return "test-key"
+
+    with patched_env(IT_SUPPORT_CLASSIFIER_ENABLED="0", OPENAI_API_KEY="test-key"):
+        with patched_attr(query_classifier, "OpenAI", FailingOpenAI):
+            with patched_attr(query_classifier, "openai_api_key", failing_openai_api_key):
+                result = query_classifier.classify_query_with_openai("my wifi says connected but no internet")
+
+    assert_true(result["topic"] == "wifi", "disabled OpenAI classifier should keep local wifi topic")
+    assert_true(
+        result["intent"] == "troubleshooting",
+        "disabled OpenAI classifier should keep local troubleshooting intent",
+    )
+    assert_true(not openai_calls, "disabled OpenAI classifier still touched the OpenAI path")
+
+
 def main():
     tests = [
         test_configurable_logging_db_path,
@@ -200,6 +311,9 @@ def main():
         test_realtime_disabled_behavior,
         test_realtime_enabled_behavior,
         test_session_cookie_config_defaults,
+        test_production_startup_rejects_cleartext_ldap,
+        test_local_only_rejects_optional_ai_paths,
+        test_classifier_disabled_uses_local_logic_without_openai,
     ]
 
     failures = []

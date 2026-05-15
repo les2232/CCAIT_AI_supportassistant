@@ -1,10 +1,20 @@
 #!/usr/bin/env python3
 import argparse
+import os
 import sys
 
 from _bootstrap import ensure_repo_root_on_path
 
 ensure_repo_root_on_path()
+
+if os.environ.get("IT_SUPPORT_EVAL_ALLOW_OPENAI", "0").strip() != "1":
+    os.environ["IT_SUPPORT_LOCAL_ONLY"] = "1"
+    os.environ["OPENAI_API_KEY"] = ""
+    os.environ["IT_SUPPORT_CLASSIFIER_ENABLED"] = "0"
+    os.environ["IT_SUPPORT_LLM_ENABLED"] = "0"
+    os.environ["IT_SUPPORT_EMBEDDINGS_ENABLED"] = "0"
+    os.environ["ENABLE_REALTIME_SUPPORT"] = "0"
+    os.environ["ENABLE_AGENTS"] = "0"
 
 from app import resolve_question
 from pilot_eval_cases import PILOT_EVAL_CASES
