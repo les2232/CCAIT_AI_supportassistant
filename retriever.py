@@ -665,7 +665,14 @@ def score_section(question, section, query_analysis=None):
             if "changed phones" in normalized_heading:
                 score -= 35
 
-    mfa_topic_query = any(
+    mfa_recovery_query = any(
+        phrase in normalized_question
+        for phrase in ("lost phone", "lost my phone", "changed phone", "changed phones", "changed my phone")
+    ) and any(
+        phrase in normalized_question
+        for phrase in ("verify", "verification", "login", "log in", "sign in", "access")
+    )
+    mfa_topic_query = mfa_recovery_query or any(
         term in normalized_question
         for term in (
             "mfa",

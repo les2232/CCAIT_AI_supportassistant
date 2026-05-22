@@ -8,15 +8,32 @@ except ImportError:
     Server = None
 
 
+TRUE_ENV_VALUES = {"1", "true", "yes", "on"}
+
+
+def env_flag(name, default="0"):
+    return os.environ.get(name, default).strip().lower() in TRUE_ENV_VALUES
+
+
+def env_int(name, default):
+    raw_value = os.environ.get(name, str(default)).strip()
+    if not raw_value:
+        return default
+    try:
+        return int(raw_value)
+    except ValueError:
+        return default
+
+
 LDAP_SERVER_HOST = os.environ.get("LDAP_SERVER", "CCCDC01.ccc.ccofc.edu")
-LDAP_PORT = int(os.environ.get("LDAP_PORT", "389"))
+LDAP_PORT = env_int("LDAP_PORT", 636)
 LDAP_DOMAIN = os.environ.get("LDAP_DOMAIN", "ccc.ccofc.edu")
-LDAP_USE_SSL = os.environ.get("LDAP_USE_SSL", "0").strip() == "1"
+LDAP_USE_SSL = env_flag("LDAP_USE_SSL", "1")
 LDAP_REQUIRED_GROUP_DN = os.environ.get(
     "LDAP_REQUIRED_GROUP_DN",
     "CN=CCA_Leslie_Project,OU=CCA_Groups_Security_User,OU=CCA,DC=ccc,DC=ccofc,DC=edu",
 )
-ALLOW_DEV_LOGIN = os.environ.get("ALLOW_DEV_LOGIN", "0").strip() == "1"
+ALLOW_DEV_LOGIN = env_flag("ALLOW_DEV_LOGIN")
 
 # TEMPORARY dev-only fallback credentials. Default disabled unless ALLOW_DEV_LOGIN=1.
 TEMP_LOGIN_USERNAME = "admin"

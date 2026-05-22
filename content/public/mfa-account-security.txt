@@ -8,7 +8,7 @@ You are in the right place. Microsoft Authenticator or MFA problems can block st
 
 What this helps with:
 - Use this guide when Microsoft Authenticator or Multi-Factor Authentication (MFA) is preventing student access to your CCA account.
-- Student Microsoft 365 sign-in covers Student Email, OneDrive, Teams, SharePoint, Adobe Creative Cloud, and Webex.
+- MFA can appear when signing in to student email or another CCA service that asks for student-account verification.
 - Use this guide for student Microsoft Authenticator problems, phone text or phone call verification problems, MFA not working, multi-factor authentication problems, verification-code failures, approval-prompt issues, authenticator-app problems, or changed-phone access problems.
 
 Common symptoms:
@@ -17,7 +17,7 @@ Common symptoms:
 - You cannot approve the MFA prompt.
 - Your Microsoft Authenticator app or authenticator app is not working.
 - You changed phones and cannot complete MFA.
-- You are blocked from MyCCA, student email, or another CCA service because MFA will not complete.
+- You are blocked from student email or another CCA service that asks for MFA because verification will not complete.
 
 Try this first:
 1. Start the sign-in process again.
@@ -56,7 +56,8 @@ Changed phones or lost MFA access:
 - If you cannot approve the sign-in because the old device or phone number is still attached to your account, contact the CCA IT Helpdesk or the 24x7 Help Desk for help restoring MFA access.
 
 What MFA affects:
-- MFA may affect access to Student Email, OneDrive, Teams, SharePoint, Adobe Creative Cloud, Webex, MyCCA, and other CCA services that use your student account.
+- MFA may affect access to student email and other CCA services that ask for student-account verification.
+- The exact services that require MFA can depend on current account settings and service availability.
 - If MFA does not complete, you may be blocked from signing in even if your password is correct.
 
 Still need help?:
@@ -66,7 +67,7 @@ Still need help?:
 What to include when asking for help:
 - Your student ID (S#) or CCA username.
 - The exact error message or sign-in prompt you see.
-- Whether the issue affects MyCCA, student email, or multiple services.
+- The service you were trying to access and whether multiple services are affected.
 - The device and browser or app you are using.
 - Whether you changed phones or lost access to your previous MFA device.
 - What steps you already tried.
@@ -80,7 +81,7 @@ CCA IT Helpdesk:
 
 - TITLE: MFA and Account Security
 - AUDIENCE: Students
-- TAGS: mfa, microsoft authenticator, authenticator app, verification, account security, login, mycca, student email, onedrive, teams, sharepoint, adobe creative cloud, webex, phone verification
+- TAGS: mfa, microsoft authenticator, authenticator app, verification, account security, login, student account, student email, phone verification
 - CONTEXT:
   - What this helps with:
 - STEPS:

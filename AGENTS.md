@@ -57,6 +57,8 @@ Useful environment variables:
 - `LDAP_REQUIRED_GROUP_DN`
 - `ALLOW_DEV_LOGIN`
 - `OPENAI_API_KEY`
+- `IT_SUPPORT_CLASSIFIER_ENABLED`
+- `IT_SUPPORT_CLASSIFIER_MODEL`
 - `IT_SUPPORT_LLM_ENABLED`
 - `IT_SUPPORT_LLM_MODEL`
 - `IT_SUPPORT_EMBEDDINGS_ENABLED`
@@ -72,6 +74,8 @@ Useful environment variables:
 - `INTERNAL_KB_DEFAULT`
 
 Production-like runs must not rely on the default Flask secret or development fallback login.
+
+`IT_SUPPORT_CLASSIFIER_ENABLED` defaults to off. When enabled with `OPENAI_API_KEY`, OpenAI may classify a question into a small intent/topic schema before deterministic KB retrieval. The local classifier fallback remains authoritative when the feature is disabled, unavailable, or fails.
 
 `ENABLE_AGENTS` defaults to off. When enabled with `OPENAI_API_KEY`, the Campus IT Triage Agent may add metadata such as missing-info suggestions or a ticket summary after deterministic KB retrieval. Agent output is additive metadata only; local KB retrieval and deterministic response fields remain authoritative.
 
