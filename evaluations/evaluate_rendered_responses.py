@@ -664,15 +664,36 @@ def evaluate_access_cleanup_cases(client, failures):
         if "assignment upload" in section_heading.lower():
             failures.append((query, f"D2L access query selected assignment upload: {section_heading}"))
             continue
-        if not guided_steps or not any(term in joined_guidance for term in ("d2l", "desire2learn", "brightspace", "course")):
+        if not guided_steps or not any(term in joined_guidance for term in ("d2l", "course")):
             failures.append((query, f"D2L access steps missing course-access guidance: {guided_steps}"))
             continue
         if query == "how do I access D2L":
-            for term in ("mycca", "desire2learn/d2l", "system check"):
+            for term in ("mycca", "d2l link", "it may also appear as desire2learn"):
                 if term not in joined_guidance:
                     failures.append((query, f"D2L access answer missing verified {term!r} guidance: {guided_steps}"))
                     break
             else:
+                if support_title != "Accessing D2L":
+                    failures.append((query, f"D2L access answer used confusing title: {support_title}"))
+                    continue
+                if "brightspace" in body.lower():
+                    failures.append((query, "D2L access answer exposed Brightspace in student-facing output"))
+                    continue
+                if "system check" in joined_steps:
+                    failures.append((query, f"D2L readiness guidance appeared inside numbered access steps: {guided_steps}"))
+                    continue
+                if any("https://cca.desire2learn.com/d2l/systemcheck" in step.lower() for step in guided_steps):
+                    failures.append((query, f"D2L system-check URL appeared inside numbered steps: {guided_steps}"))
+                    continue
+                if "D2L system check: https://cca.desire2learn.com/d2l/systemCheck" not in body:
+                    failures.append((query, "D2L access answer missing separate system-check link"))
+                    continue
+                if "reliable internet access" not in body.lower():
+                    failures.append((query, "D2L access answer missing separate reliable-internet readiness note"))
+                    continue
+                if "Pathways Advisor" not in body:
+                    failures.append((query, "D2L access answer missing Pathways Advisor note"))
+                    continue
                 print(f"[PASS] {query!r}")
                 continue
             continue

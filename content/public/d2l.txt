@@ -1,18 +1,18 @@
-SOURCE: Community College of Aurora D2L (Brightspace) Student Access
+SOURCE: Community College of Aurora D2L Student Access
 
 ==================================================
 
-D2L / Desire2Learn
+D2L
 
 You are in the right place. These steps can help you get to your course materials.
 
 What this is:
-- D2L/Desire2Learn is the learning management system used by the Community College of Aurora.
+- D2L is the learning management system used by the Community College of Aurora.
 - Students use D2L to access course content and online learning resources.
-- Students access D2L/Desire2Learn courses by logging in to MyCCA and clicking the Desire2Learn/D2L link.
+- Students access D2L courses through MyCCA.
 
 What this helps with:
-- Use this guide if you need to access D2L, Brightspace, course materials, assignments, or online course resources.
+- Use this guide if you need to access D2L, course materials, assignments, or online course resources.
 - Use this guide if you are new to D2L and need a simple starting point.
 
 What students use it for:
@@ -23,22 +23,25 @@ What students use it for:
 - Checking whether your computer and browser are ready for online courses.
 
 Online course readiness:
-1. Make sure you have reliable internet access for online courses.
-2. Open https://cca.desire2learn.com/d2l/systemCheck and run the D2L/Desire2Learn system check before online courses.
+1. Make sure you have a reliable internet connection for online classes.
+2. Run the D2L system check before an online class to confirm your browser and computer are ready.
 3. If you have never taken an online class, meet with a Pathways Advisor before enrolling, especially if you are a new student.
+- System check link: https://cca.desire2learn.com/d2l/systemCheck
 
 Try this first:
-1. Log in to MyCCA with your CCA student account.
-2. Click the Desire2Learn/D2L link.
-3. Open your course list.
-4. Select the course you need.
+1. Go to MyCCA.
+2. Sign in with your CCA student account.
+3. Select the D2L link. It may also appear as Desire2Learn.
+4. Choose the course you want to open.
 5. Open the course materials, assignment, or online learning resource you need for class.
 
 How to access:
-1. Log in to MyCCA with your CCA student account if you cannot access your D2L course materials.
-2. Click the Desire2Learn/D2L link.
-3. Select the course or course material you need.
-4. For online courses, open https://cca.desire2learn.com/d2l/systemCheck and run the D2L/Desire2Learn system check.
+Use this section when you need to access D2L course materials, assignments, quizzes, or class content.
+These steps start from MyCCA.
+1. Go to MyCCA.
+2. Sign in with your CCA student account.
+3. Select the D2L link. It may also appear as Desire2Learn.
+4. Choose the course you want to open.
 
 If that did not work:
 1. Try signing in again and enter your CCA student account information carefully.
@@ -62,7 +65,7 @@ CCA IT Helpdesk:
 - After-hours/weekend support: 1-888-800-9198
 - Email: HelpdeskTickets.CCA@ccaurora.edu
 
-- TITLE: D2L Brightspace Access
+- TITLE: D2L Access
 - AUDIENCE: Students
 - TAGS: d2l, desire2learn, brightspace, course materials, assignments, login, online course, system check, mycca
 - CONTEXT:

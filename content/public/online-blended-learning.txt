@@ -18,12 +18,13 @@ What students use it for:
 - Participating in online and blended courses at CCA.
 - Using online learning tools such as D2L (MyCourses) and Zoom when those tools are part of a course.
 - Finding the right support path for online learning tools used in class.
-- Preparing for online courses by checking internet access and D2L/Desire2Learn readiness.
+- Preparing for online courses by checking internet access and D2L readiness.
 
 Online course readiness:
 - Online courses require reliable internet access.
-- Open https://cca.desire2learn.com/d2l/systemCheck and run the D2L/Desire2Learn system check before online courses.
-- To access D2L/Desire2Learn courses, log in to MyCCA and click the Desire2Learn/D2L link.
+- Run the D2L system check before online courses.
+- System check link: https://cca.desire2learn.com/d2l/systemCheck
+- To access D2L courses, go to MyCCA, sign in, and select the D2L link. It may also appear as Desire2Learn.
 - If you have never taken an online class, meet with a Pathways Advisor before enrolling, especially if you are a new student.
 - IT and OBL can help with technology or online learning tools, but academic preparation questions belong with a Pathways Advisor.
 
