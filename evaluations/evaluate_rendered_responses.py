@@ -71,7 +71,7 @@ WEAK_QUERY_CASES = [
         "source": "d2l-troubleshooting.txt",
         "section_contains": "Browser or cache issues",
         "support_title": "D2L Browser or Cache Issues",
-        "step_terms": ("browser", "cache", "open d2l"),
+        "step_terms": ("browser", "cache", "open d2l", "system check"),
     },
     {
         "query": "my email does not work",
@@ -649,6 +649,8 @@ def evaluate_access_cleanup_cases(client, failures):
         section_heading = context.get("section_heading") or ""
         guided_steps = context.get("guided_steps") or []
         joined_steps = " ".join(guided_steps).lower()
+        quick_summary = context.get("quick_summary") or ""
+        joined_guidance = f"{quick_summary} {joined_steps}".lower()
 
         if source_name not in {"d2l.txt", "d2l-troubleshooting.txt"}:
             failures.append((query, f"wrong D2L article: {source_name}"))
@@ -662,8 +664,17 @@ def evaluate_access_cleanup_cases(client, failures):
         if "assignment upload" in section_heading.lower():
             failures.append((query, f"D2L access query selected assignment upload: {section_heading}"))
             continue
-        if not guided_steps or not any(term in joined_steps for term in ("d2l", "brightspace", "course")):
+        if not guided_steps or not any(term in joined_guidance for term in ("d2l", "desire2learn", "brightspace", "course")):
             failures.append((query, f"D2L access steps missing course-access guidance: {guided_steps}"))
+            continue
+        if query == "how do I access D2L":
+            for term in ("mycca", "desire2learn/d2l", "system check"):
+                if term not in joined_guidance:
+                    failures.append((query, f"D2L access answer missing verified {term!r} guidance: {guided_steps}"))
+                    break
+            else:
+                print(f"[PASS] {query!r}")
+                continue
             continue
         print(f"[PASS] {query!r}")
 

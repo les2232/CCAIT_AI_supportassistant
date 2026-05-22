@@ -54,9 +54,10 @@ Last updated: 2026-05-22
 | `classroom-technology.txt` | Classroom tech escalation email | `HelpdeskTickets.CCA@ccaurora.edu` | low | `verified_public_source` | Keep. |
 | `classroom-technology.txt` | Classroom display / projector / audio issues should route to IT Helpdesk | IT owns classroom AV escalation | medium | `likely_but_needs_human_verification` | Confirm ownership and after-hours expectations with Educational Technology / IT. |
 | `contact-it.txt` | Standard IT Helpdesk block | `303-360-4900`, `1-888-800-9198`, `HelpdeskTickets.CCA@ccaurora.edu`, `Mon–Fri 8 a.m.–5 p.m.` | low | `verified_public_source` | Keep as canonical escalation reference. Verified 2026-04-27 from CCA contact page and CCA IT Support flyer / campus support handout. |
-| `d2l-troubleshooting.txt` | LMS naming | `D2L (Brightspace)` | low | `likely_but_needs_human_verification` | Keep wording; confirm if CCA wants student-facing copy to say `D2L`, `Brightspace`, or both. |
+| `d2l-troubleshooting.txt` | LMS naming | Student-facing copy prioritizes `D2L/Desire2Learn`; Brightspace remains in limited access/search wording where useful | low | `partially_verified_human_source` | Human-verified screenshot uses `Desire2Learn`. Public KB updated 2026-05-22 to use `D2L/Desire2Learn` for main guidance. Confirm separately if CCA wants Brightspace removed from student-facing copy. |
 | `d2l-troubleshooting.txt` | Support ownership split | IT for sign-in / technical issues, instructor for missing course or assignment availability | medium | `likely_but_needs_human_verification` | Confirm with Academic Affairs / OBL that this escalation split is official. |
-| `d2l.txt` | D2L access via student account credentials | Students sign in with CCA student credentials | medium | `likely_but_needs_human_verification` | Confirm exact entry path and whether CCA still routes through MyCCA or another SSO path. |
+| `d2l.txt` | D2L access path | Students log in to MyCCA and click the Desire2Learn/D2L link to access D2L/Desire2Learn courses | medium | `verified_human_source` | Public KB updated 2026-05-22 from human-verified online-learning screenshot. Do not claim MyCCA itself requires MFA unless separately verified. |
+| `d2l.txt` / `d2l-troubleshooting.txt` / `online-blended-learning.txt` | Online course readiness | Online courses require reliable internet; students should run the D2L/Desire2Learn system check at `https://cca.desire2learn.com/d2l/systemCheck`; students new to online classes should meet with a Pathways Advisor before enrolling | medium | `verified_human_source` | Public KB updated 2026-05-22. Keep IT/OBL technology support distinct from Pathways Advisor academic-preparation guidance. |
 | `it-resources.txt` | Hub campus coverage | The CentreTech Hub is in the Classroom Building, Room 107; many Hub services can also be accessed online | medium | `verified_human_source` | Public KB updated 2026-05-22. This verifies the CentreTech Hub location and online-access note; it does not verify separate service-specific desk ownership. |
 | `it-resources.txt` | Hub services, location, phone, and hours | Hub provides or connects students with tutoring, library support, research help, technology assistance, printing, and study spaces; phone is (303) 360-4736; email is TheHub.cca@ccaurora.edu; hours are Monday-Thursday 8 a.m. to 6 p.m., Friday 8 a.m. to 5 p.m., and Saturday 10 a.m. to 2 p.m. | high | `verified_human_source` | Public KB updated 2026-05-22 from human-verified current Hub page/screenshot. Use Hub contact info as a general Hub contact path, not as an IT Helpdesk replacement. |
 | `mfa-account-security.txt` | MFA requirement scope | MFA is needed for student email access and may affect other services that ask for student-account verification; Microsoft Authenticator is optional | high | `partially_verified_human_source` | Public KB updated 2026-05-22. Exact MyCCA MFA requirement is not confirmed; do not claim MyCCA requires MFA unless separately verified. |
@@ -109,6 +110,9 @@ Last updated: 2026-05-22
 - `student-laptops-calculators.txt`
   - Adobe Creative Cloud on CCA Macs and SolidWorks in the Innovation Lab / CAST 132 were human-verified and public KB was updated 2026-05-22
   - Laptop checkout procedure, exact inventory, renewal options, and eligibility remain unverified
+- `d2l.txt` / `d2l-troubleshooting.txt` / `online-blended-learning.txt`
+  - D2L/Desire2Learn access through MyCCA, online-course reliable internet, the system check URL, and Pathways Advisor guidance for first-time online students were human-verified and public KB was updated 2026-05-22
+  - Keep Pathways Advisor guidance separate from IT support; do not imply IT can advise whether online learning is academically appropriate
 
 ## TODOs For Human Verification
 
@@ -118,7 +122,7 @@ Last updated: 2026-05-22
 - TODO: Confirm Microsoft 365 desktop app entitlement, OneDrive desktop sync behavior, storage quotas, and sharing limits before adding those details to public guidance.
 - TODO: Confirm exact Hub desk ownership for laptops, printing, headphones, and other service-specific checkout paths before adding those details to public guidance.
 - TODO: Confirm laptop checkout procedure, exact inventory, renewal options, and eligibility before adding those details to public guidance.
-- TODO: Confirm whether D2L student support should explicitly reference `D2L`, `Brightspace`, `MyCourses`, or a preferred combination in student-facing copy.
+- TODO: Confirm whether any remaining `Brightspace` or `MyCourses` wording should stay in student-facing copy now that `D2L/Desire2Learn` access wording has been verified.
 - TODO: Confirm the supported mapped-drive recovery process for Windows 11, including whether any internal server path or self-service script should appear in public-facing guidance.
 
 ## Addressed Cleanup Notes
@@ -133,4 +137,5 @@ Last updated: 2026-05-22
 - 2026-05-22: Updated MFA public guidance to say MFA is needed for student email, Microsoft Authenticator is optional, changed-phone/device issues should contact CCA IT, and MyCCA MFA requirements remain unclaimed.
 - 2026-05-22: Updated Hub public guidance with verified CentreTech location, service categories, and online access availability; Hub hours/contact were verified later and are recorded below.
 - 2026-05-22: Updated student laptop/software guidance with cautious Student Center laptop language, verified Adobe access limits, and verified SolidWorks locations.
+- 2026-05-22: Updated D2L/online-learning public guidance with verified MyCCA-to-Desire2Learn/D2L access path, system check URL, reliable-internet requirement, and Pathways Advisor recommendation for first-time online students.
 - 2026-05-22: Updated Hub public guidance with verified Classroom Building, Room 107 location, phone, email, and hours from current Hub page/screenshot; kept service-specific desk ownership cautious.

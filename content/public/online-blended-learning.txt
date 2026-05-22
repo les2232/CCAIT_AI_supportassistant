@@ -18,6 +18,14 @@ What students use it for:
 - Participating in online and blended courses at CCA.
 - Using online learning tools such as D2L (MyCourses) and Zoom when those tools are part of a course.
 - Finding the right support path for online learning tools used in class.
+- Preparing for online courses by checking internet access and D2L/Desire2Learn readiness.
+
+Online course readiness:
+- Online courses require reliable internet access.
+- Open https://cca.desire2learn.com/d2l/systemCheck and run the D2L/Desire2Learn system check before online courses.
+- To access D2L/Desire2Learn courses, log in to MyCCA and click the Desire2Learn/D2L link.
+- If you have never taken an online class, meet with a Pathways Advisor before enrolling, especially if you are a new student.
+- IT and OBL can help with technology or online learning tools, but academic preparation questions belong with a Pathways Advisor.
 
 Services provided:
 
@@ -46,7 +54,7 @@ Training requirements:
 - Training expectations depend on role and teaching assignment.
 - If training questions affect course delivery or faculty support, OBL can help direct you to the right next step.
 
-Design and support access:
+Online course design and support access:
 - Contact the OBL design team if you need help with online course design, course structure, or related instructional support.
 - Use OBL contact information if you are not sure whether your question belongs with OBL or IT.
 - Contact OBL for instructional support questions related to online or blended course design.
@@ -62,14 +70,15 @@ Where to get help / When to contact OBL or IT:
 
 - TITLE: Online and Blended Learning Support
 - AUDIENCE: Students and Faculty
-- TAGS: online learning, zoom, d2l, yuja, accessibility, OBL
+- TAGS: online learning, zoom, d2l, desire2learn, yuja, accessibility, OBL, system check, mycca
 - CONTEXT:
   - What this is:
 - STEPS:
   - What students use it for:
+  - Online course readiness:
   - Learning technology support:
 - IF NOT FIXED:
   - Access, equity, and advocacy support:
-  - Design and support access:
+  - Online course design and support access:
 - ESCALATE:
   - Where to get help / When to contact OBL or IT:

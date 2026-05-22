@@ -7,7 +7,7 @@ D2L TROUBLESHOOTING
 You are in the right place. These steps can help when D2L is blocking class access.
 
 What this helps with:
-- Use this guide when D2L (Brightspace) is not working as expected at the Community College of Aurora.
+- Use this guide when D2L/Desire2Learn is not working as expected at the Community College of Aurora.
 - It covers common sign-in, browser, course visibility, and assignment upload issues.
 
 Common symptoms:
@@ -16,7 +16,7 @@ Common symptoms:
 
 Try this first:
 1. Make sure you are using your correct CCA student account information.
-2. Start the sign-in process again.
+2. Log in to MyCCA and click the Desire2Learn/D2L link.
 3. Enter your username and password carefully.
 4. Keep the sign-in page open until the sign-in process finishes.
 5. If D2L opens, go to the course, assignment, or page you need for class.
@@ -29,8 +29,9 @@ Cannot access D2L or log into D2L:
 
 Browser or cache issues:
 1. Close the browser and open D2L again.
-2. Try a different browser if the page does not load correctly.
-3. If the problem continues, clear your browser cache and reopen D2L.
+2. Open https://cca.desire2learn.com/d2l/systemCheck and run the D2L/Desire2Learn system check.
+3. Try a different browser if the page does not load correctly.
+4. If the problem continues, clear your browser cache and reopen D2L.
 
 Assignment upload problems:
 1. Open the assignment submission area in D2L and make sure you are submitting to the correct assignment.
@@ -41,6 +42,7 @@ Assignment upload problems:
 If that did not work:
 - Check whether the issue is limited to sign-in, course access, or assignment submission.
 - If you are still unable to submit an assignment, notify your instructor right away so they know you are having trouble.
+- If you have never taken an online class, meet with a Pathways Advisor before enrolling in an online course, especially if you are a new student.
 
 Still need help?:
 - Contact the CCA IT Helpdesk if you cannot sign in to D2L, your account access is not working, or D2L continues having technical problems after you retry sign-in, reopen the browser, or clear cache.
@@ -55,8 +57,8 @@ What to include when asking for help:
 - A screenshot if the page shows an error or failed submission.
 
 Course not showing:
-- Check whether you are looking in the correct term or course area.
-- Some courses may not appear until the instructor makes them available.
+- If your class or course is not showing in D2L/Desire2Learn, check whether you are looking in the correct term or course area.
+- Some D2L/Desire2Learn courses may not appear until the instructor makes them available.
 
 When to contact your instructor:
 - Contact your instructor if a course is missing, an assignment is unavailable, a due date looks wrong, or course content does not appear as expected.
@@ -68,7 +70,7 @@ CCA IT Helpdesk:
 
 - TITLE: D2L Troubleshooting
 - AUDIENCE: Students
-- TAGS: d2l, brightspace, login, course missing, assignment upload
+- TAGS: d2l, desire2learn, brightspace, login, course missing, assignment upload, system check, mycca
 - CONTEXT:
   - What this helps with:
 - STEPS:

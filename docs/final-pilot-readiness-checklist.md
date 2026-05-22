@@ -7,6 +7,8 @@ Use this checklist immediately before pilot launch. Do not mark an item complete
 - [ ] OBL location is verified and public wording says OBL is in room F103.
 - [ ] Hub location, contact, and hours are verified and public wording matches the approved source.
 - [ ] Microsoft 365 wording says students have web access and does not imply desktop app entitlement.
+- [ ] D2L/online-learning wording says students access D2L/Desire2Learn through MyCCA, should run the system check, and need reliable internet for online courses.
+- [ ] First-time online-student wording refers academic preparation questions to a Pathways Advisor, not IT.
 - [ ] Student email wording says email uses MFA and encourages students to prioritize logging into email after registering.
 - [ ] MFA changed-phone/account-recovery wording tells students to contact CCA IT when they cannot verify login after a phone/device/number change.
 - [ ] Laptop wording is cautious about availability, checkout procedure, inventory, renewal rules, and eligibility.
@@ -73,6 +75,7 @@ Use this checklist immediately before pilot launch. Do not mark an item complete
 | Prompt | Expected behavior | Pass/fail | Notes |
 | --- | --- | --- | --- |
 | I can't log in | Concise login disambiguation with D2L, student email, MyCCA, campus computer, Wi-Fi, MFA/Auth, and not-sure options. | [ ] | |
+| How do I access D2L? | D2L/Desire2Learn access answer says to log in to MyCCA, click the Desire2Learn/D2L link, and run the system check for online courses. | [ ] | |
 | My student email is not working | Student email troubleshooting with correct account/password, email MFA, Outlook web, and CCA IT path if MFA/account access is blocked. | [ ] | |
 | I got a new phone and can't approve MFA | MFA recovery guidance that tells the student to contact CCA IT for changed phone/device/number verification method help. | [ ] | |
 | I am not getting my verification code | MFA verification troubleshooting that does not assume Duo for students and does not overclaim service behavior. | [ ] | |
