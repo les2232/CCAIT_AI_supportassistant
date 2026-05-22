@@ -135,8 +135,8 @@ From `docs/content-verification.md`, confirm before expanding or hardening publi
 - Whether MyCCA itself requires MFA; student email MFA is verified, but MyCCA MFA requirements are not.
 - Whether `onlinelearning.cca@ccaurora.edu` remains the public-facing OBL support address.
 - Microsoft 365 desktop app entitlement, OneDrive desktop sync behavior, storage quotas, and sharing limits.
-- Hub hours and any public Hub phone numbers.
 - Laptop checkout procedure, exact inventory, renewal options, and eligibility.
+- Exact Hub desk ownership for printing, headphones, and other service-specific checkout paths.
 - Preferred student-facing naming for D2L, Brightspace, MyCourses, or a combination.
 - Supported Windows 11 mapped-drive recovery steps and whether any internal path/script guidance may be public.
 - Printing support ownership and personal-device printing expectations.

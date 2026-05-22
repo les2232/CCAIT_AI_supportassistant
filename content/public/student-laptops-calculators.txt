@@ -46,6 +46,12 @@ How to get a calculator:
 
 Hub Technology:
 
+Hub location and general contact:
+- The CentreTech Hub is in the Classroom Building, Room 107.
+- General Hub phone: (303) 360-4736
+- General Hub email: TheHub.cca@ccaurora.edu
+- Hub hours: Monday-Thursday, 8 a.m. to 6 p.m.; Friday, 8 a.m. to 5 p.m.; Saturday, 10 a.m. to 2 p.m.
+
 Hub laptops:
 - Loaner laptops can be found in the Student Center. Ask staff about current availability and checkout requirements.
 
@@ -57,7 +63,7 @@ Desktop computers:
 Where to get help / When to contact support:
 - For questions about the Laptop Loan Program, contact Student Advocacy:
   studentadvocacy.cca@ccaurora.edu
-- For general technology assistance, students may ask the Hub.
+- For general technology assistance, students may ask the Hub. Use the CCA IT Helpdesk for account, login, Wi-Fi, or device troubleshooting.
 
 - TITLE: Student Laptops and Calculators
 - AUDIENCE: Students
@@ -67,6 +73,7 @@ Where to get help / When to contact support:
 - STEPS:
   - How to get a semester laptop:
   - How to get a calculator:
+  - Hub location and general contact:
 - IF NOT FIXED:
   - Additional details:
   - If you still need help, students may ask the Hub for general technology assistance.
