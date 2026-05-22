@@ -4,12 +4,13 @@ SOURCE: Community College of Aurora Student Account Security
 
 MFA AND ACCOUNT SECURITY
 
-You are in the right place. Microsoft Authenticator or MFA problems can block student sign-in even when your password is correct.
+You are in the right place. MFA or sign-in verification problems can block student email access even when your password is correct.
 
 What this helps with:
-- Use this guide when Microsoft Authenticator or Multi-Factor Authentication (MFA) is preventing student access to your CCA account.
-- MFA can appear when signing in to student email or another CCA service that asks for student-account verification.
-- Use this guide for student Microsoft Authenticator problems, phone text or phone call verification problems, MFA not working, multi-factor authentication problems, verification-code failures, approval-prompt issues, authenticator-app problems, or changed-phone access problems.
+- Use this guide when Multi-Factor Authentication (MFA) or sign-in verification is preventing student email access.
+- MFA is needed for student email access and may appear in other CCA services that ask for student-account verification.
+- Microsoft Authenticator is optional. Students may use another verification method, such as phone text or phone call verification, if that method is offered.
+- Use this guide for MFA not working, verification-code failures, approval-prompt issues, authenticator-app problems, or changed-phone access problems.
 
 Common symptoms:
 - You are not receiving a verification prompt or code.
@@ -28,7 +29,7 @@ Try this first:
 
 Setting up MFA:
 1. Start the sign-in process and follow the prompts to choose your verification method.
-2. Choose Microsoft Authenticator or phone number text/call verification if those options are offered.
+2. Choose a verification method that works for you. Microsoft Authenticator is optional; phone text or phone call verification may also be offered.
 3. Confirm the verification method before leaving the sign-in screen.
 4. Add an alternate MFA method if the sign-in setup page gives you that option.
 5. Finish the setup so you can keep using your account without interruption.
@@ -44,7 +45,8 @@ Common MFA problems:
 2. Enter the verification code again carefully if the code appears but does not work.
 3. Request a new verification code if the first code expired, arrived late, or no longer matches the sign-in screen.
 4. Approve the MFA prompt on the expected device and keep the sign-in window open until verification finishes.
-5. Open Microsoft Authenticator or check your phone text/call verification method and confirm that the verification request is going to the correct account or method.
+5. If you use Microsoft Authenticator or another authenticator app, open the app and confirm that the request is going to the correct account.
+6. If you use phone text or phone call verification, confirm that the request is going to the correct phone number.
 
 If that did not work:
 - Try the sign-in process again and note whether the problem is a missing prompt, rejected code, or blocked verification step.
@@ -53,10 +55,10 @@ If that did not work:
 Changed phones or lost MFA access:
 - If you changed phones, lost your phone, or changed your phone number, you are not stuck. MFA may still be connected to the old device or number.
 - If you added an alternate MFA method earlier, try that method.
-- If you cannot approve the sign-in because the old device or phone number is still attached to your account, contact the CCA IT Helpdesk or the 24x7 Help Desk for help restoring MFA access.
+- If you cannot approve the sign-in because the old device or phone number is still attached to your account, contact the CCA IT Helpdesk for help updating your verification method or phone number.
 
 What MFA affects:
-- MFA may affect access to student email and other CCA services that ask for student-account verification.
+- MFA is needed for student email access and may affect other CCA services that ask for student-account verification.
 - The exact services that require MFA can depend on current account settings and service availability.
 - If MFA does not complete, you may be blocked from signing in even if your password is correct.
 

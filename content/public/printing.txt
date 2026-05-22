@@ -10,29 +10,29 @@ What this helps with:
 
 Where students can print:
 - Students can print at CCA using campus printing resources such as printers in the Hub.
-- If you are not sure where to go, the Hub front desk is a good place to ask for printing help.
+- If you are not sure where to go, the Hub is a good place to ask for printing help.
 
 Printing from campus computers:
 - Sign in to the campus computer with your student account if prompted.
 - Open your document and choose Print.
 - Select the available campus printer from the printer list.
-- If you are not sure which printer to use, ask staff at the Hub front desk.
+- If you are not sure which printer to use, ask Hub staff.
 
 Printing from personal devices:
 - Printing from a personal laptop may require being connected to the correct CCA student Wi-Fi network.
 - If a campus printer does not appear on your personal device, reconnect to Wi-Fi and check the printer list again.
-- If you still cannot print from your own device, ask for help at the Hub front desk or contact the CCA IT Helpdesk.
+- If you still cannot print from your own device, ask the Hub for help or contact the CCA IT Helpdesk.
 
 Common issues: printer not showing or print job not going through:
 - If the printer is not showing, check that you are signed in correctly and connected to the correct CCA network if using your own device.
 - If your print job does not go through, close the document, reopen it, and send the job again.
-- If the printer is offline, unavailable, or still not working, ask for help at the Hub front desk.
+- If the printer is offline, unavailable, or still not working, ask the Hub for help.
 - If the issue seems related to your account, login, or device access, contact the CCA IT Helpdesk.
 
 Printer error message:
 - Write down the exact printer error message.
 - Try sending the print job again after checking that you selected the correct available printer.
-- If the error continues, ask for help at the Hub front desk or contact the CCA IT Helpdesk.
+- If the error continues, ask the Hub for help or contact the CCA IT Helpdesk.
 
 When to contact IT:
 - Contact the CCA IT Helpdesk if printing is still not working because of an account, login, or technology problem.

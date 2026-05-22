@@ -24,6 +24,7 @@ What this helps with:
 - Use this guide if you need to open student email for the first time.
 - Use this guide if you need to find your student email address.
 - Use this guide if you are trying to understand which password to use for student email.
+- After you register for classes, sign in to your student email as soon as you can so you can complete setup and receive official CCA messages.
 
 Try this first:
 1. Open a web browser.
@@ -61,14 +62,14 @@ Password requirements:
   - Numbers and/or special characters
 
 Alternative access:
-1. You can also access email by navigating directly to Microsoft Office.
+1. You can also access email by navigating directly to Microsoft 365 on the web.
 2. Click Sign in and enter your CCA email address and MyCCA password.
-3. Launch the Outlook app to view your email.
+3. Open Outlook on the web to view your email.
 
 First access to student email:
 - Upon first login, students will be prompted to set up Multi-Factor Authentication (MFA).
-- MFA is required to protect Microsoft 365 sign-ins.
-- The phone number method is recommended for MFA setup.
+- MFA is needed for student email access.
+- Microsoft Authenticator is optional. If phone text or phone call verification is offered, you may use that method instead.
 
 On-campus computer login:
 - Use the same credentials as MyCCA:

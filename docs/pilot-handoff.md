@@ -132,11 +132,11 @@ After starting the app:
 
 From `docs/content-verification.md`, confirm before expanding or hardening public guidance:
 
-- Whether MyCCA itself requires MFA, or only downstream Microsoft 365/student-email sign-ins do.
-- The current OBL physical location before restoring any room number to public guidance.
+- Whether MyCCA itself requires MFA; student email MFA is verified, but MyCCA MFA requirements are not.
 - Whether `onlinelearning.cca@ccaurora.edu` remains the public-facing OBL support address.
-- Current Microsoft 365, OneDrive, Teams, and Office Online entitlements for student accounts.
-- Hub locations, phone numbers, hours, and which services are offered at CentreTech vs Lowry.
+- Microsoft 365 desktop app entitlement, OneDrive desktop sync behavior, storage quotas, and sharing limits.
+- Hub hours and any public Hub phone numbers.
+- Laptop checkout procedure, exact inventory, renewal options, and eligibility.
 - Preferred student-facing naming for D2L, Brightspace, MyCourses, or a combination.
 - Supported Windows 11 mapped-drive recovery steps and whether any internal path/script guidance may be public.
 - Printing support ownership and personal-device printing expectations.

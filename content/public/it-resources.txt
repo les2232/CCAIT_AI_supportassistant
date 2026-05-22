@@ -10,13 +10,13 @@ CCA IT Help Portal:
 - The portal provides helpful guidance on common IT issues.
 
 The Hub:
-- The Hub may be a starting point for in-person campus support, but current services, locations, phone numbers, and hours
-  should be confirmed through official CCA sources before visiting.
-- To find current Hub information, search "HUB" from the CCA college home page, use official CCA support pages, or ask the
-  CCA IT Helpdesk where to go for your issue.
+- The Hub is at the CentreTech campus.
+- The Hub provides or connects students with tutoring, library support, research help, technology assistance, printing, and study spaces.
+- Many Hub services can also be accessed online.
+- Hub hours are not confirmed in this guide. Check official CCA Hub information before visiting.
 
 When to use The Hub:
-- Use The Hub as a possible starting point for in-person campus support after confirming current services and locations.
+- Use The Hub as a possible starting point for in-person or online campus support.
 - For account, login, Wi-Fi, device, printing, or classroom technology problems, use the CCA IT Help Portal or contact the
   CCA IT Helpdesk.
 

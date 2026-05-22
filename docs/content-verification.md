@@ -10,6 +10,8 @@ Last updated: 2026-05-22
 - Compared high-risk factual claims against public CCA sources when available.
 - Used these source-status labels:
   - `verified_public_source`
+  - `verified_human_source`
+  - `partially_verified_human_source`
   - `likely_but_needs_human_verification`
   - `unsupported_claim`
   - `inconsistent_with_other_kb_content`
@@ -48,36 +50,36 @@ Last updated: 2026-05-22
 | File | Claim | Current KB value | Risk | Source status | Recommended action |
 |---|---|---|---|---|---|
 | `cca-tech-help.txt` | Standard IT Helpdesk block | `303-360-4900`, `1-888-800-9198`, `HelpdeskTickets.CCA@ccaurora.edu`, `Mon–Fri 8 a.m.–5 p.m.` | low | `verified_public_source` | Keep standardized block. Verified 2026-04-27 from CCA contact page and CCA IT Support flyer / campus support handout. |
-| `cca-tech-help.txt` | Hub Front Desk handles headphones / calculators / general student tech help | General Hub-front-desk routing | medium | `needs_source` | Verify Hub service ownership with Student Success or Hub staff. |
+| `cca-tech-help.txt` | Hub help with headphones / calculators / general student tech help | Hub can help route general student technology support; headphone availability and exact checkout desk still need confirmation | medium | `partially_verified_human_source` | Public KB updated 2026-05-22 to say the Hub more generally and avoid overclaiming a specific front desk for unverified items. Verify headphone availability and exact calculator/headphone checkout ownership with Hub staff. |
 | `classroom-technology.txt` | Classroom tech escalation email | `HelpdeskTickets.CCA@ccaurora.edu` | low | `verified_public_source` | Keep. |
 | `classroom-technology.txt` | Classroom display / projector / audio issues should route to IT Helpdesk | IT owns classroom AV escalation | medium | `likely_but_needs_human_verification` | Confirm ownership and after-hours expectations with Educational Technology / IT. |
 | `contact-it.txt` | Standard IT Helpdesk block | `303-360-4900`, `1-888-800-9198`, `HelpdeskTickets.CCA@ccaurora.edu`, `Mon–Fri 8 a.m.–5 p.m.` | low | `verified_public_source` | Keep as canonical escalation reference. Verified 2026-04-27 from CCA contact page and CCA IT Support flyer / campus support handout. |
 | `d2l-troubleshooting.txt` | LMS naming | `D2L (Brightspace)` | low | `likely_but_needs_human_verification` | Keep wording; confirm if CCA wants student-facing copy to say `D2L`, `Brightspace`, or both. |
 | `d2l-troubleshooting.txt` | Support ownership split | IT for sign-in / technical issues, instructor for missing course or assignment availability | medium | `likely_but_needs_human_verification` | Confirm with Academic Affairs / OBL that this escalation split is official. |
 | `d2l.txt` | D2L access via student account credentials | Students sign in with CCA student credentials | medium | `likely_but_needs_human_verification` | Confirm exact entry path and whether CCA still routes through MyCCA or another SSO path. |
-| `it-resources.txt` | Hub campus coverage | Public article no longer states CentreTech / Lowry availability | medium | `needs_source` | Confirm current Hub campus availability before adding campus-specific guidance back to student-facing answers. |
-| `it-resources.txt` | Hub services, location, phone, and hours | Public article no longer states specific services, `Classroom Building 107`, or `303-360-4736` | high | `needs_source` | Verify with current CCA campus services source or Hub owner before relying on specific Hub details in student-facing answers. |
-| `mfa-account-security.txt` | MFA requirement scope | Public article now says MFA may affect student email and other CCA services that ask for student-account verification | high | `likely_but_needs_human_verification` | Public service-list wording softened 2026-05-22; verify MyCCA and the exact services that require MFA before adding specific app names to student-facing answers. |
-| `mfa-account-security.txt` | Verification-code / prompt / changed-phone support path | IT Helpdesk owns blocked MFA access issues | medium | `likely_but_needs_human_verification` | Confirm with IT whether MFA account recovery always routes to the Helpdesk. |
+| `it-resources.txt` | Hub campus coverage | Hub is at CentreTech; many Hub services can also be accessed online | medium | `partially_verified_human_source` | Public KB updated 2026-05-22. Hub hours remain unverified and should not be published until confirmed. |
+| `it-resources.txt` | Hub services, location, phone, and hours | Hub provides or connects students with tutoring, library support, research help, technology assistance, printing, and study spaces; hours are not confirmed in public KB | high | `partially_verified_human_source` | Public KB updated 2026-05-22. Verify Hub hours and any phone numbers before adding them to student-facing answers. |
+| `mfa-account-security.txt` | MFA requirement scope | MFA is needed for student email access and may affect other services that ask for student-account verification; Microsoft Authenticator is optional | high | `partially_verified_human_source` | Public KB updated 2026-05-22. Exact MyCCA MFA requirement is not confirmed; do not claim MyCCA requires MFA unless separately verified. |
+| `mfa-account-security.txt` | Verification-code / prompt / changed-phone support path | Students with a new phone, changed phone number, or changed verification device should contact CCA IT for help updating their verification method or phone number | medium | `verified_human_source` | Public KB updated 2026-05-22. Internal notes may mention Entra if needed; public KB should remain student-friendly and not over-explain Entra. |
 | `online-blended-learning.txt` | OBL contact email | `onlinelearning.cca@ccaurora.edu` | medium | `verified_public_source` | Keep; public source also shows mixed-case `OnlineLearning.CCA@ccaurora.edu`. |
-| `online-blended-learning.txt` | OBL location | Public article now says the current physical location needs human verification before it is used as public guidance | high | `inconsistent_with_other_kb_content` | Verify the current OBL physical location before restoring a room number to student-facing answers. Public catalog pages place Online Learning in the Classroom Building, while other public pages reference Fine Arts rooms. |
+| `online-blended-learning.txt` | OBL location | OBL is in room F103 | medium | `verified_human_source` | Public KB updated 2026-05-22. Building name was not added because only room F103 was verified. |
 | `online-blended-learning.txt` | OBL support ownership | OBL handles online course design / instructional support, IT handles technical login/system issues | medium | `likely_but_needs_human_verification` | Confirm with OBL and IT. |
 | `password-reset.txt` | MyCCA / campus computer password relationship | same password for myCCA and CCA computers | medium | `likely_but_needs_human_verification` | Confirm current identity model with IT. |
 | `password-reset.txt` | Password reset path | reset through `ccaurora.edu` / MyCCA login flow | medium | `needs_source` | Verify exact public reset flow and whether self-service reset instructions should be more specific. |
-| `printing.txt` | Printing help location | Printing help available at the Hub front desk | medium | `likely_but_needs_human_verification` | Confirm current print-support ownership. |
+| `printing.txt` | Printing help location | Printing help can start with the Hub; exact front-desk ownership is not claimed in public KB | medium | `partially_verified_human_source` | Public KB updated 2026-05-22 based on verified Hub printing support category. Confirm exact print-support ownership before naming a specific desk. |
 | `printing.txt` | Student-owned devices must use campus Wi-Fi before printing | Printing from own device may depend on campus Wi-Fi | medium | `likely_but_needs_human_verification` | Verify with printing instructions. |
 | `printing.txt` | Wi-Fi network spelling in public source | KB printing guidance implies student Wi-Fi; public LibGuide home snippet says `CCAStudents wifi` | high | `inconsistent_with_other_kb_content` | Keep flagged until Wi-Fi naming is confirmed campus-wide. |
-| `student-email-office365.txt` | Microsoft 365 access with school account | Public article now says student access to Outlook, Teams, OneDrive, and Office Online may depend on current licensing and service availability | high | `likely_but_needs_human_verification` | Public-safety wording addressed 2026-05-08; verify current licensing / access policy with Microsoft 365 admin. |
-| `student-email-office365.txt` | OneDrive usage | Public article no longer claims all students can store, sync, and share school files in OneDrive | medium | `likely_but_needs_human_verification` | Verify whether OneDrive is enabled for all student accounts, including storage, sync, sharing, and licensing limits. |
-| `student-email-troubleshooting.txt` | Duo / MFA as a primary student email sign-in dependency | Main steps require completed Duo/MFA enrollment and prompt approval | high | `verified_public_source` | Keep. Student email public page says first access prompts MFA setup. |
+| `student-email-office365.txt` | Microsoft 365 access with school account | All students have access to Microsoft 365 products through the web, including Outlook, OneDrive, Teams, and Office Online | high | `verified_human_source` | Public KB updated 2026-05-22. Desktop app entitlement remains unverified and should not be claimed. |
+| `student-email-office365.txt` | OneDrive usage | OneDrive web access is available through the CCA school account; desktop sync and detailed storage/sharing limits are not confirmed in public KB | medium | `partially_verified_human_source` | Public KB updated 2026-05-22. Keep desktop sync, storage quota, and sharing-limit claims out of public guidance unless verified. |
+| `student-email-troubleshooting.txt` | MFA as a primary student email sign-in dependency | Student email troubleshooting now says required MFA or sign-in verification setup must be complete; Microsoft Authenticator is optional if another method is offered | high | `verified_human_source` | Public KB updated 2026-05-22. Keep student email MFA guidance, but do not claim a specific verification method is required. |
 | `student-email-troubleshooting.txt` | Outlook web as a fallback | Try Outlook on the web to distinguish account vs app issue | medium | `likely_but_needs_human_verification` | Keep; validate with IT if Outlook Web is the preferred fallback path. |
 | `student-email.txt` | Student email domain | `@student.cccs.edu` | low | `verified_public_source` | Keep. |
 | `student-email.txt` | Initial MyCCA password format | `StudentMMDDYYYY` default or updated password | high | `verified_public_source` | Keep, but review periodically because default-password rules are sensitive. |
-| `student-email.txt` | First student email access triggers MFA setup | First login prompts MFA; phone number method recommended | medium | `verified_public_source` | Keep. |
-| `student-laptops-calculators.txt` | Semester laptop loan location | `Student Centre, Room S101, CentreTech Campus` | low | `verified_public_source` | Keep. |
-| `student-laptops-calculators.txt` | Semester laptop loan requirements | bring student ID and current course schedule | low | `verified_public_source` | Keep. |
+| `student-email.txt` | First student email access triggers MFA setup | MFA is needed for student email access; Microsoft Authenticator is optional; students should sign into email soon after registering for classes | medium | `verified_human_source` | Public KB updated 2026-05-22. Do not claim a specific MFA method is required. |
+| `student-laptops-calculators.txt` | Semester laptop loan location | Loaner laptops can be found in the Student Center; public KB directs students to Student Success and keeps checkout details cautious | low | `partially_verified_human_source` | Public KB updated 2026-05-22. Exact checkout procedure, inventory, renewal options, and eligibility are not confirmed. |
+| `student-laptops-calculators.txt` | Semester laptop loan requirements | Public KB says to bring student ID and current course schedule if requested | low | `partially_verified_human_source` | Public KB updated 2026-05-22. Keep exact checkout requirements cautious until confirmed. |
 | `student-laptops-calculators.txt` | Calculator checkout | Hub front desk at CentreTech; provide S# | low | `verified_public_source` | Keep. |
-| `student-laptops-calculators.txt` | Hub computer and desktop software availability | Laptops available inside the Hub at CentreTech; iMac desktops with Adobe Creative Cloud installed; one desktop PC with SolidWorks installed | medium | `needs_source` | Verify current Hub computer inventory, software installs, and campus availability before relying on this as student-facing guidance. |
+| `student-laptops-calculators.txt` | Hub computer and desktop software availability | Loaner laptops can be found in the Student Center; Creative Cloud products are installed on CCA Macs with access limited to graphic design students or students whose class requires Adobe; SolidWorks is installed on Innovation Lab and CAST 132 computers | medium | `partially_verified_human_source` | Public KB updated 2026-05-22. Laptop checkout procedure, inventory, and eligibility remain unverified. |
 | `wifi-troubleshooting.txt` | Student Wi-Fi network name | `CCA-Students` | low | `verified_public_source` | Keep. Verified 2026-04-27 from CCA IT Support flyer / campus support handout. |
 | `wifi-troubleshooting.txt` | Open/no-password Wi-Fi claim | `CCA-Students is an open network and does not require a password` | low | `verified_public_source` | Keep. Verified 2026-04-27 from CCA IT Support flyer / campus support handout. |
 | `wifi-troubleshooting.txt` | Captive portal / splash page behavior | open browser to trigger splash page / captive portal / consent page | low | `verified_public_source` | Keep. Verified 2026-04-27 from CCA IT Support flyer / campus support handout. |
@@ -93,32 +95,29 @@ Last updated: 2026-05-22
 ## High-Risk Claims Requiring Human Verification
 
 - `mfa-account-security.txt`
-  - Public MFA service-list wording was softened 2026-05-22
-  - Exact MyCCA, Microsoft 365 app, and other service MFA scope still requires verification
-- `online-blended-learning.txt`
-  - Public OBL room-number wording was softened 2026-05-12
-  - Public sources conflict with catalog/facilities references that place Online Learning in the Classroom Building
+  - Email MFA and changed-phone/account-recovery routing were human-verified and public KB was updated 2026-05-22
+  - Exact MyCCA MFA requirement remains unverified; do not claim MyCCA requires MFA
 - `student-email-office365.txt`
-  - Public Microsoft 365 entitlement wording was softened 2026-05-08
-  - Current student licensing and service availability for Outlook, OneDrive, Teams, Office Online, storage, sync, and sharing still require verification
+  - Microsoft 365 web access for Outlook, OneDrive, Teams, and Office Online was human-verified and public KB was updated 2026-05-22
+  - Desktop app entitlement, OneDrive desktop sync, storage quotas, and sharing limits remain unverified
 - `windows-11.txt`
   - Stale Windows 11 rollout / deadline guidance was addressed 2026-05-08
   - Mapped-drive recovery remains verification-sensitive; do not publish internal server paths or self-service script steps unless explicitly approved for public guidance
 - `it-resources.txt`
-  - Hub services, locations, phone numbers, hours, and CentreTech / Lowry availability remain unverified
-  - Public `it-resources.txt` guidance was softened 2026-05-08 to avoid publishing unverified Hub details
+  - Hub CentreTech location, service categories, and online-access note were human-verified and public KB was updated 2026-05-22
+  - Hub hours and phone numbers remain unverified
 - `student-laptops-calculators.txt`
-  - Hub laptop and desktop Adobe Creative Cloud / SolidWorks availability remains unverified
+  - Adobe Creative Cloud on CCA Macs and SolidWorks in the Innovation Lab / CAST 132 were human-verified and public KB was updated 2026-05-22
+  - Laptop checkout procedure, exact inventory, renewal options, and eligibility remain unverified
 
 ## TODOs For Human Verification
 
 - TODO: Confirm whether MyCCA itself now requires MFA, or only downstream Microsoft 365/student-email sign-ins do.
 - TODO: Confirm which current student-facing CCA services require MFA before restoring any app-by-app MFA scope list to public guidance.
-- TODO: Confirm the current OBL physical location before restoring any room number to public student-facing guidance.
 - TODO: Confirm whether `onlinelearning.cca@ccaurora.edu` remains the public-facing OBL support address for students/faculty.
-- TODO: Confirm current Microsoft 365 / OneDrive / Teams / Office Online entitlements for student accounts, including any storage, sync, sharing, and licensing limits.
-- TODO: Confirm Hub locations, phone numbers, hours, and which services are offered at CentreTech vs Lowry.
-- TODO: Confirm current Hub computer inventory and desktop software availability, including Adobe Creative Cloud and SolidWorks.
+- TODO: Confirm Microsoft 365 desktop app entitlement, OneDrive desktop sync behavior, storage quotas, and sharing limits before adding those details to public guidance.
+- TODO: Confirm Hub hours and any public Hub phone numbers before adding them to student-facing answers.
+- TODO: Confirm laptop checkout procedure, exact inventory, renewal options, and eligibility before adding those details to public guidance.
 - TODO: Confirm whether D2L student support should explicitly reference `D2L`, `Brightspace`, `MyCourses`, or a preferred combination in student-facing copy.
 - TODO: Confirm the supported mapped-drive recovery process for Windows 11, including whether any internal server path or self-service script should appear in public-facing guidance.
 
@@ -129,3 +128,8 @@ Last updated: 2026-05-22
 - 2026-05-08: Softened `student-email-office365.txt` Microsoft 365 entitlement wording to avoid implying all students have the same Outlook, Teams, OneDrive, Office Online, storage, sync, or sharing access.
 - 2026-05-12: Softened `online-blended-learning.txt` OBL location wording to avoid presenting an unverified room number as authoritative.
 - 2026-05-22: Softened `mfa-account-security.txt` MFA scope wording to avoid implying specific MyCCA, Microsoft 365 app, Adobe, Webex, or other service MFA requirements without verification.
+- 2026-05-22: Restored verified OBL room guidance as F103 without adding an unverified building name.
+- 2026-05-22: Updated Microsoft 365 public guidance to say students have web access to Outlook, OneDrive, Teams, and Office Online while avoiding desktop app entitlement claims.
+- 2026-05-22: Updated MFA public guidance to say MFA is needed for student email, Microsoft Authenticator is optional, changed-phone/device issues should contact CCA IT, and MyCCA MFA requirements remain unclaimed.
+- 2026-05-22: Updated Hub public guidance with verified CentreTech location, service categories, online access availability, and unverified-hours caution.
+- 2026-05-22: Updated student laptop/software guidance with cautious Student Center laptop language, verified Adobe access limits, and verified SolidWorks locations.
