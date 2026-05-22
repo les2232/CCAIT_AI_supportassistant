@@ -11,18 +11,20 @@ What this helps with:
 - It covers common problems with Outlook, Microsoft 365 email access, password prompts, and sign-in verification.
 
 Try this first:
-1. Sign in with your correct CCA student email account and current password.
-2. Confirm that your required MFA or sign-in verification setup is complete before trying to sign in to student email.
-3. Complete the MFA sign-in prompt or verification step before returning to Outlook. Microsoft Authenticator is optional if another verification method is offered.
-4. Try Outlook on the web to check whether your student email account opens there.
-5. If Outlook on the web works but the app does not, close Outlook completely and open it again.
-6. Sign in to the Outlook app again with your CCA student email account.
+1. Sign in with your correct CCA student email account.
+2. Use the same password you use for MyCCA or for the CCA sign-in from the ccaurora.edu homepage.
+3. Confirm that your required MFA or sign-in verification setup is complete before trying to sign in to student email.
+4. Complete the MFA sign-in prompt or verification step before returning to Outlook. Microsoft Authenticator is optional if another verification method is offered.
+5. Try Outlook on the web to check whether your student email account opens there.
+6. If Outlook on the web works but the app does not, close Outlook completely and open it again.
+7. Sign in to the Outlook app again with your CCA student email account.
 
 Cannot access student email:
-1. Make sure you are using your CCA student email account and the correct password.
-2. If sign-in does not work, start again and confirm that your account information is correct.
-3. Complete the MFA prompt or verification step if the sign-in page asks for it.
-4. If you still cannot access student email, try Outlook on the web before contacting CCA IT Support.
+1. Make sure you are using your CCA student email account.
+2. Use the same password you use for MyCCA or for the CCA sign-in from the ccaurora.edu homepage.
+3. Complete the MFA prompt or verification step if the sign-in page asks for it; student email uses MFA.
+4. Contact the CCA IT Helpdesk if you have not been set up for MFA or cannot complete MFA.
+5. If you still cannot access student email, try Outlook on the web before contacting CCA IT Support.
 
 Outlook keeps asking for my password:
 1. Enter your current CCA account password carefully and try again.

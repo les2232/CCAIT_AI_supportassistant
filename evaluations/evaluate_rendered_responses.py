@@ -241,7 +241,12 @@ def contains_email_web_access_guidance(step_list):
 
 def contains_email_onboarding(step_list):
     joined = " ".join(step_list).lower()
-    onboarding_terms = ("mycca", "icon", "school email address", "@student.cccs.edu")
+    onboarding_terms = (
+        "click the mycca link",
+        "email icon",
+        "school email address",
+        "@student.cccs.edu",
+    )
     return any(term in joined for term in onboarding_terms)
 
 
