@@ -137,7 +137,7 @@
                 </div>
 
                 <div class="answer-flow">
-                  {% if asked_question %}
+                  {% if asked_question and response_profile.kind in ["troubleshooting", "setup"] %}
                     <p class="asked-question-inline">
                       <span class="asked-question-label">You asked:</span>
                       <span class="asked-question-text">“{{ asked_question }}”</span>
@@ -203,6 +203,7 @@
                     </section>
                   {% endif %}
 
+                  {% if response_profile.show_escalation and (escalation_text or ticket_help_items) %}
                   <section class="answer-section answer-escalation">
                     <h3>{{ response_profile.escalation_title or "Need help from IT?" }}</h3>
                     {% if escalation_text %}
@@ -219,6 +220,7 @@
                       </ul>
                     {% endif %}
                   </section>
+                  {% endif %}
 
                   {% if show_password_reset_portal %}
                     <div class="response-action">

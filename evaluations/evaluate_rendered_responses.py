@@ -25,6 +25,9 @@ QUERIES = [
     "I am not getting my verification code",
     "Can I use OneDrive with my school account?",
     "Where is OBL located?",
+    "Where is the Hub?",
+    "Can I use Adobe?",
+    "Where can I use SolidWorks?",
     "Who can help with online course design?",
     "how do i connect to the internet?",
     "how do i connect to wifi?",
@@ -101,6 +104,12 @@ MFA_AUTHENTICATOR_CASES = [
         "step_terms": ("correct cca account", "mfa", "contact the cca it helpdesk"),
     },
     {
+        "query": "I got a new phone and can't approve MFA",
+        "section_contains": "Changed phones or lost MFA access",
+        "primary_label": "MFA recovery steps",
+        "step_terms": ("old device", "contact the cca it helpdesk"),
+    },
+    {
         "query": "Microsoft Authenticator is not working",
         "section_contains": "Common MFA problems",
         "step_terms": ("microsoft authenticator", "verification"),
@@ -152,6 +161,12 @@ PRINTING_CASES = [
     {
         "query": "how do I add a printer",
         "section_contains": "Printing",
+        "forbidden_terms": ("ccadprint01", "select a shared printer by name", "ticket notes to include"),
+    },
+    {
+        "query": "How do I print on campus?",
+        "section_contains": "Printing from campus computers",
+        "step_terms": ("campus computer", "print", "campus printer"),
         "forbidden_terms": ("ccadprint01", "select a shared printer by name", "ticket notes to include"),
     },
     {
@@ -530,17 +545,11 @@ def evaluate_contact_guard_cases(client, failures):
         if "CCA IT Helpdesk" not in body or "HelpdeskTickets.CCA@ccaurora.edu" not in body:
             failures.append((query, "contact response missing canonical helpdesk details"))
             continue
-        for expected in (
-            "Use the contact options above for CCA technology support.",
-            "Include what you need help with.",
-            "Include the device, app, or system involved.",
-        ):
-            if expected not in body:
-                failures.append((query, f"contact response missing profile help text: {expected}"))
-                break
-        else:
-            print(f"[PASS] {query!r}")
+        if "answer-escalation" in body:
+            failures.append((query, "contact response rendered a redundant escalation block"))
             continue
+        print(f"[PASS] {query!r}")
+        continue
 
 
 def evaluate_known_weak_queries(client, failures):
@@ -563,6 +572,8 @@ def evaluate_known_weak_queries(client, failures):
         response_profile = context.get("response_profile") or {}
         guided_steps = context.get("guided_steps") or []
         joined_steps = " ".join(guided_steps).lower()
+        quick_summary = context.get("quick_summary") or ""
+        joined_guidance = f"{quick_summary} {joined_steps}".lower()
         body = response.get_data(as_text=True)
 
         if source_name != case["source"]:
@@ -581,7 +592,7 @@ def evaluate_known_weak_queries(client, failures):
             failures.append((query, "missing guided steps"))
             continue
         for term in case["step_terms"]:
-            if term not in joined_steps:
+            if term not in joined_guidance:
                 failures.append((query, f"guided steps missing {term!r}: {guided_steps}"))
                 break
         else:
@@ -603,18 +614,12 @@ def evaluate_known_weak_queries(client, failures):
                 if "Did this solve your issue?" in body:
                     failures.append((query, "checkout response rendered troubleshooting feedback prompt"))
                     continue
-                for expected in (
-                    "Bring your student ID.",
-                    "Bring or know your current course schedule.",
-                    "Explain what device or checkout item you need.",
-                ):
-                    if expected not in body:
-                        failures.append((query, f"checkout response missing profile help text: {expected}"))
-                        break
-                else:
-                    if "Include the exact error message or screenshot." in body:
-                        failures.append((query, "checkout response rendered generic error/screenshot guidance"))
-                        continue
+                if "Include the exact error message or screenshot." in body:
+                    failures.append((query, "checkout response rendered generic error/screenshot guidance"))
+                    continue
+                if context.get("ticket_help_items"):
+                    failures.append((query, "checkout response rendered redundant ticket-prep bullets"))
+                    continue
             if query in {"D2L is not loading", "my email does not work"}:
                 if response_profile.get("kind") != "troubleshooting":
                     failures.append((query, f"troubleshooting query used wrong profile: {response_profile}"))
@@ -1032,6 +1037,73 @@ def main():
                 if not contains_location_guidance(guided_steps):
                     failures.append((query, f"guided steps missing location guidance: {guided_steps}"))
                     continue
+                if context.get("escalation_text") or context.get("ticket_help_items"):
+                    failures.append((query, "location answer rendered redundant escalation or ticket-prep content"))
+                    continue
+                print(f"[PASS] {query!r}")
+                print(f"  article: {source_name}")
+                print(f"  section: {section_heading}")
+                print(f"  steps:   {guided_steps[:4]}")
+                continue
+
+            if query == "Where is the Hub?":
+                quick_summary = context.get("quick_summary") or ""
+                joined_guidance = f"{quick_summary} {' '.join(guided_steps)}".lower()
+                if source_name not in {"student-laptops-calculators.txt", "cca-tech-help.txt"}:
+                    failures.append((query, f"wrong Hub article: {source_name}"))
+                    continue
+                for term in ("classroom building", "room 107", "303", "thehub.cca@ccaurora.edu"):
+                    if term not in joined_guidance:
+                        failures.append((query, f"Hub answer missing {term!r}: {guided_steps}"))
+                        break
+                else:
+                    if context.get("escalation_text") or context.get("ticket_help_items"):
+                        failures.append((query, "Hub location answer rendered troubleshooting escalation content"))
+                        continue
+                    print(f"[PASS] {query!r}")
+                    print(f"  article: {source_name}")
+                    print(f"  section: {section_heading}")
+                    print(f"  steps:   {guided_steps[:4]}")
+                    continue
+                continue
+
+            if query == "Can I use Adobe?":
+                joined_guidance = " ".join(guided_steps).lower()
+                if source_name != "cca-tech-help.txt":
+                    failures.append((query, f"wrong Adobe article: {source_name}"))
+                    continue
+                if "adobe creative cloud" not in joined_guidance or "class requires adobe" not in joined_guidance:
+                    failures.append((query, f"Adobe answer missing access limits: {guided_steps}"))
+                    continue
+                if "every student" in joined_guidance or "all students" in joined_guidance:
+                    failures.append((query, "Adobe answer overclaimed student access"))
+                    continue
+                if "solidworks" in joined_guidance:
+                    failures.append((query, "Adobe answer included unrelated SolidWorks guidance"))
+                    continue
+                if context.get("escalation_text") or context.get("ticket_help_items"):
+                    failures.append((query, "Adobe answer rendered troubleshooting escalation content"))
+                    continue
+                print(f"[PASS] {query!r}")
+                print(f"  article: {source_name}")
+                print(f"  section: {section_heading}")
+                print(f"  steps:   {guided_steps[:4]}")
+                continue
+
+            if query == "Where can I use SolidWorks?":
+                joined_guidance = " ".join(guided_steps).lower()
+                if source_name != "cca-tech-help.txt":
+                    failures.append((query, f"wrong SolidWorks article: {source_name}"))
+                    continue
+                if "innovation lab" not in joined_guidance or "cast 132" not in joined_guidance:
+                    failures.append((query, f"SolidWorks answer missing verified locations: {guided_steps}"))
+                    continue
+                if "adobe" in joined_guidance:
+                    failures.append((query, "SolidWorks answer included unrelated Adobe guidance"))
+                    continue
+                if context.get("escalation_text") or context.get("ticket_help_items"):
+                    failures.append((query, "SolidWorks answer rendered troubleshooting escalation content"))
+                    continue
                 print(f"[PASS] {query!r}")
                 print(f"  article: {source_name}")
                 print(f"  section: {section_heading}")
@@ -1099,8 +1171,8 @@ def main():
                 if body.count("Contact the CCA IT Helpdesk if the issue continues after trying these steps.") > 1:
                     failures.append((query, "deduplicated escalation sentence rendered more than once"))
                     continue
-                if not any("if you do not see cca-students" in step.lower() for step in (context.get("additional_steps") or [])):
-                    failures.append((query, f"setup follow-up missing network-not-visible branch: {context.get('additional_steps')}"))
+                if context.get("additional_steps"):
+                    failures.append((query, f"setup response rendered follow-up steps before feedback: {context.get('additional_steps')}"))
                     continue
                 print(f"[PASS] {query!r}")
                 print(f"  article: {source_name}")
@@ -1206,6 +1278,9 @@ def main():
                 if contains_email_onboarding(guided_steps):
                     failures.append((query, f"setup/onboarding steps leaked into troubleshooting response: {guided_steps}"))
                     continue
+                if context.get("additional_steps"):
+                    failures.append((query, f"email response rendered follow-up steps before feedback: {context.get('additional_steps')}"))
+                    continue
                 print(f"[PASS] {query!r}")
                 print(f"  article: {source_name}")
                 print(f"  section: {section_heading}")
@@ -1219,6 +1294,15 @@ def main():
             if query == "Projector has no signal" and "The room number." not in body:
                 failures.append((query, "projector help box missing room number guidance"))
                 continue
+
+            if query == "Audio not working in classroom":
+                joined_steps = " ".join(guided_steps).lower()
+                if "extron" not in joined_steps:
+                    failures.append((query, f"audio steps missing Extron output guidance: {guided_steps}"))
+                    continue
+                if "confirm the classroom computer or presentation device is not muted" not in joined_steps:
+                    failures.append((query, f"audio steps omitted first troubleshooting step: {guided_steps}"))
+                    continue
 
             if len(guided_steps) < 3:
                 failures.append((query, f"too few guided steps: {guided_steps}"))

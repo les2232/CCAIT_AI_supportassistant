@@ -66,6 +66,29 @@ FAILED_LOGIN_ATTEMPTS = {}
 LOGGER = logging.getLogger(__name__)
 
 
+def remove_repeated_escalation_contact(escalation_text, guided_steps):
+    if not escalation_text or not guided_steps:
+        return escalation_text
+
+    joined_steps = " ".join(guided_steps).lower()
+    if "contact the cca it helpdesk" not in joined_steps and "contact cca it" not in joined_steps:
+        return escalation_text
+
+    kept_lines = []
+    for line in escalation_text.splitlines():
+        lowered = line.lower()
+        repeats_contact_path = (
+            "contact the cca it helpdesk" in lowered
+            or "contact cca it" in lowered
+            or "contact cca it support" in lowered
+        )
+        if repeats_contact_path:
+            continue
+        kept_lines.append(line)
+
+    return "\n".join(kept_lines).strip() or None
+
+
 def csrf_token_for_session(session_data):
     """
     Return a stable CSRF token for a Flask session-like mapping.
@@ -586,17 +609,23 @@ def index():
                     question=question,
                     section_heading=section_heading,
                 )
+                if quick_summary and guided_steps and guided_steps[0].strip() == quick_summary.strip():
+                    if len(guided_steps) == 1:
+                        quick_summary = None
+                    else:
+                        guided_steps = guided_steps[1:]
                 if response_profile.get("kind") == "contact":
                     contact_items = build_contact_support_items(full_document_text)
                     if contact_items:
                         guided_steps = contact_items
+                escalation_text = remove_repeated_escalation_contact(escalation_text, guided_steps)
                 common_symptoms = extract_common_symptoms(
                     rendered_response,
                     content_text=full_document_text,
                     question=question,
                     section_heading=section_heading,
                 )
-                if response_profile.get("show_followup", True):
+                if followup_status == "no" and response_profile.get("show_followup", True):
                     additional_steps = build_additional_troubleshooting_steps(
                         question=question,
                         source_name=source_name,

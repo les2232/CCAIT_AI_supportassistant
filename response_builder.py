@@ -290,6 +290,46 @@ def is_direct_setup_query(question):
     )
 
 
+def is_simple_lookup_query(question=None, section_heading=None, source_name=None):
+    """
+    Identify resource/location questions that should answer directly instead of
+    using troubleshooting-style framing.
+    """
+    lowered_question = normalize_text(question or "")
+    lowered_heading = normalize_text(section_heading or "")
+    question_tokens = set(tokenize_text(question or ""))
+    if not lowered_question and not lowered_heading:
+        return False
+
+    lookup_phrases = (
+        "where is",
+        "where can",
+        "where do i",
+        "where are",
+        "what are the hours",
+        "what is the location",
+        "can i use",
+        "do i have access",
+        "is available",
+        "are available",
+    )
+    if any(phrase in lowered_question for phrase in lookup_phrases):
+        return True
+
+    if any(term in question_tokens for term in ("location", "located", "hours", "office", "room")):
+        return True
+
+    if source_name in {
+        "it-resources.txt",
+        "online-blended-learning.txt",
+        "student-email-office365.txt",
+        "student-laptops-calculators.txt",
+    } and any(term in lowered_heading for term in ("location", "hub", "obl", "onedrive", "adobe", "solidworks", "laptop")):
+        return True
+
+    return False
+
+
 def classify_wifi_query_intent(question):
     """
     Return a small Wi-Fi-specific intent used only for response shaping.
@@ -425,7 +465,20 @@ def classify_mfa_query_intent(question):
         return None
     if "alternate" in lowered or "alternative" in lowered or "add method" in lowered:
         return "alternate_method"
-    if any(term in lowered for term in ("lost phone", "lost my phone", "changed phone", "changed phones", "lost access")):
+    if any(
+        term in lowered
+        for term in (
+            "lost phone",
+            "lost my phone",
+            "changed phone",
+            "changed phones",
+            "new phone",
+            "phone changed",
+            "changed device",
+            "new device",
+            "lost access",
+        )
+    ):
         return "lost_access"
     if any(term in lowered for term in ("mfa", "authenticator")):
         return "troubleshooting"
@@ -935,6 +988,7 @@ def classify_response_profile(question=None, source_name=None, section_heading=N
             "followup_label": "When to contact IT",
             "show_followup": False,
             "show_feedback": False,
+            "show_escalation": False,
             "escalation_title": "When to contact IT",
             "ticket_help_label": "Include when you contact IT",
         }
@@ -947,6 +1001,7 @@ def classify_response_profile(question=None, source_name=None, section_heading=N
             "followup_label": "Still not working?",
             "show_followup": True,
             "show_feedback": True,
+            "show_escalation": True,
             "escalation_title": "Need help from IT?",
             "ticket_help_label": "Include when you contact IT",
         }
@@ -959,6 +1014,7 @@ def classify_response_profile(question=None, source_name=None, section_heading=N
                 "followup_label": "Still need help?",
                 "show_followup": False,
                 "show_feedback": False,
+                "show_escalation": True,
                 "escalation_title": "Need more help?",
                 "ticket_help_label": "Bring or include",
             }
@@ -968,6 +1024,7 @@ def classify_response_profile(question=None, source_name=None, section_heading=N
             "followup_label": "Still need help?",
             "show_followup": False,
             "show_feedback": True,
+            "show_escalation": False,
             "escalation_title": "Need more help?",
         }
 
@@ -978,6 +1035,7 @@ def classify_response_profile(question=None, source_name=None, section_heading=N
             "followup_label": "Still need help?",
             "show_followup": True,
             "show_feedback": True,
+            "show_escalation": True,
             "escalation_title": "Need help from IT?",
             "ticket_help_label": "Include when you contact IT",
         }
@@ -991,6 +1049,7 @@ def classify_response_profile(question=None, source_name=None, section_heading=N
             "followup_label": "Still not working?",
             "show_followup": True,
             "show_feedback": True,
+            "show_escalation": True,
             "escalation_title": "Need help from IT?",
             "ticket_help_label": "Include when you contact IT",
         }
@@ -1001,6 +1060,7 @@ def classify_response_profile(question=None, source_name=None, section_heading=N
         "followup_label": "Still need help?",
         "show_followup": False,
         "show_feedback": True,
+        "show_escalation": False,
         "escalation_title": "Need more help?",
         "ticket_help_label": "Include when you ask for help",
     }
@@ -1060,8 +1120,34 @@ def _summary_sentences(text, limit=2):
     return sentences[:limit]
 
 
+def focus_lookup_items_by_question(items, question=None):
+    lowered_question = normalize_text(question or "")
+    topic_keywords = ()
+    if "adobe" in lowered_question or "creative cloud" in lowered_question:
+        topic_keywords = ("adobe", "creative cloud", "mac")
+    elif "solidworks" in lowered_question:
+        topic_keywords = ("solidworks", "innovation lab", "cast 132")
+    elif "onedrive" in lowered_question:
+        topic_keywords = ("onedrive", "microsoft 365", "school account")
+    elif "teams" in lowered_question:
+        topic_keywords = ("teams", "microsoft 365", "school account")
+    elif "office" in lowered_question:
+        topic_keywords = ("office", "office online", "microsoft 365")
+
+    if not topic_keywords:
+        return items
+
+    focused = [
+        item
+        for item in items
+        if any(keyword in normalize_text(item) for keyword in topic_keywords)
+    ]
+    return focused or items
+
+
 def build_task_focused_summary(question, support_title=None):
     lowered = normalize_text(question or "")
+    lowered_title = normalize_text(support_title or "")
     if not lowered:
         return None
 
@@ -1085,6 +1171,15 @@ def build_task_focused_summary(question, support_title=None):
 
     if any(term in lowered for term in ("mfa", "multi factor", "multifactor", "verification code", "authenticator")):
         return "Use these steps to restore your MFA verification method and complete sign-in."
+
+    if "classroom" in lowered or "classroom" in lowered_title:
+        if "audio" in lowered or "audio" in lowered_title:
+            return "Use these checks to restore classroom audio."
+        if "projector" in lowered or "projector" in lowered_title:
+            return "Use these checks to restore the classroom projector signal."
+        if "display" in lowered or "display" in lowered_title:
+            return "Use these checks to restore the classroom display."
+
     return None
 
 
@@ -1121,6 +1216,21 @@ def build_quick_summary(
     if wifi_intent == "password":
         return "CCA-Students does not require a Wi-Fi password. Check that your device selected the student network."
 
+    if is_simple_lookup_query(
+        question=question,
+        section_heading=section_heading,
+        source_name=source_name,
+    ) or source_name == "student-laptops-calculators.txt":
+        direct_items = focus_lookup_items_by_question(
+            heuristic_extract_step_items(strip_guide_metadata_lines(answer_text)),
+            question=question,
+        )
+        if direct_items:
+            return direct_items[0]
+        answer_sentences = _summary_sentences(strip_guide_metadata_lines(answer_text), limit=1)
+        if answer_sentences:
+            return answer_sentences[0]
+
     task_summary = build_task_focused_summary(question, support_title=support_title)
     if task_summary:
         return task_summary
@@ -1155,20 +1265,8 @@ def build_ticket_help_items(question=None, source_name=None, content_text=None, 
     Return concise escalation prep bullets for contacting IT.
     """
     profile_kind = (response_profile or {}).get("kind")
-    if profile_kind == "contact":
-        return [
-            "Include what you need help with.",
-            "Include the device, app, or system involved.",
-            "Include any exact error message or screenshot, if available.",
-        ]
-
-    if profile_kind == "checkout":
-        return [
-            "Bring your student ID.",
-            "Bring or know your current course schedule.",
-            "Explain what device or checkout item you need.",
-            "Contact the listed office or support contact if you are unsure where to go.",
-        ]
+    if profile_kind in {"contact", "checkout", "informational"}:
+        return []
 
     items = [
         "Include the exact error message or screenshot.",
@@ -1199,6 +1297,31 @@ def build_ticket_help_items(question=None, source_name=None, content_text=None, 
     return dedupe_preserve_order(items)
 
 
+def is_ticket_detail_line(text):
+    """
+    Detect escalation-section lines that are better shown as concise ticket bullets.
+    """
+    lowered = (text or "").strip().lower()
+    if not lowered:
+        return False
+    ticket_prefixes = (
+        "include ",
+        "your ",
+        "whether ",
+        "the exact ",
+        "the device ",
+        "the service ",
+        "what steps ",
+        "what you ",
+        "a screenshot",
+        "bring ",
+        "explain ",
+        "provide ",
+        "be ready ",
+    )
+    return lowered.startswith(ticket_prefixes)
+
+
 def build_escalation_summary_text(escalation_text, response_profile=None):
     """
     Keep the IT help box concise when KB escalation sections repeat contact lines.
@@ -1207,14 +1330,16 @@ def build_escalation_summary_text(escalation_text, response_profile=None):
         return None
 
     profile_kind = (response_profile or {}).get("kind")
-    if profile_kind == "contact":
-        return "Use the contact options above for CCA technology support."
+    if profile_kind in {"contact", "informational"}:
+        return None
 
     lines = []
     has_contact_instruction = False
     for line in escalation_text.splitlines():
         cleaned = re.sub(r"^[-•\s]+", "", line).strip()
         if not cleaned:
+            continue
+        if is_ticket_detail_line(cleaned):
             continue
         lowered = cleaned.lower()
         if (
@@ -1231,7 +1356,7 @@ def build_escalation_summary_text(escalation_text, response_profile=None):
         lines.append(cleaned)
 
     deduped = dedupe_preserve_order(lines)
-    if has_contact_instruction:
+    if has_contact_instruction and profile_kind != "checkout":
         deduped.insert(
             0,
             "Contact the CCA IT Helpdesk if the issue continues after trying these steps.",
@@ -1648,6 +1773,14 @@ def extract_step_items(answer_text, content_text=None, question=None, section_he
     }
     if lowered_heading in direct_section_headings:
         direct_section_query = True
+
+    if is_simple_lookup_query(question=question, section_heading=section_heading):
+        direct_items = focus_lookup_items_by_question(
+            heuristic_extract_step_items(answer_text),
+            question=question,
+        )
+        if direct_items:
+            return dedupe_preserve_order(direct_items[:5])
 
     if direct_section_query:
         direct_steps = filter_action_items(heuristic_extract_step_items(answer_text))
