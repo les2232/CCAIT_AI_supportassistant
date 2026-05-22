@@ -439,6 +439,32 @@ Optional features:
 
 ### 4. Run the Flask app
 
+For deterministic local KB-only testing, run this from the repo root:
+
+```bash
+scripts/run-local-kb.sh
+```
+
+Then open:
+
+```txt
+http://127.0.0.1:5055
+```
+
+This wrapper sets `IT_SUPPORT_LOCAL_ONLY=1`, clears `OPENAI_API_KEY`, disables
+the optional OpenAI-backed paths, uses a dev-only `FLASK_SECRET_KEY` fallback
+when one is not already set, and runs Flask on `0.0.0.0:5055` by default.
+Override the local bind address with `FLASK_RUN_HOST` and `FLASK_RUN_PORT`:
+
+```bash
+FLASK_RUN_PORT=5060 scripts/run-local-kb.sh
+```
+
+The script calls `./venv/bin/python -m flask --app app run` and does not change
+production configuration.
+
+For the plain development entry point, use:
+
 ```bash
 ./venv/bin/python app.py
 ```
