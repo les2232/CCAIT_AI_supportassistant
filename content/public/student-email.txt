@@ -88,7 +88,7 @@ Still need help?:
 - If you are unable to log into MyCCA, student email, or campus computers, contact the CCA IT Helpdesk.
 
 What to include when asking for help:
-- Your student ID (S#) or CCA username.
+- Your CCA username is your student ID number (S#). On the student login page, use only your S# as the username.
 - Whether you can sign in to MyCCA.
 - Whether you know your CCA student email address.
 - Whether the issue happens in Outlook on the web, the Outlook app, or both.
