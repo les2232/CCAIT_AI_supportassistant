@@ -63,7 +63,7 @@ When to contact IT for student email help:
 - Contact the CCA IT Helpdesk if you cannot access your student email, Outlook keeps asking for your password, or verification problems prevent you from signing in.
 
 What to include when asking for help:
-- Your student ID (S#) or CCA username.
+- Your CCA username is your student ID number (S#). On the student login page, use only your S# as the username.
 - Whether the issue happens in Outlook on the web, the Outlook app, or both.
 - Whether MFA or verification appears during sign-in.
 - The exact error message or prompt you see.
