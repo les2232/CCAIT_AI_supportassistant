@@ -77,6 +77,7 @@ Last updated: 2026-05-22
 | `student-laptops-calculators.txt` | Semester laptop loan location | `Student Centre, Room S101, CentreTech Campus` | low | `verified_public_source` | Keep. |
 | `student-laptops-calculators.txt` | Semester laptop loan requirements | bring student ID and current course schedule | low | `verified_public_source` | Keep. |
 | `student-laptops-calculators.txt` | Calculator checkout | Hub front desk at CentreTech; provide S# | low | `verified_public_source` | Keep. |
+| `student-laptops-calculators.txt` | Hub computer and desktop software availability | Laptops available inside the Hub at CentreTech; iMac desktops with Adobe Creative Cloud installed; one desktop PC with SolidWorks installed | medium | `needs_source` | Verify current Hub computer inventory, software installs, and campus availability before relying on this as student-facing guidance. |
 | `wifi-troubleshooting.txt` | Student Wi-Fi network name | `CCA-Students` | low | `verified_public_source` | Keep. Verified 2026-04-27 from CCA IT Support flyer / campus support handout. |
 | `wifi-troubleshooting.txt` | Open/no-password Wi-Fi claim | `CCA-Students is an open network and does not require a password` | low | `verified_public_source` | Keep. Verified 2026-04-27 from CCA IT Support flyer / campus support handout. |
 | `wifi-troubleshooting.txt` | Captive portal / splash page behavior | open browser to trigger splash page / captive portal / consent page | low | `verified_public_source` | Keep. Verified 2026-04-27 from CCA IT Support flyer / campus support handout. |
@@ -106,6 +107,8 @@ Last updated: 2026-05-22
 - `it-resources.txt`
   - Hub services, locations, phone numbers, hours, and CentreTech / Lowry availability remain unverified
   - Public `it-resources.txt` guidance was softened 2026-05-08 to avoid publishing unverified Hub details
+- `student-laptops-calculators.txt`
+  - Hub laptop and desktop Adobe Creative Cloud / SolidWorks availability remains unverified
 
 ## TODOs For Human Verification
 
@@ -115,6 +118,7 @@ Last updated: 2026-05-22
 - TODO: Confirm whether `onlinelearning.cca@ccaurora.edu` remains the public-facing OBL support address for students/faculty.
 - TODO: Confirm current Microsoft 365 / OneDrive / Teams / Office Online entitlements for student accounts, including any storage, sync, sharing, and licensing limits.
 - TODO: Confirm Hub locations, phone numbers, hours, and which services are offered at CentreTech vs Lowry.
+- TODO: Confirm current Hub computer inventory and desktop software availability, including Adobe Creative Cloud and SolidWorks.
 - TODO: Confirm whether D2L student support should explicitly reference `D2L`, `Brightspace`, `MyCourses`, or a preferred combination in student-facing copy.
 - TODO: Confirm the supported mapped-drive recovery process for Windows 11, including whether any internal server path or self-service script should appear in public-facing guidance.
 
